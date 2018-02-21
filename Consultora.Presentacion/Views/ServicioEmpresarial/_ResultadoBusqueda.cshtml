@@ -1,0 +1,54 @@
+﻿@model List<Consultora.Entidad.ServicioEmpresarialCompetenciaEntidad>
+@{
+    ViewBag.Title = "_ResultadoBusqueda";
+}
+@if (Model != null && Model.Count > 0)
+{
+    <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-th"></i> </span>
+                <h5>Informción de Consultores</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Cargo</th>
+                            <th>Senority</th>
+                            <th>Disponibilidad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var entidad in Model)
+                        {
+                            <tr class="odd gradeX">
+                                <td>@entidad.Consultor.NombreCompleto</td>
+                                <td>
+                                    @entidad.Competencia.Nom_Competencia
+                                </td>
+                                <td>@entidad.NivelCompetencia.Nom_Nivel_Competencia</td>
+                                <td class="center"> 1</td>
+                                <td class="center">
+                                    @if (string.IsNullOrWhiteSpace(entidad.Consultor.NombreCompleto))
+                                    {
+                                        <button type="button" class="btn btn-danger" id="btn-eliminar-consultor" disabled>Eliminar</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-danger" id="btn-eliminar-consultor">Eliminar</button>
+                                    }
+                                    
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+

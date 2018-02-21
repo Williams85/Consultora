@@ -1,0 +1,7 @@
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\bin\Debug\Consultora.Repositorio.dll
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\bin\Debug\Consultora.Repositorio.pdb
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\bin\Debug\Consultora.Entidad.dll
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\bin\Debug\Consultora.Entidad.pdb
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\obj\Debug\Consultora.Repositorio.csprojResolveAssemblyReference.cache
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\obj\Debug\Consultora.Repositorio.dll
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Repositorio\obj\Debug\Consultora.Repositorio.pdb

@@ -1,0 +1,41 @@
+﻿@model List<Consultora.Entidad.ServicioEmpresarialCompetenciaEntidad>
+@{
+    ViewBag.Title = "_ResultadoListaRequerimientosModal";
+}
+@if (Model != null && Model.Count > 0)
+{
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-th"></i> </span>
+                    <h5>Informacion de Requerimiento</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cargo</th>
+                                <th>Seniority</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entidad in Model)
+                            {
+                                <tr class="odd gradeX">
+                                    <td>@entidad.Competencia.Nom_Competencia</td>
+                                    <td>@entidad.NivelCompetencia.Nom_Nivel_Competencia</td>
+                                    <td>@entidad.Cantidad</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

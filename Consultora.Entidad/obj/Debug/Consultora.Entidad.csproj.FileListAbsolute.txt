@@ -1,0 +1,5 @@
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\bin\Debug\Consultora.Entidad.dll
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\bin\Debug\Consultora.Entidad.pdb
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.csprojResolveAssemblyReference.cache
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.dll
+E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.pdb

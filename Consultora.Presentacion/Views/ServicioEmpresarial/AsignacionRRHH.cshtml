@@ -1,0 +1,141 @@
+﻿@model Consultora.Entidad.ServicioEmpresarialEntidad
+@{
+    ViewBag.Title = "AsignacionRRHH";
+}
+<div id="content-header">
+    <div id="breadcrumb"></div>
+    <h1>Asignación de Consultores</h1>
+</div>
+<div class="container-fluid" style="padding:10px;">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Seleccionar Servicio de la Empresa</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form action="#" method="get" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Servicio:</label>
+                            <div class="controls">
+                                @Html.Hidden("Cod_Servicio_Empresarial", Model.Cod_Servicio_Empresarial)
+                                @Html.TextBoxFor(model => model.Nom_Servicio_Empresarial, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Cliente:</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Cliente.Razon_Social, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Responsable:</label>
+                            <div class="controls">
+                                @if (Model.Empleado.Nom_Empleado != null && Model.Empleado.Nom_Empleado != "")
+                                {
+                                    @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control", @readonly = "true" })
+                                }
+                                else
+                                {
+                                    @Html.TextBox("Responsable", SessionManager.Usuario.Nom_Usuario, new { @class = "form-control", @readonly = "true" })
+                                }
+
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-success" id="btn-ver-detalles-servicio">Ver Detalles del Servicio</button>
+                            <button type="button" class="btn btn-success" id="btn-lista-requerimientos">Requerimientos Servicio</button>
+                            <button type="button" class="btn btn-success" id="btn-aceptar">Asignación Automatica</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+
+        </div>
+        <div id="Resultados">
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="ReqConsultor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Requerimiento de Consultor</h4>
+            </div>
+            <div class="modal-body" id="modalmsg">
+                <div class="container-fluid" id="Modal-ListaRequerimientos">
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"> <i class="icon-th"></i> </span>
+                                    <h5>Informacion de Requerimiento</h5>
+                                </div>
+                                <div class="widget-content nopadding">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Cargo</th>
+                                                <th>Seniority</th>
+                                                <th>Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td>Trident</td>
+                                                <td>
+                                                    Internet
+                                                    Explorer 4.0
+                                                </td>
+                                                <td>Win 95+</td>
+                                            </tr>
+                                            <tr class="even gradeC">
+                                                <td>Trident</td>
+                                                <td>
+                                                    Internet
+                                                    Explorer 5.0
+                                                </td>
+                                                <td>Win 95+</td>
+                                            </tr>
+                                            <tr class="odd gradeA">
+                                                <td>Trident</td>
+                                                <td>
+                                                    Internet
+                                                    Explorer 5.5
+                                                </td>
+                                                <td>Win 95+</td>
+                                            </tr>
+                                            <tr class="even gradeA">
+                                                <td>Trident</td>
+                                                <td>
+                                                    Internet
+                                                    Explorer 6
+                                                </td>
+                                                <td>Win 98+</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/asignacion-automatica")

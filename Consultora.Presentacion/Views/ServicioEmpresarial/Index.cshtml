@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"></div>
+    <h1>MODULO ASIGNACIÓN DE CONSULTORES</h1>
+</div>
+<div class="container-fluid" style="padding:10px;">
+    <hr>
+    <div class="row-fluid">
+        <div class="span6">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Búsqueda de Servicios</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Html.BeginForm("AsignacionRRHH", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+                    {
+                        <div class="control-group">
+                            <label class="control-label">Nombre Servicio:</label>
+                            <div class="controls">
+                                @Html.TextBox("Nom_Servicio_Empresarial")
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Tipo Servicio:</label>
+                            <div class="controls">
+                                @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaServicios, "Cod_Servicio", "Nom_Servicio"), "Todos", null)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Cliente:</label>
+                            <div class="controls">
+                                @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaClientes, "Cod_Cliente", "Razon_Social"), "Todos", null)
+                            </div>
+                        </div>
+
+                        <div class="form-actions text-center">
+                            <button type="button" class="btn btn-success" id="btn-buscar">Buscar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="span6">
+
+        </div>
+        <div id="Resultados">
+
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/asignacion-automatica")
