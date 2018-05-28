@@ -1,0 +1,154 @@
+﻿@model Consultora.Entidad.ServicioEmpresarialEntidad
+@{
+    ViewBag.Title = "AsignacionRRHH";
+}
+
+<h4>Modulo de Asignación de Consultores</h4>
+<div class="search">
+    <span class="titulo">Seleccionar Servicio de la Empresa</span>
+
+    @using (Html.BeginForm("AsignacionRRHH", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    {
+        <article class="sector-100">
+            <label>Servicio:</label>
+            <input type="hidden" id="Cod_Servicio_Empresarial_Competencias" name="Cod_Servicio_Empresarial_Competencias" />
+            <input type="hidden" id="IdExisteConsultoresAsignados" name="IdExisteConsultoresAsignados" value="@ViewBag.ExisteConsultoresAsignados" />
+            <input type="hidden" id="IdMaximoConsultores" name="IdMaximoConsultores" value="@ViewBag.MaximoConsultores" />
+            @Html.Hidden("Cod_Servicio_Empresarial", Model.Cod_Servicio_Empresarial)
+            @Html.TextBoxFor(model => model.Nom_Servicio_Empresarial, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.TextBoxFor(model => model.Cliente.Razon_Social, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Responsable:</label>
+            @if (Model.Empleado.Nom_Empleado != null && Model.Empleado.Nom_Empleado != "")
+            {
+                @Html.TextBoxFor(model => model.Responsable, new { @readonly = "true" })
+            }
+            else
+            {
+                @Html.TextBox("Responsable", SessionManager.Usuario.Nom_Usuario, new { @readonly = "true" })
+            }
+        </article>
+
+        <div class="clear">
+
+        </div>
+        <article class="lista-botones">
+            <button type="button" class="btn btn-info" id="btn-ver-detalles-servicio">Ver Detalles del Servicio</button>
+            <button type="button" class="btn btn-info" id="btn-lista-requerimientos">Requerimientos Consultores</button>
+            <button type="button" class="btn btn-info" id="btn-aceptar">Asignación Automatica</button>
+        </article>
+
+    }
+</div>
+
+<div class="grid-resultados" id="Resultados">
+
+</div>
+
+<div id="IdGuardarCambios" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¿Guardar los Cambios?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="GuardarCambios">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="IdEliminarConsultor" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¿Desea eliminar al consultor seleccionado?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="EliminarConsultor">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="IdAsignacionAutomatica" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¿Está seguro de que desea realizar una nueva búsqueda?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="AsignacionAutomatica">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="FiltrarConsultor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Buscar Consultores</h4>
+                <form>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Nombres</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Nom_Empleado" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Cod_Competencia" class="col-sm-2 col-form-label">Cargo</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("Cod_Competencia", new SelectList(@Consultora.Presentacion.SessionManager.ListaCompetencia, "Cod_Competencia", "Nom_Competencia"), "Todos", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Cod_Nivel_Competencia" class="col-sm-2 col-form-label">Seniority</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("Cod_Nivel_Competencia", new SelectList(@Consultora.Presentacion.SessionManager.ListaNivelCompetencia, "Cod_Nivel_Competencia", "Nom_Nivel_Competencia"), "Todos", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <button type="submit" id="btn-buscar-consultor" class="btn btn-primary mb-2 text-right">Buscar</button>
+                </form>
+            </div>
+            <div class="modal-body" id="modalmsg">
+                <div class="container-fluid" id="Modal-ListaConsultores">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ReqConsultor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Requerimiento de Consultor</h4>
+            </div>
+            <div class="modal-body" id="modalmsg">
+                <div class="container-fluid" id="Modal-ListaRequerimientos">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/asignacion-automatica")

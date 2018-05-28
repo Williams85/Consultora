@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteDominio.cs" />
+    <Compile Include="CompetenciaDominio.cs" />
+    <Compile Include="ConsultorDominio.cs" />
+    <Compile Include="IniciativaDominio.cs" />
+    <Compile Include="NivelCompetenciaDominio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicioDominio.cs" />
     <Compile Include="ServicioEmpresarialCompetenciaDominio.cs" />

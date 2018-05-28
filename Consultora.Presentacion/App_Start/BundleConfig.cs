@@ -43,12 +43,13 @@ namespace Consultora.Presentacion
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-responsive.min.css",
+                      /*"~/Content/bootstrap-responsive.min.css",
                       "~/Content/fullcalendar.css",
                       "~/Content/matrix-style.css",
                       "~/Content/matrix-media.css",
                       "~/font-awesome/css/font-awesome.css",
                       "~/Content/jquery.gritter.css",
+                      "~/Content/jquery.gritter.css",*/
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/script-layaout").Include(
@@ -58,6 +59,10 @@ namespace Consultora.Presentacion
             //Asignacion Automatica
             bundles.Add(new ScriptBundle("~/bundles/asignacion-automatica").Include(
                                   "~/Scripts/Controladores/AsignacionAutomatica/asignacion-automatica-controller.js"));
+
+            //Evaluacion Rentabilidad
+            bundles.Add(new ScriptBundle("~/bundles/evaluacion-rentabilidad").Include(
+                                  "~/Scripts/Controladores/EvaluacionRentabilidad/evaluacion-rentabilidad-controller.js"));
         }
     }
 }

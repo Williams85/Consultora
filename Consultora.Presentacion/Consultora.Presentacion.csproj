@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EvaluacionRentabilidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\ServicioEmpresarialController.cs" />
@@ -180,6 +181,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\icono-login.png" />
+    <Content Include="images\logo.png" />
     <Content Include="img\breadcrumb.png" />
     <Content Include="img\gallery\imgbox1.jpg" />
     <Content Include="img\gallery\imgbox2.jpg" />
@@ -259,10 +262,12 @@
     <Content Include="img\icons\32\Thumbs.db" />
     <Content Include="Scripts\Controladores\ajax-mvc.js" />
     <Content Include="Scripts\Controladores\AsignacionAutomatica\asignacion-automatica-controller.js" />
+    <Content Include="Scripts\Controladores\EvaluacionRentabilidad\evaluacion-rentabilidad-controller.js" />
     <Content Include="Scripts\Controladores\functions.js" />
     <Content Include="Scripts\excanvas.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <None Include="Properties\PublishProfiles\Consultora.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -309,7 +314,9 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -328,6 +335,13 @@
     <Content Include="Views\ServicioEmpresarial\_ResultadoBusqueda.cshtml" />
     <Content Include="Views\ServicioEmpresarial\_ResultadoBusquedaServEmpresarial.cshtml" />
     <Content Include="Views\ServicioEmpresarial\_ResultadoListaRequerimientosModal.cshtml" />
+    <Content Include="Views\ServicioEmpresarial\_ResultadoFiltroConsultoresModal.cshtml" />
+    <Content Include="Views\EvaluacionRentabilidad\Index.cshtml" />
+    <Content Include="Views\EvaluacionRentabilidad\_ViewCostoTotalEquipo.cshtml" />
+    <Content Include="Views\EvaluacionRentabilidad\_ViewCostoTotalServicio.cshtml" />
+    <Content Include="Views\EvaluacionRentabilidad\_ViewCostoTotalCliente.cshtml" />
+    <Content Include="Views\EvaluacionRentabilidad\_ViewTamañoServicio.cshtml" />
+    <Content Include="Views\ServicioEmpresarial\_ResultadoDetalleConsultorModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

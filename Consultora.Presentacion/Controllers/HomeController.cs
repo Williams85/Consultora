@@ -1,4 +1,5 @@
-﻿using Consultora.Entidad;
+﻿using Consultora.Dominio;
+using Consultora.Entidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Consultora.Presentacion.Controllers
     {
         public ActionResult Index()
         {
+            CompetenciaDominio oCompetenciaDominio = new CompetenciaDominio();
+            NivelCompetenciaDominio oNivelCompetenciaDominio = new NivelCompetenciaDominio();
+            SessionManager.ListaCompetencia = oCompetenciaDominio.listarActivos();
+            SessionManager.ListaNivelCompetencia = oNivelCompetenciaDominio.listarActivos();
+
             SessionManager.Usuario = new UsuarioEntidad
             {
                 Cod_Usuario=1,

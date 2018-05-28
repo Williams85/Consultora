@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Consultora.Entidad
 {
-    public class ServicioEmpresarialEntidad
+     public partial class ServicioEmpresarialEntidad
     {
         public int Cod_Servicio_Empresarial { get; set; }
         public string Nom_Servicio_Empresarial { get; set; }

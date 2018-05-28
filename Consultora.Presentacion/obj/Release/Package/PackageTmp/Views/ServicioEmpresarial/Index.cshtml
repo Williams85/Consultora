@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Modulo de Asignación de Consultores</h4>
+<div class="search">
+    <span class="titulo">Criterio de busqueda</span>
+
+    @using (Html.BeginForm("AsignacionRRHH", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    {
+        <article class="sector-50">
+            <label>Nombre Servicio</label>
+            @Html.TextBox("Nom_Servicio_Empresarial")
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio</label>
+            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaServicios, "Cod_Servicio", "Nom_Servicio"), "Todos", null)
+        </article>
+        <article class="sector-100">
+            <label>Cliente</label>
+            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaClientes, "Cod_Cliente", "Razon_Social"), "Todos", null)
+        </article>
+        
+        <div class="clear">
+
+        </div>
+        <article class="lista-botones">
+            <button type="button" class="btn-buscar" id="btn-buscar">Buscar</button>
+        </article>
+
+    }
+</div>
+<div class="grid-resultados" id="Resultados">
+
+</div>
+
+
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/asignacion-automatica")

@@ -70,6 +70,13 @@ namespace Consultora.Repositorio
                             AP_Empleado = Reader.GetStringValue(reader, "AP_Empleado"),
                             AM_Empleado = Reader.GetStringValue(reader, "AM_Empleado"),
                         };
+                        oServicioEmpresarialEntidad.Servicio = new ServicioEntidad
+                        {
+                            Nom_Servicio = Reader.GetStringValue(reader, "Nom_Servicio"),
+                        };
+                        oServicioEmpresarialEntidad.Fecha_Inicio = Reader.GetDateTimeValue(reader, "Fecha_Inicio");
+                        oServicioEmpresarialEntidad.Fecha_Fin = Reader.GetDateTimeValue(reader, "Fecha_Fin");
+
                     }
                 }
                 return oServicioEmpresarialEntidad;

@@ -1,0 +1,21 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "_ViewTamañoServicio";
+}
+<input type="hidden" id="MedidaServicio" name="MedidaServicio" value="@Model.MedidadServicio" />
+@if (Model.MedidadServicio < 300) { 
+           <label>Calculando el tamaño del servicio</label><input type="text" id="IdMedidaServicio" name="IdMedidaServicio" value="Pequeño" disabled>
+}
+else
+{
+    if (Model.MedidadServicio >= 300 && Model.MedidadServicio < 500)
+    {
+        <label>Calculando el tamaño del servicio</label><input type="text" id="IdMedidaServicio" name="IdMedidaServicio" value="Mediano" disabled>
+    }
+    else
+    {
+        <label>Calculando el tamaño del servicio</label><input type="text" id="IdMedidaServicio" name="IdMedidaServicio" value="Grande" disabled>
+    }
+}
+
+

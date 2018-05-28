@@ -47,12 +47,14 @@
     <Compile Include="Base\ConsultorEntidad.cs" />
     <Compile Include="Base\NivelCompetenciaEntidad.cs" />
     <Compile Include="ConsultorEntidad.cs" />
+    <Compile Include="Base\IniciativaEntidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\ServicioEmpresarialEntidad.cs" />
     <Compile Include="Base\ServicioEntidad.cs" />
     <Compile Include="Base\UsuarioEntidad.cs" />
     <Compile Include="Base\ServicioEmpresarialCompetenciaEntidad.cs" />
     <Compile Include="ServicioEmpresarialCompetenciaEntidad.cs" />
+    <Compile Include="ServicioEmpresarialEntidad.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

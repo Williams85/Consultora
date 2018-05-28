@@ -3,3 +3,13 @@ E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\bin\Debug\Cons
 E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.csprojResolveAssemblyReference.cache
 E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.dll
 E:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\bin\Debug\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\bin\Debug\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.csprojResolveAssemblyReference.cache
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora.Entidad\obj\Debug\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\bin\Debug\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\bin\Debug\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.csprojResolveAssemblyReference.cache

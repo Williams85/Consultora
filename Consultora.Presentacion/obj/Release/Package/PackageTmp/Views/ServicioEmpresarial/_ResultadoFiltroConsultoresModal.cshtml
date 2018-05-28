@@ -1,0 +1,47 @@
+﻿@model List<Consultora.Entidad.ConsultorEntidad>
+    @{
+        ViewBag.Title = "_ResultadoFiltroConsultoresModal";
+    }
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-th"></i> </span>
+                    <h5>Resultado busqueda de consultores</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Consultor</th>
+                                <th>Cargo</th>
+                                <th>Seniority</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entidad in Model)
+                            {
+                                <tr class="odd gradeX">
+                                    <td>
+                                        <button type="submit" class="btn btn-success btn-small btn-selector-consultor" data-consultor="@entidad.Cod_Consultor">Seleccionar</button>
+                                    </td>
+                                    <td>@entidad.Empleado.Nom_Empleado</td>
+                                    <td>@entidad.Competencia.Nom_Competencia</td>
+                                    <td>@entidad.NivelCompetencia.Nom_Nivel_Competencia</td>                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

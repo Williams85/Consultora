@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        // This function is called from the pop-up menus to transfer to
+        // a different page. Ignore if the value returned is a null string:
+        function goPage(newURL) {
+
+            // if url is empty, skip the menu dividers and reset the menu selection to default
+            if (newURL != "") {
+
+                // if url is "-", it is this page -- reset the menu:
+                if (newURL == "-") {
+                    resetMenu();
+                }
+                    // else, send page to designated URL
+                else {
+                    document.location.href = newURL;
+                }
+            }
+        }
+
+        // resets the menu selection upon entry to this page:
+        function resetMenu() {
+            document.gomenu.selector.selectedIndex = 2;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="centrar">
+            <img src="@Url.Content("/images/logo.png")" width="200">
+            <div class="viewlogin">
+                <img src="@Url.Content("/images/icono-login.png")" width="25">
+                <a href="#">
+                    <span>Williams Morales Caballero</span>
+
+                    <ul id="MenuUser">
+                        <li><a href="#">Cambiar Clave</a></li>
+                        <li><a href="#">Salir del Sistema</a></li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+
+    </header>
+    <section>
+
+        <div class="centrar">
+            <nav>
+                <ul>
+                    <li><a href="/ServicioEmpresarial/Index">Asignacion de Consultores</a></li>
+                    <li><a href="">Crear Iniciativa</a></li>
+                    <li><a href="">Consultar Iniciativa</a></li>
+
+                </ul>
+            </nav>
+            <div class="contenido">
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+    <div id="IdMensaje" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

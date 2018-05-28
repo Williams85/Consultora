@@ -22,7 +22,10 @@ namespace Consultora.Dominio
         {
             return oServicioEmpresarialCompetenciaRepositorio.ListarRequerimientos(Codigo);
         }
-
+        public List<ServicioEmpresarialCompetenciaEntidad> BuscarRRHHAsignados(string Codigo)
+        {
+            return oServicioEmpresarialCompetenciaRepositorio.BuscarRRHHAsignados(Codigo);
+        }
 
         #endregion
 

@@ -1,0 +1,7 @@
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\bin\Release\Consultora.Repositorio.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\bin\Release\Consultora.Repositorio.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\bin\Release\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\bin\Release\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\obj\Release\Consultora.Repositorio.csprojResolveAssemblyReference.cache
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\obj\Release\Consultora.Repositorio.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Repositorio\obj\Release\Consultora.Repositorio.pdb

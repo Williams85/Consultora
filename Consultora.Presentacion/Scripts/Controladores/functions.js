@@ -1,8 +1,21 @@
 ﻿//Rutas
 var rutas = {};
 rutas.BuscarRRHH = "/ServicioEmpresarial/BuscarRRHH";
+rutas.SearchRRHH = "/ServicioEmpresarial/SearchRRHH";
 rutas.BuscarServiciosEmpresarial = "/ServicioEmpresarial/BuscarServiciosEmpresarial";
 rutas.ListarRequerimientos = "/ServicioEmpresarial/ListarRequerimientos";
+rutas.AsignarRRHH = "/ServicioEmpresarial/AsignarRRHH";
+rutas.BuscarConsultor = "/ServicioEmpresarial/BuscarConsultor";
+rutas.BuscarConsultorxCodigo = "/ServicioEmpresarial/BuscarConsultorxCodigo";
+rutas.AgregarConsultor = "/ServicioEmpresarial/AgregarConsultor";
+rutas.EliminarConsultor = "/ServicioEmpresarial/EliminarConsultor";
+
+//Evaluacion Rentabilidad
+rutas.CalcularCostoEquipo = "/EvaluacionRentabilidad/CalcularCostoEquipo";
+rutas.CalcularCostoServicio = "/EvaluacionRentabilidad/CalcularCostoServicio";
+rutas.CalcularCostoEquipoCliente = "/EvaluacionRentabilidad/CalcularCostoEquipoCliente";
+rutas.CalcularTamañoServicio = "/EvaluacionRentabilidad/CalcularTamañoServicio";
+rutas.RegistrarEvaluacionRentabilidad = "/EvaluacionRentabilidad/RegistrarEvaluacionRentabilidad";
 
 //$.datepicker.regional['es'] = {
 //    closeText: 'Cerrar',

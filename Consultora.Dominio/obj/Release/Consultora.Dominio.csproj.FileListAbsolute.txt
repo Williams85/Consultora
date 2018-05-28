@@ -1,0 +1,11 @@
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Dominio.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Dominio.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Entidad.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Repositorio.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Utilitario.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Entidad.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Repositorio.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\bin\Release\Consultora.Utilitario.pdb
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\obj\Release\Consultora.Dominio.csprojResolveAssemblyReference.cache
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\obj\Release\Consultora.Dominio.dll
+D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Dominio\obj\Release\Consultora.Dominio.pdb
