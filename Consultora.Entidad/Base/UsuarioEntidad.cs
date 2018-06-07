@@ -13,6 +13,7 @@ namespace Consultora.Entidad
         public string Pas_Usuario { get; set; }
         public EmpleadoEntidad Empleado { get; set; }
         public string NombreEmpleado { get { return this.Empleado.Nom_Empleado + " " + this.Empleado.AP_Empleado + " " + this.Empleado.AM_Empleado; } }
+        public PerfilEntidad Perfil { get; set; }
         public bool Estado { get; set; }
     }
 }

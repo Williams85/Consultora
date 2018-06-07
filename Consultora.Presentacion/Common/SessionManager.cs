@@ -21,6 +21,12 @@ namespace Consultora.Presentacion
         const string _ListaCompetencia = "ListaCompetencia";
         const string _ListaNivelCompetencia = "ListaNivelCompetencia";
         const string _IniciativaEntidad = "IniciativaEntidad";
+        const string _MensajeErrARS = "MensajeErrARS";
+        const string _MensajeOKARS = "MensajeOKARS";
+        const string _MensajeErrRFP = "MensajeErrRFP";
+        const string _MensajeOKRFP = "MensajeOKRFP";
+        const string _MensajeErrACL = "MensajeErrACL";
+        const string _MensajeOKACL = "MensajeOKACL";
         #endregion
 
         #region "Propiedades"
@@ -53,6 +59,36 @@ namespace Consultora.Presentacion
         {
             get { return (IniciativaEntidad)Session[_IniciativaEntidad]; }
             set { Session[_IniciativaEntidad] = value; }
+        }
+        public static string MensajeErrARS
+        {
+            get { return (string)Session[_MensajeErrARS]; }
+            set { Session[_MensajeErrARS] = value; }
+        }
+        public static string MensajeOKARS
+        {
+            get { return (string)Session[_MensajeOKARS]; }
+            set { Session[_MensajeOKARS] = value; }
+        }
+        public static string MensajeErrRFP
+        {
+            get { return (string)Session[_MensajeErrRFP]; }
+            set { Session[_MensajeErrRFP] = value; }
+        }
+        public static string MensajeOKRFP
+        {
+            get { return (string)Session[_MensajeOKRFP]; }
+            set { Session[_MensajeOKRFP] = value; }
+        }
+        public static string MensajeErrACL
+        {
+            get { return (string)Session[_MensajeErrACL]; }
+            set { Session[_MensajeErrACL] = value; }
+        }
+        public static string MensajeOKACL
+        {
+            get { return (string)Session[_MensajeOKACL]; }
+            set { Session[_MensajeOKACL] = value; }
         }
 
         #endregion

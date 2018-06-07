@@ -63,6 +63,10 @@ namespace Consultora.Presentacion
             //Evaluacion Rentabilidad
             bundles.Add(new ScriptBundle("~/bundles/evaluacion-rentabilidad").Include(
                                   "~/Scripts/Controladores/EvaluacionRentabilidad/evaluacion-rentabilidad-controller.js"));
+
+            //Oportunidad
+            bundles.Add(new ScriptBundle("~/bundles/oportunidad").Include(
+                                  "~/Scripts/Controladores/Iniciativa/iniciativa-controller.js"));
         }
     }
 }

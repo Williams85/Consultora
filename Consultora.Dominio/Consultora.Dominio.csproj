@@ -40,15 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadDominio.cs" />
     <Compile Include="ClienteDominio.cs" />
     <Compile Include="CompetenciaDominio.cs" />
+    <Compile Include="ComplejidadActividadDominio.cs" />
+    <Compile Include="ComplejidadRequerimientoDominio.cs" />
     <Compile Include="ConsultorDominio.cs" />
     <Compile Include="IniciativaDominio.cs" />
+    <Compile Include="IniciativaFaseDominio.cs" />
+    <Compile Include="NegocioDominio.cs" />
     <Compile Include="NivelCompetenciaDominio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequerimientoActividadDominio.cs" />
+    <Compile Include="RequerimientoDominio.cs" />
     <Compile Include="ServicioDominio.cs" />
     <Compile Include="ServicioEmpresarialCompetenciaDominio.cs" />
     <Compile Include="ServicioEmpresarialDominio.cs" />
+    <Compile Include="UsuarioDominio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Consultora.Entidad\Consultora.Entidad.csproj">

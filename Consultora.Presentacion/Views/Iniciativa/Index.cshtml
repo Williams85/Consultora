@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Creación de Oportunidad</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarOportunidad", "Iniciativa", FormMethod.Post, new { @id = "FormNuevaIniciativa", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Cod_Iniciativa", null)
+         <article class="sector-50">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBox("Cod_Oportunidad", null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Descripcion:</label>
+            @Html.TextBox("Des_Iniciativa", null)
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            <input type="text" id="FechaRegistro" name="FechaRegistro" value="@ViewBag.FechaRegistro" readonly>
+        </article>
+        <article class="sector-50">
+            <label>Negocio:</label>
+            @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Servicio:</label>
+            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+
+        <div class="clear">
+
+        </div>
+
+        <article class="lista-botones">
+            <button type="submit" class="btn btn-info" id="btn-nuevo-guardar">Guardar</button>
+            <button type="button" class="btn btn-info" id="btn-nuevo-siguiente" disabled>Siguiente</button>
+        </article>
+        <article class="sector-100">
+            <img src="~/images/pd-nueva-oportunidad.png" width="100%" />
+        </article>
+    }
+</div>
+
+
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")

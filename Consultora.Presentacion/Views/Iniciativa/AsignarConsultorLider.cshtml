@@ -1,0 +1,68 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "AsignarConsultorLider";
+}
+
+<h4>Asignación de Consultor Lider</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarConsultorLider", "Iniciativa", FormMethod.Post, new { @id = "FormACL", @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.Cod_Iniciativa, null)
+        @Html.HiddenFor(model => model.RFP, null)
+        <article class="sector-50">
+            <label>Nombre:</label>
+            @Html.TextBoxFor(model => model.Nom_Iniciativa, null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Descripcion:</label>
+            @Html.TextBoxFor(model => model.Des_Iniciativa, null, null)
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Negocio:</label>
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Servicio:</label>
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+        <article class="sector-100">
+            <label>Responsable Servicio:</label>
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <article class="sector-100">
+            <label>Consultor Lider:</label>
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <div class="clear">
+        </div>
+         <article class="lista-botones">
+             <button type="submit" class="btn btn-info" id="btn-acl-guardar">Guardar</button>
+             <button type="button" class="btn btn-info" id="btn-acl-siguiente" disabled>Siguiente</button>
+         </article>
+        <article class="sector-100">
+            <img src="~/images/pd-asignar-consultor-lider.png" width="100%" />
+        </article>
+    }
+</div>
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")
+

@@ -41,17 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadRepositorio.cs" />
     <Compile Include="BaseDatos\Conexion.cs" />
     <Compile Include="BaseDatos\Reader.cs" />
     <Compile Include="ClienteRepositorio.cs" />
     <Compile Include="CompetenciaRepositorio.cs" />
+    <Compile Include="ComplejidadActividadRepositorio.cs" />
+    <Compile Include="ComplejidadRequerimientoRepositorio.cs" />
     <Compile Include="ConsultorRepositorio.cs" />
+    <Compile Include="IniciativaFaseRepositorio.cs" />
     <Compile Include="IniciativaRepositorio.cs" />
+    <Compile Include="NegocioRepositorio.cs" />
     <Compile Include="NivelCompetenciaRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequerimientoActividadRepositorio.cs" />
+    <Compile Include="RequerimientoRepositorio.cs" />
     <Compile Include="ServicioEmpresarialCompetenciaRepositorio.cs" />
     <Compile Include="ServicioEmpresarialRepositorio.cs" />
     <Compile Include="ServicioRepositorio.cs" />
+    <Compile Include="UsuarioRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Consultora.Entidad\Consultora.Entidad.csproj">

@@ -13,6 +13,10 @@ namespace Consultora.Dominio
         IniciativaRepositorio oIniciativaRepositorio = new IniciativaRepositorio();
 
         #region "Metodos No Transaccionales"
+        public IniciativaEntidad ObtenerxCodigo(string Codigo)
+        {
+            return oIniciativaRepositorio.ObtenerxCodigo(Codigo);
+        }
         public decimal CalcularCostoEquipo(string Codigo)
         {
             return oIniciativaRepositorio.CalcularCostoEquipo(Codigo);
@@ -33,9 +37,68 @@ namespace Consultora.Dominio
 
         #region "Metodos Transaccionales"
 
-        public bool RegistrarEvakuaconRentabilidad(IniciativaEntidad entidad)
+        public bool RegistrarEvaluacionRentabilidad(IniciativaEntidad entidad)
         {
-            return oIniciativaRepositorio.RegistrarEvakuaconRentabilidad(entidad);
+            return oIniciativaRepositorio.RegistrarEvaluacionRentabilidad(entidad);
+        }
+
+        public bool Grabar(IniciativaEntidad entidad, ref int Cod_Iniciativa)
+        {
+            return oIniciativaRepositorio.Grabar(entidad, ref Cod_Iniciativa);
+        }
+
+        public bool AsignarResponsableServicio(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarResponsableServicio(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+        public bool RevisarRFP(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarResponsableServicio(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+        public bool AsignarConsultorLider(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+        public bool EstimarTiempoProyecto(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+        public bool EstimarConsultores(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+        public bool EvaluarRentabilidad(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
         }
 
         #endregion

@@ -60,7 +60,7 @@ namespace Consultora.Presentacion.Controllers
         {
 
             IniciativaDominio oIniciativaDominio = new IniciativaDominio();
-            var respuesta = oIniciativaDominio.RegistrarEvakuaconRentabilidad(entidad);
+            var respuesta = oIniciativaDominio.RegistrarEvaluacionRentabilidad(entidad);
             return Json(respuesta);
         }
 

@@ -11,5 +11,6 @@ namespace Consultora.Utilitario
         public bool Estado { get; set; }
         public string Message { get; set; }
         public T Valor { get; set; }
+        public string UrlRedirect { get; set; }
     }
 }

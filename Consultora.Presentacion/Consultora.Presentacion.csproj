@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EvaluacionRentabilidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IniciativaController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\ServicioEmpresarialController.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,6 +184,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\icono-login.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\pd-asignar-consultor-lider.png" />
+    <Content Include="images\pd-asignar-responsable-servicio.png" />
+    <Content Include="images\pd-estimar-consultores-proyectos.png" />
+    <Content Include="images\pd-estimar-tiempos-proyectos.png" />
+    <Content Include="images\pd-evaluar-rentabilidad.png" />
+    <Content Include="images\pd-nueva-oportunidad.png" />
+    <Content Include="images\pd-revisar-rfp.png" />
     <Content Include="img\breadcrumb.png" />
     <Content Include="img\gallery\imgbox1.jpg" />
     <Content Include="img\gallery\imgbox2.jpg" />
@@ -264,6 +272,7 @@
     <Content Include="Scripts\Controladores\AsignacionAutomatica\asignacion-automatica-controller.js" />
     <Content Include="Scripts\Controladores\EvaluacionRentabilidad\evaluacion-rentabilidad-controller.js" />
     <Content Include="Scripts\Controladores\functions.js" />
+    <Content Include="Scripts\Controladores\Iniciativa\iniciativa-controller.js" />
     <Content Include="Scripts\excanvas.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -342,10 +351,27 @@
     <Content Include="Views\EvaluacionRentabilidad\_ViewCostoTotalCliente.cshtml" />
     <Content Include="Views\EvaluacionRentabilidad\_ViewTamañoServicio.cshtml" />
     <Content Include="Views\ServicioEmpresarial\_ResultadoDetalleConsultorModal.cshtml" />
+    <Content Include="Views\Iniciativa\Index.cshtml" />
+    <Content Include="Views\Iniciativa\AsignarResposnableServicio.cshtml" />
+    <Content Include="Views\Iniciativa\RevisarRFP.cshtml" />
+    <Content Include="Views\Iniciativa\AsignarConsultorLider.cshtml" />
+    <Content Include="Views\Iniciativa\EstimarTiemposProyecto.cshtml" />
+    <Content Include="Views\Iniciativa\EstimarConsultoresProyecto.cshtml" />
+    <Content Include="Views\Iniciativa\EvaluarRentabilidad.cshtml" />
+    <Content Include="Views\Iniciativa\_ResultadoRequermientos.cshtml" />
+    <Content Include="Views\Iniciativa\_ResultadoActividades.cshtml" />
+    <Content Include="Views\Iniciativa\_ResultadoRequermientoActividades.cshtml" />
+    <Content Include="Views\Iniciativa\_ResultadosTiempoConstruccion.cshtml" />
+    <Content Include="Views\Iniciativa\_ResultadoTiempoFases.cshtml" />
+    <Content Include="Views\Iniciativa\_ViewCostoTotalCliente.cshtml" />
+    <Content Include="Views\Iniciativa\_ViewCostoTotalEquipo.cshtml" />
+    <Content Include="Views\Iniciativa\_ViewCostoTotalServicio.cshtml" />
+    <Content Include="Views\Iniciativa\_ViewTamañoServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="RFP\" />
     <Folder Include="Views\Servicio\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,12 +10,39 @@ rutas.BuscarConsultorxCodigo = "/ServicioEmpresarial/BuscarConsultorxCodigo";
 rutas.AgregarConsultor = "/ServicioEmpresarial/AgregarConsultor";
 rutas.EliminarConsultor = "/ServicioEmpresarial/EliminarConsultor";
 
+//Popup Estimacion de Tiempos de Proyecto
+rutas.ListarRequerimientoxIniciativa = "/Iniciativa/ListarRequerimientoxIniciativa";
+rutas.GrabarRequerimiento = "/Iniciativa/GrabarRequerimiento";
+rutas.EliminarRequerimiento = "/Iniciativa/EliminarRequerimiento";
+
+rutas.BuscarActividades = "/Iniciativa/BuscarActividades";
+rutas.ListarRequerimientoActividadxRequerimiento = "/Iniciativa/ListarRequerimientoActividadxRequerimiento";
+rutas.GrabarRequerimientoActividad = "/Iniciativa/GrabarRequerimientoActividad";
+rutas.EliminarRequerimientoActividad = "/Iniciativa/EliminarRequerimientoActividad";
+rutas.RequerimientoActividadExisteActividad = "/Iniciativa/RequerimientoActividadExisteActividad";
+
+rutas.EliminarRequerimientoActividad = "/Iniciativa/EliminarRequerimientoActividad";
+rutas.BuscarRequerimientoxIniciativa = "/Iniciativa/BuscarRequerimientoxIniciativa";
+
+rutas.GenerarTiempoFases = "/Iniciativa/GenerarTiempoFases";
+rutas.ListarTiempoFases = "/Iniciativa/ListarTiempoFases";
+
+
+
+
 //Evaluacion Rentabilidad
-rutas.CalcularCostoEquipo = "/EvaluacionRentabilidad/CalcularCostoEquipo";
-rutas.CalcularCostoServicio = "/EvaluacionRentabilidad/CalcularCostoServicio";
-rutas.CalcularCostoEquipoCliente = "/EvaluacionRentabilidad/CalcularCostoEquipoCliente";
-rutas.CalcularTamañoServicio = "/EvaluacionRentabilidad/CalcularTamañoServicio";
-rutas.RegistrarEvaluacionRentabilidad = "/EvaluacionRentabilidad/RegistrarEvaluacionRentabilidad";
+rutas.CalcularCostoEquipo = "/Iniciativa/CalcularCostoEquipo";
+rutas.CalcularCostoServicio = "/Iniciativa/CalcularCostoServicio";
+rutas.CalcularCostoEquipoCliente = "/Iniciativa/CalcularCostoEquipoCliente";
+rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
+rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
+
+//rutas.CalcularCostoEquipo = "/EvaluacionRentabilidad/CalcularCostoEquipo";
+//rutas.CalcularCostoServicio = "/EvaluacionRentabilidad/CalcularCostoServicio";
+//rutas.CalcularCostoEquipoCliente = "/EvaluacionRentabilidad/CalcularCostoEquipoCliente";
+//rutas.CalcularTamañoServicio = "/EvaluacionRentabilidad/CalcularTamañoServicio";
+//rutas.RegistrarEvaluacionRentabilidad = "/EvaluacionRentabilidad/RegistrarEvaluacionRentabilidad";
+
 
 //$.datepicker.regional['es'] = {
 //    closeText: 'Cerrar',
@@ -66,10 +93,9 @@ function MostrarMensajeOK(mensaje) {
 }
 
 function PopInformativo(texto) {
-    $("#MessagePopup").find("#modalmsg-texto").empty();
-    $("#MessagePopup").find("#modalmsg-texto").append(texto);
-    $("#MessagePopup").modal();
-
+    $("#IdMensaje").find("p").empty();
+    $("#IdMensaje").find("p").append(texto);
+    $("#IdMensaje").modal();
 }
 
 function isValidEmail(mail) {
