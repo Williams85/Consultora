@@ -20,7 +20,7 @@ namespace Consultora.Repositorio
             {
                 Conexion.abrirConexion(cn);
                 SqlCommand cmd = new SqlCommand("usp_Actividad_Filtrar", cn);
-                cmd.Parameters.Add(new SqlParameter("@Nom_Actividad", SqlDbType.VarChar, 150)).Value = entidad.Nom_Actividad;
+                cmd.Parameters.Add(new SqlParameter("@Nom_Actividad", SqlDbType.VarChar, 150)).Value = (entidad.Nom_Actividad != null ? entidad.Nom_Actividad : "");
                 cmd.CommandType = CommandType.StoredProcedure;
                 List<ActividadEntidad> ListaActividad = new List<ActividadEntidad>();
                 using (var reader = cmd.ExecuteReader())

@@ -306,6 +306,7 @@ namespace Consultora.Presentacion.Controllers
                     if (string.IsNullOrWhiteSpace(RFP.FileName))
                     {
                         oResponseWeb.Message = "No se cargo el documento RFP";
+                        oResponseWeb.Valor = "0";
                         return Json(oResponseWeb);
                     }
                 }
@@ -313,6 +314,7 @@ namespace Consultora.Presentacion.Controllers
 
                 IniciativaEntidad entidad = new IniciativaEntidad()
                 {
+                    Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
                     Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
                     Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
                     Negocio = new NegocioEntidad
@@ -337,15 +339,15 @@ namespace Consultora.Presentacion.Controllers
                 if (oIniciativaDominio.Grabar(entidad, ref Cod_Iniciativa))
                 {
                     oResponseWeb.Estado = true;
-                    oResponseWeb.Message = "Se creo la oportunidad";
+                    oResponseWeb.Message = "Los cambios fueron guardados";
                     var entity = oIniciativaDominio.ObtenerxCodigo(Cod_Iniciativa.ToString());
-                    oResponseWeb.Valor = entity.Cod_Oportunidad + "|" + Cod_Iniciativa.ToString();
+                    oResponseWeb.Valor = Cod_Iniciativa.ToString();
                     RFP.SaveAs(pathRFP);
                 }
                 else
                 {
                     oResponseWeb.Estado = false;
-                    oResponseWeb.Message = "No se creo la oportunidad";
+                    oResponseWeb.Message = "Los cambios no fueron guardados";
                 }
                 #endregion
                 return Json(oResponseWeb);
@@ -410,12 +412,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.AsignarResponsableServicio(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se asignó el responsable del servicio";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se asignó el responsable del servicio";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -474,12 +476,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.RevisarRFP(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se reviso el documento RFP";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se reviso el documento RFP";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -543,12 +545,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.RevisarRFP(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se asignó el consultor lider";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se asignó el consultor lider";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -611,12 +613,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.EstimarTiempoProyecto(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se estimo el tiempo del proyecto";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se estimo el tiempo del proyecto";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -679,12 +681,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.EstimarConsultores(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se estimo los consultores del proyecto";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se estimo los consultores del proyecto";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -747,12 +749,12 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.EvaluarRentabilidad(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se evaluo la rentabilidad";
+                oResponseWeb.Message = "Los cambios fueron guardados";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
-                oResponseWeb.Message = "No se evaluo la rentabilidad";
+                oResponseWeb.Message = "Los cambios no fueron guardados";
             }
 
             return Json(oResponseWeb);
@@ -793,12 +795,12 @@ namespace Consultora.Presentacion.Controllers
             if( oRequerimientoDominio.Eliminar(entidad.Cod_Requerimiento.ToString()))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se elimino el requerimiento";
+                oResponseWeb.Message = "Se eliminó el requerimiento";
             }
             else
             {
                 oResponseWeb.Estado = false;
-                oResponseWeb.Message = "No se elimino el requerimiento";
+                oResponseWeb.Message = "No se eliminó el requerimiento";
             }
             return Json(oResponseWeb);
         }
@@ -836,12 +838,12 @@ namespace Consultora.Presentacion.Controllers
             if (oRequerimientoActividadDominio.Eliminar(entidad.Cod_Requerimiento_Actividad.ToString()))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Se elimino la actividad del requerimiento";
+                oResponseWeb.Message = "Se eliminó la actividad del requerimiento";
             }
             else
             {
                 oResponseWeb.Estado = false;
-                oResponseWeb.Message = "No se elimino la actividad del requerimiento";
+                oResponseWeb.Message = "No se eliminó la actividad del requerimiento";
             }
             return Json(oResponseWeb);
         }

@@ -46,9 +46,11 @@
     <Compile Include="BaseDatos\Reader.cs" />
     <Compile Include="ClienteRepositorio.cs" />
     <Compile Include="CompetenciaRepositorio.cs" />
+    <Compile Include="CompetenciaTecnicaRepositorio.cs" />
     <Compile Include="ComplejidadActividadRepositorio.cs" />
     <Compile Include="ComplejidadRequerimientoRepositorio.cs" />
     <Compile Include="ConsultorRepositorio.cs" />
+    <Compile Include="IniciativaCompetenciaTecnicaRepositorio.cs" />
     <Compile Include="IniciativaFaseRepositorio.cs" />
     <Compile Include="IniciativaRepositorio.cs" />
     <Compile Include="NegocioRepositorio.cs" />

@@ -44,7 +44,18 @@ namespace Consultora.Dominio
 
         public bool Grabar(IniciativaEntidad entidad, ref int Cod_Iniciativa)
         {
-            return oIniciativaRepositorio.Grabar(entidad, ref Cod_Iniciativa);
+            bool estado = false;
+            if (entidad.Cod_Iniciativa > 0)
+            {
+                estado = oIniciativaRepositorio.Modificar(entidad);
+                Cod_Iniciativa = entidad.Cod_Iniciativa;
+            }
+            else
+            {
+                estado = oIniciativaRepositorio.Grabar(entidad, ref Cod_Iniciativa);
+            }
+
+            return estado;
         }
 
         public bool AsignarResponsableServicio(IniciativaEntidad entidad)

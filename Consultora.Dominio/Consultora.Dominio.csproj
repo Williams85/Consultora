@@ -43,9 +43,11 @@
     <Compile Include="ActividadDominio.cs" />
     <Compile Include="ClienteDominio.cs" />
     <Compile Include="CompetenciaDominio.cs" />
+    <Compile Include="CompetenciaTecnicaDominio.cs" />
     <Compile Include="ComplejidadActividadDominio.cs" />
     <Compile Include="ComplejidadRequerimientoDominio.cs" />
     <Compile Include="ConsultorDominio.cs" />
+    <Compile Include="IniciativaCompetenciaTecnicaDominio.cs" />
     <Compile Include="IniciativaDominio.cs" />
     <Compile Include="IniciativaFaseDominio.cs" />
     <Compile Include="NegocioDominio.cs" />

@@ -235,6 +235,44 @@ namespace Consultora.Repositorio
                 Conexion.cerrarConexion(cn);
             }
         }
+        public bool Modificar(IniciativaEntidad entidad)
+        {
+            SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
+            SqlTransaction trans = null;
+            try
+            {
+                bool estado = true;
+                Conexion.abrirConexion(cn);
+                trans = cn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("usp_Iniciativa_Modificar", cn);
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa", SqlDbType.Int)).Value=entidad.Cod_Iniciativa;
+                cmd.Parameters.Add(new SqlParameter("@Nom_Iniciativa", SqlDbType.VarChar, 50)).Value = entidad.Nom_Iniciativa;
+                cmd.Parameters.Add(new SqlParameter("@Des_Iniciativa", SqlDbType.VarChar, 150)).Value = entidad.Des_Iniciativa;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Negocio", SqlDbType.Int)).Value = entidad.Negocio.Cod_Negocio;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Servicio", SqlDbType.Int)).Value = entidad.Servicio.Cod_Servicio;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Cliente", SqlDbType.Int)).Value = entidad.Cliente.Cod_Cliente;
+                cmd.Parameters.Add(new SqlParameter("@RFP", SqlDbType.VarChar, 500)).Value = entidad.RFP;                
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Transaction = trans;
+                if (cmd.ExecuteNonQuery() < 1) { estado = false; }
+                if (estado)
+                {
+                    trans.Commit();
+                }
+                else
+                    trans.Rollback();
+
+                return estado;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.cerrarConexion(cn);
+            }
+        }
 
         public bool ModificarEstado(IniciativaEntidad entidad)
         {

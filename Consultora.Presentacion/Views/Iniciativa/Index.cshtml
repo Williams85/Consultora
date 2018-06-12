@@ -8,29 +8,27 @@
 
     @using (Html.BeginForm("GrabarOportunidad", "Iniciativa", FormMethod.Post, new { @id = "FormNuevaIniciativa", @enctype = "multipart/form-data" }))
     {
-        @Html.Hidden("Cod_Iniciativa", null)
-         <article class="sector-50">
+        @Html.Hidden("Indicador", "")
+        @Html.Hidden("Cod_Iniciativa", "0")
+        
+        <article class="sector-100">
             <label>Nombre:</label>
             @Html.TextBox("Nom_Iniciativa", null)
         </article>
-        <article class="sector-50">
-            <label>Cod. Oportunidad:</label>
-            @Html.TextBox("Cod_Oportunidad", null, new { @readonly = "true" })
-        </article>
-        <article class="sector-50">
+        <article class="sector-100">
             <label>Descripcion:</label>
-            @Html.TextBox("Des_Iniciativa", null)
+            @Html.TextArea("Des_Iniciativa", "")
         </article>
         <article class="sector-50">
             <label>Fecha Registro:</label>
             <input type="text" id="FechaRegistro" name="FechaRegistro" value="@ViewBag.FechaRegistro" readonly>
         </article>
         <article class="sector-50">
-            <label>Negocio:</label>
+            <label>Unidad Negocio:</label>
             @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
         </article>
         <article class="sector-50">
-            <label>Servicio:</label>
+            <label>Tipo Servicio:</label>
             @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
         </article>
         <article class="sector-50">
@@ -41,17 +39,20 @@
             <label>RFP:</label>
             <input type="file" id="RFP" name="RFP">
         </article>
-
+        <article class="sector-50"></article>
         <div class="clear">
 
         </div>
+        <article class="sector-100">
+            <div class="alert alert-danger" role="alert" id="Message-Error">
+                <strong></strong>
+            </div>
+        </article>
+
 
         <article class="lista-botones">
             <button type="submit" class="btn btn-info" id="btn-nuevo-guardar">Guardar</button>
-            <button type="button" class="btn btn-info" id="btn-nuevo-siguiente" disabled>Siguiente</button>
-        </article>
-        <article class="sector-100">
-            <img src="~/images/pd-nueva-oportunidad.png" width="100%" />
+            <button type="button" class="btn btn-info" id="btn-nuevo-siguiente">Siguiente</button>
         </article>
     }
 </div>

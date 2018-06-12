@@ -49,9 +49,12 @@
     <Compile Include="Base\NivelCompetenciaEntidad.cs" />
     <Compile Include="Base\ComplejidadActividadEntidad.cs" />
     <Compile Include="Base\ComplejidadRequerimientoEntidad.cs" />
+    <Compile Include="CompetenciaTecnicaEntidad.cs" />
     <Compile Include="ConsultorEntidad.cs" />
     <Compile Include="Base\IniciativaEntidad.cs" />
     <Compile Include="Base\FaseProyectoEntidad.cs" />
+    <Compile Include="IniciativaCompetenciaEntidad.cs" />
+    <Compile Include="IniciativaCompetenciaTecnicaEntidad.cs" />
     <Compile Include="IniciativaEntidad.cs" />
     <Compile Include="Base\IniciativaFaseEntidad.cs" />
     <Compile Include="Base\PerfilEntidad.cs" />

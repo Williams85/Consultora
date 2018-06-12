@@ -126,6 +126,10 @@ var Constantes = {
         Parrafo: "^[0-9A-ZÑa-zñÁÉÍÓÚáéíóú&.,#/' ]+$",
     },
     Message: {
+        FaltaNombreProyecto: "Ingresar el nombre de la oportunidad...",
+        FaltaDescripcionProyecto: "Ingresar la descripcion de la oportunidad...",
+        FaltaRFP: "Ingresar el archivo RFP de la oportunidad...",
+
         //Mensaje Mantenimiento Canales
         FaltaNombreCanal: "Ingresar el nombre del canal.",
         FaltaRucCanal: "Ingresar el R.U.C. del canal.",

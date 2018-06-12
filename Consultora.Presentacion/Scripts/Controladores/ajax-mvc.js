@@ -13,7 +13,7 @@ function Error(err, status) {
     console.log(status);
 }
 
-function ajax(info, successFunc, errorFunc) {
+function ajax(info, successFunc) {
     $.ajax({
         type: info.metodo,
         url: info.serviceURL,

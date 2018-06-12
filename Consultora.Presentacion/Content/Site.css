@@ -326,11 +326,13 @@ section .contenido .search .sector-100 input{
     margin-top:0px;
 }
 
-section .contenido .search .sector-50 input{
+section .contenido .search .sector-50 input,
+section .contenido .search .sector-50 textarea{
     width:96%;
 }
 
-section .contenido .search .sector-100 input{
+section .contenido .search .sector-100 input,
+section .contenido .search .sector-100 textarea{
     width:98%;
 }
 
