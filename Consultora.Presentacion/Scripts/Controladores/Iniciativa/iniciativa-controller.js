@@ -617,6 +617,17 @@ function ListarRequerimientoxIniciativa(parametros) {
     ajaxPartialView(info, function (data) {
         if (data != null && data != "") {
             $("#ResultadosRequerimientos").html(data);
+            //$("#TablaResultadosRequerimientos  tbody").paginathing({
+            //    perPage: 5,
+            //    insertAfter: '.table',
+
+            //});
+            //$("#TablaResultadosRequerimientos").dataTable({
+            //    "pageLength": 5,
+            //    "ordering": false,
+            //    "info": false,
+            //    "searching": false
+            //});
             $(".btn-eliminar-requerimiento").on("click", function () {
                 var parametros = {
                     "Cod_Requerimiento": $(this).attr("data-id"),
@@ -632,6 +643,7 @@ function ListarRequerimientoxIniciativa(parametros) {
                 $("#BusquedaActividades").empty();
                 $("#ResultadosRequerimientoActividades").empty();
                 $("#BlockActivyAdd").hide();
+                $("#btn-etp-continuar-reqact").hide();
                 var parametros = {
                     "Requerimiento": { "Cod_Requerimiento": $("#Cod_Requerimiento").val() },
                 };
@@ -655,6 +667,7 @@ function GrabarRequerimiento(parametros) {
             if (data.Estado == true)
                 ListarRequerimientoxIniciativa(parametros);
             PopInformativo(data.Message);
+            $("#btn-etp-continuar-reqact").hide();
         } else {
             PopInformativo("Ocurrio un error al guardar el requerimiento...");
         }
@@ -688,6 +701,12 @@ function BuscarActividades(parametros) {
     ajaxPartialView(info, function (data) {
         if (data != null && data != "") {
             $("#BusquedaActividades").html(data);
+            //$("#TablaResultadosActividades").dataTable({
+            //    "pageLength": 10,
+            //    "ordering": false,
+            //    "info": false,
+            //    "searching": false
+            //});
             $(".ckbact").on("click", function () {
                 $("#Cod_Actividad").val($(this).attr("data-id"));
                 $("#ComplejidadActividad_Cod_Complejidad_Actividad").eq(0).prop('selected', true);

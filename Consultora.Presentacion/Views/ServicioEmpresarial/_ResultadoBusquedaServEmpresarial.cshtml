@@ -25,7 +25,7 @@
                             @using (Html.BeginForm("AsignacionRRHH", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
                             {
                                 <input type="hidden" id="Cod_Servicio_Empresarial" name="Cod_Servicio_Empresarial" value="@entidad.Cod_Servicio_Empresarial" />
-                                <button type="submit">Ver</button>
+                                <button type="submit" class="btn btn-success btn-small">Ver</button>
                             }
                         </td>
                         <td>@entidad.Nom_Servicio_Empresarial</td>

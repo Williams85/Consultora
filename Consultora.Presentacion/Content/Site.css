@@ -67,7 +67,7 @@ section {
 
 section nav{
 	background: #131534;
-	width: 200px;
+	width: 20%;
 	float: left;
 	padding-bottom: 150px;
 }
@@ -91,12 +91,12 @@ section nav ul li a:hover{
 section .contenido{
 	background: #FBFBFD;
 	float: left;
-	width: 740px;
-	padding: 10px 30px;
+	width: 80%;
+	padding: 10px 5%;
 }
 
 section .contenido h4{
-	font-size: 30px;
+	font-size: 26px;
 	margin-bottom: 20px;
 	text-decoration: underline;
 	width: 100%;
@@ -114,28 +114,17 @@ section .contenido .grid-resultados h5{
     color:#131534;
     margin-left:10px;
     font-size:16px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 section .contenido .grid-resultados table{
     border:none;
     border-collapse:collapse;
-    font-size: 12px;
+    font-size: 13px;
     width:100%;
 }
-
-/*section .contenido .grid-resultados table tr td button{
-    background: #484A7B;
-    border: none;
-    border-radius:10px;
-    color: #fff;
-    padding:5px 10px;
-}
-
-section .contenido .grid-resultados table tr td button:hover{
-    background: #fff;
-    border: 1px solid  #484A7B;
-    color: #484A7B;
-}*/
 
 section .contenido .grid-resultados table thead{
     background: #000000;
@@ -191,7 +180,7 @@ section .contenido .search{
 	margin: 0 auto;
 	overflow: hidden;
     padding-bottom: 15px;
-	width: 600px;
+	width: 90%;
 }
 
 section .contenido .search .etiqueta{
@@ -311,15 +300,15 @@ section .contenido .search .sector-50, section .contenido .search .sector-100{
 }
 
 section .contenido .search .sector-50{
-	width: 280px;
+	width: 50%;
 }
 
 section .contenido .search .sector-100{
-	width: 560px;
+	width: 100%;
 }
 
-section .contenido .search .sector-50 input, 
-section .contenido .search .sector-100 input{
+section .contenido .search .sector-50 input, section .contenido .search .sector-50 textarea, 
+section .contenido .search .sector-100 input, section .contenido .search .sector-100 textarea{
     border: 1px #000 solid;
     font-size:13px;
     padding:5px;
@@ -388,7 +377,7 @@ ul, li{
 }
 
 .centrar{
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 }
 
@@ -451,6 +440,17 @@ ul, li{
     text-align: center;
 }
 
+.grid-resultados table td{
+    padding:5px;
+}
+.modal-body .grid-resultados{
+    width: 70% !important;
+}
+
+.modal-header h4{
+    margin-bottom:0 !important;
+}
+
 .modal-lg{
     width: 800px;
 }
@@ -474,7 +474,7 @@ ul, li{
 	margin: 0 auto;
 	overflow: hidden;
     padding-bottom: 15px;
-	width: 600px;
+	width: 95%;
 }
 
 .modal-lg .form-popup .etiqueta{
@@ -520,7 +520,6 @@ ul, li{
     padding:5px 10px;
 
 }
-
 
 .modal-lg .form-popup .resultado{
     background: #55B3FF;
@@ -568,11 +567,11 @@ ul, li{
 }
 
 .modal-lg .form-popup .sector-50{
-	width: 280px;
+	width: 50%;
 }
 
 .modal-lg .form-popup .sector-100{
-	width: 560px;
+	width: 100%;
 }
 
 .modal-lg .form-popup .sector-50 input, 
@@ -624,9 +623,21 @@ ul, li{
 	width: 100%;
 }
 
+
+
 .login-header{
 	background: #EFF3F4;
 	padding: 70px 0px;
 	text-align: center;
 	width: 100%;
+}
+
+
+.pagination-container{
+    background: #FFF;
+    width:100%;
+}
+
+.pagination-container .page a{
+    color:#428bca;
 }
