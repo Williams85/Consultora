@@ -1,0 +1,31 @@
+﻿@model List<Consultora.Entidad.IniciativaCompetenciaTecnicaEntidad>
+    @{
+        ViewBag.Title = "_ResultadoCompetenciasTecnicasIniciativaCompetencia";
+    }
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Conocimiento Tecnicos de Consultor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entidad in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input type="radio" name="competenciatecnica" data-id="@entidad.Cod_Iniciativa_Competencia_Tecnica" class="ckbinicomtec" />
+                        </td>
+                        <td>
+                            @entidad.CompetenciaTecnica.Nom_Competencia_Tecnica
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+

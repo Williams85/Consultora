@@ -10,7 +10,7 @@
     {
         @Html.Hidden("Indicador", "")
         @Html.Hidden("Cod_Iniciativa", "0")
-        
+
         <article class="sector-100">
             <label>Nombre:</label>
             @Html.TextBox("Nom_Iniciativa", null)
@@ -39,6 +39,7 @@
             <label>RFP:</label>
             <input type="file" id="RFP" name="RFP">
         </article>
+       
         <article class="sector-50"></article>
         <div class="clear">
 
@@ -51,14 +52,10 @@
 
 
         <article class="lista-botones">
-            <button type="submit" class="btn btn-info" id="btn-nuevo-guardar">Guardar</button>
             <button type="button" class="btn btn-info" id="btn-nuevo-siguiente">Siguiente</button>
-            <button type="button" class="btn btn-info" id="btn-nuevo-descargar">Descargar</button>
+
         </article>
     }
 </div>
-
-
-
 @Scripts.Render("~/bundles/script-layaout")
 @Scripts.Render("~/bundles/oportunidad")

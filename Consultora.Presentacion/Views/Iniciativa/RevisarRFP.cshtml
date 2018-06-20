@@ -39,10 +39,14 @@
             <label>Cliente:</label>
             @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
         </article>
-        <article class="sector-50">
+        <article class="sector-25">
             <label>RFP:</label>
             <input type="file" id="RFP" name="RFP">
         </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-rfp-descargar" href="/Iniciativa/DescargarFile">Descargar</a>
+        </article>
+        
         <article class="sector-100">
             <label>Responsable Servicio:</label>
             @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
@@ -59,7 +63,6 @@
         <article class="lista-botones">
             <button type="submit" class="btn btn-info" id="btn-rfp-guardar">Guardar</button>
             <button type="button" class="btn btn-info" id="btn-rfp-siguiente" >Siguiente</button>
-
         </article>
         <article class="sector-100">
             <img src="~/images/pd-revisar-rfp.png" width="100%" />

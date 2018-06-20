@@ -20,8 +20,8 @@ namespace Consultora.Repositorio
             {
                 Conexion.abrirConexion(cn);
                 SqlCommand cmd = new SqlCommand("usp_Competencia_Tecnica_Filtrar", cn);
-                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.IniciativaCompetencia.Cod_Iniciativa_Competencia;
-                cmd.Parameters.Add(new SqlParameter("@Nom_Competencia_Tecnica", SqlDbType.VarChar, 150)).Value = entidad.CompetenciaTecnica.Nom_Competencia_Tecnica;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.Cod_Iniciativa_Competencia;
+                cmd.Parameters.Add(new SqlParameter("@Nom_Competencia_Tecnica", SqlDbType.VarChar, 150)).Value = (entidad.CompetenciaTecnica.Nom_Competencia_Tecnica != null ? entidad.CompetenciaTecnica.Nom_Competencia_Tecnica : "");
                 cmd.CommandType = CommandType.StoredProcedure;
                 List<CompetenciaTecnicaEntidad> ListaCompetenciaTecnica = new List<CompetenciaTecnicaEntidad>();
                 using (var reader = cmd.ExecuteReader())

@@ -21,7 +21,7 @@ namespace Consultora.Repositorio
             {
                 Conexion.abrirConexion(cn);
                 SqlCommand cmd = new SqlCommand("usp_Iniciativa_Competencia_Tecnica_ListarCompetencia", cn);
-                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.IniciativaCompetencia.Cod_Iniciativa_Competencia;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.Cod_Iniciativa_Competencia;
                 cmd.CommandType = CommandType.StoredProcedure;
                 List<IniciativaCompetenciaTecnicaEntidad> ListaIniciativaCompetenciaTecnica = new List<IniciativaCompetenciaTecnicaEntidad>();
                 using (var reader = cmd.ExecuteReader())
@@ -29,6 +29,7 @@ namespace Consultora.Repositorio
                     while (reader.Read())
                     {
                         IniciativaCompetenciaTecnicaEntidad oIniciativaCompetenciaTecnicaEntidad = new IniciativaCompetenciaTecnicaEntidad();
+                        oIniciativaCompetenciaTecnicaEntidad.Cod_Iniciativa_Competencia_Tecnica = Reader.GetIntValue(reader, "Cod_Iniciativa_Competencia_Tecnica");
                         oIniciativaCompetenciaTecnicaEntidad.CompetenciaTecnica = new CompetenciaTecnicaEntidad
                         {
                             Cod_Competencia_Tecnica = Reader.GetIntValue(reader, "Cod_Competencia_Tecnica"),
@@ -65,7 +66,7 @@ namespace Consultora.Repositorio
                 Conexion.abrirConexion(cn);
                 trans = cn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand("usp_Iniciativa_Competencia_Tecnica_Grabar", cn);
-                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.IniciativaCompetencia.Cod_Iniciativa_Competencia;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa_Competencia", SqlDbType.Int)).Value = entidad.Cod_Iniciativa_Competencia;
                 cmd.Parameters.Add(new SqlParameter("@Cod_Competencia_Tecnica", SqlDbType.Int)).Value = entidad.CompetenciaTecnica.Cod_Competencia_Tecnica;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Transaction = trans;

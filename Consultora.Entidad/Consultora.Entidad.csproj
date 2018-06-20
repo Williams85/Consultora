@@ -53,6 +53,7 @@
     <Compile Include="ConsultorEntidad.cs" />
     <Compile Include="Base\IniciativaEntidad.cs" />
     <Compile Include="Base\FaseProyectoEntidad.cs" />
+    <Compile Include="Base\IniciativaCompetenciaEntidad.cs" />
     <Compile Include="IniciativaCompetenciaEntidad.cs" />
     <Compile Include="IniciativaCompetenciaTecnicaEntidad.cs" />
     <Compile Include="IniciativaEntidad.cs" />

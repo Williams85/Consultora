@@ -47,6 +47,17 @@ namespace Consultora.Repositorio.BaseDatos
             }
             catch { throw; }
         }
+
+        public static double GetDoubleValue(IDataReader dr, string column)
+        {
+            try
+            {
+                var obj = GetObjectValue(dr, column);
+                if (obj == null) return 0;
+                return Convert.ToDouble(obj);
+            }
+            catch { throw; }
+        }
         public static DateTime GetDateTimeValue(IDataReader dr, string column)
         {
             try

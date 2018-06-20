@@ -17,6 +17,11 @@ namespace Consultora.Dominio
         {
             return oIniciativaRepositorio.ObtenerxCodigo(Codigo);
         }
+        public List<IniciativaEntidad> filtrar(IniciativaEntidad entidad)
+        {
+            return oIniciativaRepositorio.filtrar(entidad);
+        }
+
         public decimal CalcularCostoEquipo(string Codigo)
         {
             return oIniciativaRepositorio.CalcularCostoEquipo(Codigo);
@@ -109,6 +114,16 @@ namespace Consultora.Dominio
             if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
                 if (oIniciativaRepositorio.ModificarEstado(entidad))
                     estado = true;
+            return estado;
+        }
+
+        public bool CerrarOportunidad(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    if (oIniciativaRepositorio.CerrarOportunidad(entidad))
+                        estado = true;
             return estado;
         }
 

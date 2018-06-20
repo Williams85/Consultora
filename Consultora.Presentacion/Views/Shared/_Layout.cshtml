@@ -9,9 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.fileDownload.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-    @*<script src="~/Scripts/paginathing.min.js"></script>*@
+    <script src="~/Scripts/paginathing.min.js"></script>
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         // This function is called from the pop-up menus to transfer to
@@ -63,7 +64,7 @@
                 <ul>
                     <li><a href="/ServicioEmpresarial/Index">Asignacion de Consultores</a></li>
                     <li><a href="/Iniciativa/Index">Crear Oportunidad</a></li>
-                    <li><a href="">Consultar Oportunidad</a></li>
+                    <li><a href="/Iniciativa/ConsultarIniciativa">Consultar Oportunidad</a></li>
                     <li><a href="/EvaluacionRentabilidad/Index/1">Evaluacion Rentabilidad</a></li>
 
                 </ul>

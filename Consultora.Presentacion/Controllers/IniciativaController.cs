@@ -14,6 +14,7 @@ namespace Consultora.Presentacion.Controllers
 
         private IniciativaDominio oIniciativaDominio = new IniciativaDominio();
         // GET: /Iniciativa/
+        [HttpGet]
         public ActionResult Index()
         {
             NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -25,6 +26,27 @@ namespace Consultora.Presentacion.Controllers
             ViewBag.ListaCliente = oClienteDominio.listarActivos();
             ViewBag.FechaRegistro = DateTime.Now.ToString("dd/MM/yyyy");
             return View();
+        }
+
+        public ActionResult ConsultarIniciativa()
+        {
+            NegocioDominio oNegocioDominio = new NegocioDominio();
+            ServicioDominio oServicioDominio = new ServicioDominio();
+            ClienteDominio oClienteDominio = new ClienteDominio();
+
+            ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+            ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+            ViewBag.ListaCliente = oClienteDominio.listarActivos();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult BuscarIniciativa(IniciativaEntidad entidad)
+        {
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            var Lista = oIniciativaDominio.filtrar(entidad);
+            return PartialView("_ResultadoIniciativa", Lista);
         }
 
         [HttpGet]
@@ -49,24 +71,6 @@ namespace Consultora.Presentacion.Controllers
                         Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
                     }
                 });
-                #region "Validar Estado"
-                if (iniciativa.Estado_Iniciativa != 1)
-                {
-                    switch (iniciativa.Estado_Iniciativa)
-                    {
-                        case 2:
-                            SessionManager.MensajeErrRFP = "";
-                            SessionManager.MensajeOKRFP = "";
-                            return RedirectToAction("RevisarRFP", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        case 3:
-                            SessionManager.MensajeErrACL = "";
-                            SessionManager.MensajeOKACL = "";
-                            return RedirectToAction("AsignarConsultorLider", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        default:
-                            return RedirectToAction("Index", "Iniciativa");
-                    }
-                }
-                #endregion
                 return View(iniciativa);
             }
             else
@@ -96,24 +100,6 @@ namespace Consultora.Presentacion.Controllers
                         Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
                     }
                 });
-                #region "Validar Estado"
-                if (iniciativa.Estado_Iniciativa != 2)
-                {
-                    switch (iniciativa.Estado_Iniciativa)
-                    {
-                        case 1:
-                            SessionManager.MensajeErrARS = "";
-                            SessionManager.MensajeOKARS = "";
-                            return RedirectToAction("AsignarResposnableServicio", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        case 3:
-                            SessionManager.MensajeErrACL = "";
-                            SessionManager.MensajeOKACL = "";
-                            return RedirectToAction("AsignarConsultorLider", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        default:
-                            return RedirectToAction("Index", "Iniciativa");
-                    }
-                }
-                #endregion
                 return View(iniciativa);
             }
             else
@@ -149,24 +135,6 @@ namespace Consultora.Presentacion.Controllers
                         Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
                     }
                 });
-                #region "Validar Estado"
-                if (iniciativa.Estado_Iniciativa != 3)
-                {
-                    switch (iniciativa.Estado_Iniciativa)
-                    {
-                        case 1:
-                            SessionManager.MensajeErrARS = "";
-                            SessionManager.MensajeOKARS = "";
-                            return RedirectToAction("AsignarResposnableServicio", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        case 2:
-                            SessionManager.MensajeErrRFP = "";
-                            SessionManager.MensajeOKRFP = "";
-                            return RedirectToAction("RevisarRFP", "Iniciativa", new { id = iniciativa.Cod_Iniciativa });
-                        default:
-                            return RedirectToAction("Index", "Iniciativa");
-                    }
-                }
-                #endregion
                 return View(iniciativa);
             }
             else
@@ -175,121 +143,6 @@ namespace Consultora.Presentacion.Controllers
             }
 
         }
-
-        [HttpGet]
-        public ActionResult EstimarTiemposProyecto(int id)
-        {
-            if (id != null && id > 0)
-            {
-                NegocioDominio oNegocioDominio = new NegocioDominio();
-                ServicioDominio oServicioDominio = new ServicioDominio();
-                ClienteDominio oClienteDominio = new ClienteDominio();
-                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
-                ComplejidadRequerimientoDominio oComplejidadRequerimientoDominio = new ComplejidadRequerimientoDominio();
-                ComplejidadActividadDominio oComplejidadActividadDominio = new ComplejidadActividadDominio();
-                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
-                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
-                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
-                ViewBag.ListaCliente = oClienteDominio.listarActivos();
-                ViewBag.ListaComplejidadRequerimiento = oComplejidadRequerimientoDominio.listarActivos();
-                ViewBag.ListaComplejidadActividad = oComplejidadActividadDominio.listarActivos();
-                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
-                    }
-                });
-                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
-                    }
-                });
-                return View(iniciativa);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Iniciativa");
-            }
-
-        }
-
-        [HttpGet]
-        public ActionResult EstimarConsultoresProyecto(int id)
-        {
-            if (id != null && id > 0)
-            {
-                NegocioDominio oNegocioDominio = new NegocioDominio();
-                ServicioDominio oServicioDominio = new ServicioDominio();
-                ClienteDominio oClienteDominio = new ClienteDominio();
-                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
-                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
-                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
-                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
-                ViewBag.ListaCliente = oClienteDominio.listarActivos();
-                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
-                    }
-                });
-                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
-                    }
-                });
-                return View(iniciativa);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Iniciativa");
-            }
-
-        }
-
-        [HttpGet]
-        public ActionResult EvaluarRentabilidad(int id)
-        {
-            if (id != null && id > 0)
-            {
-                id = 1;
-                NegocioDominio oNegocioDominio = new NegocioDominio();
-                ServicioDominio oServicioDominio = new ServicioDominio();
-                ClienteDominio oClienteDominio = new ClienteDominio();
-                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
-                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
-                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
-                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
-                ViewBag.ListaCliente = oClienteDominio.listarActivos();
-                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
-                    }
-                });
-                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
-                {
-                    Perfil = new PerfilEntidad
-                    {
-                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
-                    }
-                });
-                SessionManager.IniciativaEntidad = new IniciativaEntidad();
-                return View(iniciativa);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Iniciativa");
-            }
-
-        }
-
 
         [HttpPost]
         public ActionResult GrabarOportunidad()
@@ -341,7 +194,7 @@ namespace Consultora.Presentacion.Controllers
                     oResponseWeb.Estado = true;
                     oResponseWeb.Message = "Los cambios fueron guardados";
                     var entity = oIniciativaDominio.ObtenerxCodigo(Cod_Iniciativa.ToString());
-                    oResponseWeb.Valor = Cod_Iniciativa.ToString();
+                    oResponseWeb.Valor = Cod_Iniciativa.ToString() + "|" + entidad.RFP;
                     RFP.SaveAs(pathRFP);
                 }
                 else
@@ -557,6 +410,58 @@ namespace Consultora.Presentacion.Controllers
             #endregion
         }
 
+
+
+
+
+
+
+
+        #region "Estimacion de Tiempo del Proyecto"
+
+        #region "Principal"
+
+        [HttpGet]
+        public ActionResult EstimarTiemposProyecto(int id)
+        {
+            if (id != null && id > 0)
+            {
+                NegocioDominio oNegocioDominio = new NegocioDominio();
+                ServicioDominio oServicioDominio = new ServicioDominio();
+                ClienteDominio oClienteDominio = new ClienteDominio();
+                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
+                ComplejidadRequerimientoDominio oComplejidadRequerimientoDominio = new ComplejidadRequerimientoDominio();
+                ComplejidadActividadDominio oComplejidadActividadDominio = new ComplejidadActividadDominio();
+                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+                ViewBag.ListaCliente = oClienteDominio.listarActivos();
+                ViewBag.ListaComplejidadRequerimiento = oComplejidadRequerimientoDominio.listarActivos();
+                ViewBag.ListaComplejidadActividad = oComplejidadActividadDominio.listarActivos();
+                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
+                    }
+                });
+                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
+                    }
+                });
+                return View(iniciativa);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Iniciativa");
+            }
+
+        }
+
+
         [HttpPost]
         public ActionResult GrabarEstimacionTiempoProyectos()
         {
@@ -624,143 +529,9 @@ namespace Consultora.Presentacion.Controllers
             return Json(oResponseWeb);
             #endregion
         }
+        #endregion
 
-        [HttpPost]
-        public ActionResult GrabarEstimacionConsultores()
-        {
-            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
-            #region "Modificar Iniciativa"
-            HttpPostedFileBase RFP = null;
-            string pathRFP = "";
-            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
-            IniciativaEntidad entidad = new IniciativaEntidad()
-            {
-                Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
-                Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
-                Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
-                Negocio = new NegocioEntidad
-                {
-                    Cod_Negocio = int.Parse(Request.Form["Negocio.Cod_Negocio"].ToString()),
-                },
-                Servicio = new ServicioEntidad
-                {
-                    Cod_Servicio = int.Parse(Request.Form["Servicio.Cod_Servicio"].ToString()),
-                },
-                Cliente = new ClienteEntidad
-                {
-                    Cod_Cliente = int.Parse(Request.Form["Cliente.Cod_Cliente"].ToString()),
-                },
-                RFP = Request.Form["RFP"].ToString(),
-                Estado_Iniciativa = (int)Enumeracion.EstadoFlujo.EstimarConsultores,
-                ResponsableServicio = new UsuarioEntidad
-                {
-                    Cod_Usuario = int.Parse(Request.Form["ResponsableServicio.Cod_Usuario"].ToString()),
-                },
-                ConsultorLider = new UsuarioEntidad
-                {
-                    Cod_Usuario = int.Parse(Request.Form["ConsultorLider.Cod_Usuario"].ToString()),
-                }
-            };
-            #region "Validar Archivo Adjunto"
-            if (Request.Files.Count > 0)
-            {
-                for (int i = 0; i < Request.Files.Count; i++)
-                {
-                    RFP = Request.Files[i];
-                    if (string.IsNullOrWhiteSpace(RFP.FileName) == false)
-                    {
-                        pathRFP = Server.MapPath("~") + entidad.RFP;
-                        System.IO.File.Delete(pathRFP);
-                        string fileRFP = entidad.Nom_Iniciativa.Replace(" ", "").ToLower() + Path.GetExtension(RFP.FileName).ToLower();
-                        entidad.RFP = "/RFP/" + fileRFP;
-                        pathRFP = Server.MapPath("~") + entidad.RFP;
-                    }
-                }
-            }
-            #endregion
-            if (oIniciativaDominio.EstimarConsultores(entidad))
-            {
-                oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Los cambios fueron guardados";
-                if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
-            }
-            else
-            {
-                oResponseWeb.Message = "Los cambios no fueron guardados";
-            }
-
-            return Json(oResponseWeb);
-            #endregion
-        }
-
-        [HttpPost]
-        public ActionResult GrabarEvaluacionRentabilidad()
-        {
-            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
-            #region "Modificar Iniciativa"
-            HttpPostedFileBase RFP = null;
-            string pathRFP = "";
-            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
-            IniciativaEntidad entidad = new IniciativaEntidad()
-            {
-                Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
-                Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
-                Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
-                Negocio = new NegocioEntidad
-                {
-                    Cod_Negocio = int.Parse(Request.Form["Negocio.Cod_Negocio"].ToString()),
-                },
-                Servicio = new ServicioEntidad
-                {
-                    Cod_Servicio = int.Parse(Request.Form["Servicio.Cod_Servicio"].ToString()),
-                },
-                Cliente = new ClienteEntidad
-                {
-                    Cod_Cliente = int.Parse(Request.Form["Cliente.Cod_Cliente"].ToString()),
-                },
-                RFP = Request.Form["RFP"].ToString(),
-                Estado_Iniciativa = (int)Enumeracion.EstadoFlujo.EvaluacionRentabilidad,
-                ResponsableServicio = new UsuarioEntidad
-                {
-                    Cod_Usuario = int.Parse(Request.Form["ResponsableServicio.Cod_Usuario"].ToString()),
-                },
-                ConsultorLider = new UsuarioEntidad
-                {
-                    Cod_Usuario = int.Parse(Request.Form["ConsultorLider.Cod_Usuario"].ToString()),
-                }
-            };
-            #region "Validar Archivo Adjunto"
-            if (Request.Files.Count > 0)
-            {
-                for (int i = 0; i < Request.Files.Count; i++)
-                {
-                    RFP = Request.Files[i];
-                    if (string.IsNullOrWhiteSpace(RFP.FileName) == false)
-                    {
-                        pathRFP = Server.MapPath("~") + entidad.RFP;
-                        System.IO.File.Delete(pathRFP);
-                        string fileRFP = entidad.Nom_Iniciativa.Replace(" ", "").ToLower() + Path.GetExtension(RFP.FileName).ToLower();
-                        entidad.RFP = "/RFP/" + fileRFP;
-                        pathRFP = Server.MapPath("~") + entidad.RFP;
-                    }
-                }
-            }
-            #endregion
-            if (oIniciativaDominio.EvaluarRentabilidad(entidad))
-            {
-                oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Los cambios fueron guardados";
-                if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
-            }
-            else
-            {
-                oResponseWeb.Message = "Los cambios no fueron guardados";
-            }
-
-            return Json(oResponseWeb);
-            #endregion
-        }
-
+        #region "Popup"
         [HttpPost]
         public ActionResult ListarRequerimientoxIniciativa(RequerimientoEntidad entidad)
         {
@@ -792,7 +563,7 @@ namespace Consultora.Presentacion.Controllers
         {
             ResponseWeb<int> oResponseWeb = new ResponseWeb<int> { Estado = false, };
             RequerimientoDominio oRequerimientoDominio = new RequerimientoDominio();
-            if( oRequerimientoDominio.Eliminar(entidad.Cod_Requerimiento.ToString()))
+            if (oRequerimientoDominio.Eliminar(entidad.Cod_Requerimiento.ToString()))
             {
                 oResponseWeb.Estado = true;
                 oResponseWeb.Message = "Se eliminó el requerimiento";
@@ -896,8 +667,372 @@ namespace Consultora.Presentacion.Controllers
         {
             IniciativaFaseDominio oIniciativaFaseDominio = new IniciativaFaseDominio();
             var Lista = oIniciativaFaseDominio.listarxIniciativa(entidad.Iniciativa.Cod_Iniciativa.ToString());
+            int TotalHoras = int.Parse((from x in Lista select x.Horas).Sum().ToString());
+            ViewBag.TotalHoras = TotalHoras;
             return PartialView("_ResultadoTiempoFases", Lista);
         }
+        #endregion
+
+        #endregion
+
+
+        #region "Estimacion de Consultores del Proyecto"
+
+
+
+        #region "Principal"
+
+        [HttpGet]
+        public ActionResult EstimarConsultoresProyecto(int id)
+        {
+            if (id != null && id > 0)
+            {
+                SessionManager.ListaIniciativaCompetencia = null;
+                NegocioDominio oNegocioDominio = new NegocioDominio();
+                ServicioDominio oServicioDominio = new ServicioDominio();
+                ClienteDominio oClienteDominio = new ClienteDominio();
+                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
+                CompetenciaDominio oCompetenciaDominio = new CompetenciaDominio();
+                NivelCompetenciaDominio oNivelCompetenciaDominio = new NivelCompetenciaDominio();
+                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+                ViewBag.ListaCliente = oClienteDominio.listarActivos();
+                ViewBag.ListaCompetencias = oCompetenciaDominio.listarActivos();
+                ViewBag.ListaNivelCompetencias = oNivelCompetenciaDominio.listarActivos();
+                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
+                    }
+                });
+                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
+                    }
+                });
+                return View(iniciativa);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Iniciativa");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult GrabarEstimacionConsultores()
+        {
+            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
+            #region "Modificar Iniciativa"
+            HttpPostedFileBase RFP = null;
+            string pathRFP = "";
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            IniciativaEntidad entidad = new IniciativaEntidad()
+            {
+                Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
+                Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
+                Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
+                Negocio = new NegocioEntidad
+                {
+                    Cod_Negocio = int.Parse(Request.Form["Negocio.Cod_Negocio"].ToString()),
+                },
+                Servicio = new ServicioEntidad
+                {
+                    Cod_Servicio = int.Parse(Request.Form["Servicio.Cod_Servicio"].ToString()),
+                },
+                Cliente = new ClienteEntidad
+                {
+                    Cod_Cliente = int.Parse(Request.Form["Cliente.Cod_Cliente"].ToString()),
+                },
+                RFP = Request.Form["RFP"].ToString(),
+                Estado_Iniciativa = (int)Enumeracion.EstadoFlujo.EstimarConsultores,
+                ResponsableServicio = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ResponsableServicio.Cod_Usuario"].ToString()),
+                },
+                ConsultorLider = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ConsultorLider.Cod_Usuario"].ToString()),
+                }
+            };
+            #region "Validar Archivo Adjunto"
+            if (Request.Files.Count > 0)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    RFP = Request.Files[i];
+                    if (string.IsNullOrWhiteSpace(RFP.FileName) == false)
+                    {
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                        System.IO.File.Delete(pathRFP);
+                        string fileRFP = entidad.Nom_Iniciativa.Replace(" ", "").ToLower() + Path.GetExtension(RFP.FileName).ToLower();
+                        entidad.RFP = "/RFP/" + fileRFP;
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                    }
+                }
+            }
+            #endregion
+            if (oIniciativaDominio.EstimarConsultores(entidad))
+            {
+                oResponseWeb.Estado = true;
+                oResponseWeb.Message = "Los cambios fueron guardados";
+                if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
+            }
+            else
+            {
+                oResponseWeb.Message = "Los cambios no fueron guardados";
+            }
+
+            return Json(oResponseWeb);
+            #endregion
+        }
+
+        #endregion
+
+        #region "Popup"
+
+        [HttpPost]
+        public ActionResult ListarCompetenciasxIniciativa(IniciativaCompetenciaEntidad entidad)
+        {
+            IniciativaCompetenciaDominio oIniciativaCompetenciaDominio = new IniciativaCompetenciaDominio();
+            IniciativaFaseDominio oIniciativaFaseDominio = new IniciativaFaseDominio();
+            var ListaFases = oIniciativaFaseDominio.listarxIniciativa(entidad.Iniciativa.Cod_Iniciativa.ToString());
+            var Lista = oIniciativaCompetenciaDominio.listarxIniciativa(entidad);
+            int TotalHorasProyecto = int.Parse((from x in ListaFases select x.Horas).Sum().ToString());
+            int HorasParticipacion = int.Parse((from x in Lista select x.Horas_Participacion).Sum().ToString());
+            ViewBag.TotalHorasProyecto = TotalHorasProyecto;
+            ViewBag.HorasParticipacion = HorasParticipacion;
+            ViewBag.RestantesHorasProyecto = (TotalHorasProyecto - HorasParticipacion);
+            ViewBag.IndiCompetencia = "0";
+            if ((TotalHorasProyecto - HorasParticipacion) == 0)
+                ViewBag.IndiCompetencia = "1";
+
+            return PartialView("_ResultadoCompetencias", Lista);
+        }
+
+
+        [HttpPost]
+        public ActionResult GrabarCompetencia(IniciativaCompetenciaEntidad entidad)
+        {
+            ResponseWeb<int> oResponseWeb = new ResponseWeb<int> { Estado = false, };
+            IniciativaCompetenciaDominio oIniciativaCompetenciaDominio = new IniciativaCompetenciaDominio();
+            IniciativaFaseDominio oIniciativaFaseDominio = new IniciativaFaseDominio();
+            var ListaFases = oIniciativaFaseDominio.listarxIniciativa(entidad.Iniciativa.Cod_Iniciativa.ToString());
+            var Lista = oIniciativaCompetenciaDominio.listarxIniciativa(entidad);
+            int TotalHorasProyecto = int.Parse((from x in ListaFases select x.Horas).Sum().ToString());
+            int HorasParticipacion = int.Parse((from x in Lista select x.Horas_Participacion).Sum().ToString());
+            ViewBag.IndiCompetencia = "0";
+            if ((TotalHorasProyecto - HorasParticipacion) == 0)
+                ViewBag.IndiCompetencia = "1";
+            if ((HorasParticipacion + int.Parse(entidad.Horas_Participacion.ToString())) > TotalHorasProyecto)
+            {
+                oResponseWeb.Estado = false;
+                oResponseWeb.Message = "El Total de Horas de Participación ingresadas no coincide con el Total de Horas Estimadas...";
+            }
+            else
+            {
+                if (oIniciativaCompetenciaDominio.Grabar(entidad))
+                {
+                    oResponseWeb.Estado = true;
+                    oResponseWeb.Message = "Se agrego la competencia";
+                }
+                else
+                {
+                    oResponseWeb.Estado = false;
+                    oResponseWeb.Message = "No se agrego la competencia";
+                }
+            }
+
+
+            return Json(oResponseWeb);
+        }
+
+        [HttpPost]
+        public ActionResult ModificarCompetencia(IniciativaCompetenciaEntidad entidad)
+        {
+            ResponseWeb<int> oResponseWeb = new ResponseWeb<int> { Estado = false, };
+            IniciativaCompetenciaDominio oIniciativaCompetenciaDominio = new IniciativaCompetenciaDominio();
+            IniciativaFaseDominio oIniciativaFaseDominio = new IniciativaFaseDominio();
+            var ListaFases = oIniciativaFaseDominio.listarxIniciativa(entidad.Iniciativa.Cod_Iniciativa.ToString());
+            var Lista = oIniciativaCompetenciaDominio.listarxIniciativa(entidad);
+            int TotalHorasProyecto = int.Parse((from x in ListaFases select x.Horas).Sum().ToString());
+            int HorasParticipacion = int.Parse((from x in Lista select x.Horas_Participacion).Sum().ToString());
+            if (((HorasParticipacion - int.Parse(entidad.Horas_Participacion_Antes.ToString()) + (int.Parse(entidad.Horas_Participacion.ToString())))) > TotalHorasProyecto)
+            {
+                oResponseWeb.Estado = false;
+                oResponseWeb.Message = "El Total de Horas de Participación ingresadas no coincide con el Total de Horas Estimadas...";
+            }
+            else
+            {
+                if (oIniciativaCompetenciaDominio.Modificar(entidad))
+                {
+                    oResponseWeb.Estado = true;
+                    oResponseWeb.Message = "Se modifico la competencia";
+                }
+                else
+                {
+                    oResponseWeb.Estado = false;
+                    oResponseWeb.Message = "No se modifico la competencia";
+                }
+            }
+
+            return Json(oResponseWeb);
+        }
+
+        [HttpPost]
+        public ActionResult EliminarCompetencia(IniciativaCompetenciaEntidad entidad)
+        {
+            ResponseWeb<int> oResponseWeb = new ResponseWeb<int> { Estado = false, };
+            IniciativaCompetenciaDominio oIniciativaCompetenciaDominio = new IniciativaCompetenciaDominio();
+            IniciativaFaseDominio oIniciativaFaseDominio = new IniciativaFaseDominio();
+            var ListaFases = oIniciativaFaseDominio.listarxIniciativa(entidad.Iniciativa.Cod_Iniciativa.ToString());
+            var Lista = oIniciativaCompetenciaDominio.listarxIniciativa(entidad);
+            int TotalHorasProyecto = int.Parse((from x in ListaFases select x.Horas).Sum().ToString());
+            int HorasParticipacion = int.Parse((from x in Lista select x.Horas_Participacion).Sum().ToString());
+            ViewBag.TotalHorasProyecto = TotalHorasProyecto;
+            ViewBag.HorasParticipacion = HorasParticipacion;
+            ViewBag.RestantesHorasProyecto = (TotalHorasProyecto - HorasParticipacion);
+            ViewBag.IndiCompetencia = "0";
+            if ((TotalHorasProyecto - HorasParticipacion) == 0)
+                ViewBag.IndiCompetencia = "1";
+
+            if (oIniciativaCompetenciaDominio.Eliminar(entidad.Cod_Iniciativa_Competencia.ToString()))
+            {
+                oResponseWeb.Estado = true;
+                oResponseWeb.Message = "Se eliminó la competencia";
+            }
+            else
+            {
+                oResponseWeb.Estado = false;
+                oResponseWeb.Message = "No se eliminó la competencia";
+            }
+            return Json(oResponseWeb);
+        }
+
+        #endregion
+
+
+        #endregion
+
+
+        #region "Evaluacion de Rentabilidad"
+
+        #region "Principal"
+
+        [HttpGet]
+        public ActionResult EvaluarRentabilidad(int id)
+        {
+            if (id != null && id > 0)
+            {
+                //id = 1;
+                NegocioDominio oNegocioDominio = new NegocioDominio();
+                ServicioDominio oServicioDominio = new ServicioDominio();
+                ClienteDominio oClienteDominio = new ClienteDominio();
+                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
+                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+                ViewBag.ListaCliente = oClienteDominio.listarActivos();
+                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
+                    }
+                });
+                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
+                    }
+                });
+                SessionManager.IniciativaEntidad = new IniciativaEntidad();
+                return View(iniciativa);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Iniciativa");
+            }
+
+        }
+
+
+        [HttpPost]
+        public ActionResult GrabarEvaluacionRentabilidad()
+        {
+            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
+            #region "Modificar Iniciativa"
+            HttpPostedFileBase RFP = null;
+            string pathRFP = "";
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            IniciativaEntidad entidad = new IniciativaEntidad()
+            {
+                Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
+                Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
+                Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
+                Negocio = new NegocioEntidad
+                {
+                    Cod_Negocio = int.Parse(Request.Form["Negocio.Cod_Negocio"].ToString()),
+                },
+                Servicio = new ServicioEntidad
+                {
+                    Cod_Servicio = int.Parse(Request.Form["Servicio.Cod_Servicio"].ToString()),
+                },
+                Cliente = new ClienteEntidad
+                {
+                    Cod_Cliente = int.Parse(Request.Form["Cliente.Cod_Cliente"].ToString()),
+                },
+                RFP = Request.Form["RFP"].ToString(),
+                Estado_Iniciativa = (int)Enumeracion.EstadoFlujo.EvaluacionRentabilidad,
+                ResponsableServicio = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ResponsableServicio.Cod_Usuario"].ToString()),
+                },
+                ConsultorLider = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ConsultorLider.Cod_Usuario"].ToString()),
+                }
+            };
+            #region "Validar Archivo Adjunto"
+            if (Request.Files.Count > 0)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    RFP = Request.Files[i];
+                    if (string.IsNullOrWhiteSpace(RFP.FileName) == false)
+                    {
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                        System.IO.File.Delete(pathRFP);
+                        string fileRFP = entidad.Nom_Iniciativa.Replace(" ", "").ToLower() + Path.GetExtension(RFP.FileName).ToLower();
+                        entidad.RFP = "/RFP/" + fileRFP;
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                    }
+                }
+            }
+            #endregion
+            if (oIniciativaDominio.EvaluarRentabilidad(entidad))
+            {
+                oResponseWeb.Estado = true;
+                oResponseWeb.Message = "Los cambios fueron guardados";
+                if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
+            }
+            else
+            {
+                oResponseWeb.Message = "Los cambios no fueron guardados";
+            }
+
+            return Json(oResponseWeb);
+            #endregion
+        }
+
+        #endregion
+
+        #region "Popup"
 
         [HttpPost]
         public ActionResult CalcularCostoEquipo(string Codigo)
@@ -943,6 +1078,137 @@ namespace Consultora.Presentacion.Controllers
             var respuesta = oIniciativaDominio.RegistrarEvaluacionRentabilidad(entidad);
             return Json(respuesta);
         }
+
+        #endregion
+
+        #endregion
+
+        #region "Cerrar Oportunidad"
+
+        [HttpGet]
+        public ActionResult CerrarOportunidad(int id)
+        {
+            if (id != null && id > 0)
+            {
+                NegocioDominio oNegocioDominio = new NegocioDominio();
+                ServicioDominio oServicioDominio = new ServicioDominio();
+                ClienteDominio oClienteDominio = new ClienteDominio();
+                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
+                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+                ViewBag.ListaCliente = oClienteDominio.listarActivos();
+                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
+                    }
+                });
+                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
+                    }
+                });
+                return View(iniciativa);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Iniciativa");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult GrabarCierreOportunidad()
+        {
+            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
+            #region "Modificar Iniciativa"
+            HttpPostedFileBase RFP = null;
+            string pathRFP = "";
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            IniciativaEntidad entidad = new IniciativaEntidad()
+            {
+                Cod_Iniciativa = int.Parse(Request.Form["Cod_Iniciativa"].ToString()),
+                Nom_Iniciativa = Request.Form["Nom_Iniciativa"].ToString(),
+                Des_Iniciativa = Request.Form["Des_Iniciativa"].ToString(),
+                Negocio = new NegocioEntidad
+                {
+                    Cod_Negocio = int.Parse(Request.Form["Negocio.Cod_Negocio"].ToString()),
+                },
+                Servicio = new ServicioEntidad
+                {
+                    Cod_Servicio = int.Parse(Request.Form["Servicio.Cod_Servicio"].ToString()),
+                },
+                Cliente = new ClienteEntidad
+                {
+                    Cod_Cliente = int.Parse(Request.Form["Cliente.Cod_Cliente"].ToString()),
+                },
+                RFP = Request.Form["RFP"].ToString(),
+                Estado_Iniciativa = (int)Enumeracion.EstadoFlujo.CerrarOportunidad,
+                ResponsableServicio = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ResponsableServicio.Cod_Usuario"].ToString()),
+                },
+                ConsultorLider = new UsuarioEntidad
+                {
+                    Cod_Usuario = int.Parse(Request.Form["ConsultorLider.Cod_Usuario"].ToString()),
+                }
+            };
+            #region "Validar Archivo Adjunto"
+            if (Request.Files.Count > 0)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    RFP = Request.Files[i];
+                    if (string.IsNullOrWhiteSpace(RFP.FileName) == false)
+                    {
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                        System.IO.File.Delete(pathRFP);
+                        string fileRFP = entidad.Nom_Iniciativa.Replace(" ", "").ToLower() + Path.GetExtension(RFP.FileName).ToLower();
+                        entidad.RFP = "/RFP/" + fileRFP;
+                        pathRFP = Server.MapPath("~") + entidad.RFP;
+                    }
+                }
+            }
+            #endregion
+            if (oIniciativaDominio.CerrarOportunidad(entidad))
+            {
+                oResponseWeb.Estado = true;
+                oResponseWeb.Message = "Los cambios fueron guardados";
+                if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
+            }
+            else
+            {
+                oResponseWeb.Message = "Los cambios no fueron guardados";
+            }
+
+            return Json(oResponseWeb);
+            #endregion
+        }
+
+        #endregion
+
+        #region "Genericos"
+        [HttpGet, FileDownload]
+        public FilePathResult DescargarFile(int id)
+        {
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            var entidad = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+            return File("~" + entidad.RFP, "application/pdf", "RFP.pdf");
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
 
     }
 }

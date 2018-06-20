@@ -1,0 +1,84 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "CerrarOportunidad";
+}
+
+<h4>Cerrar Oportunidad</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarCierreOportunidad", "Iniciativa", FormMethod.Post, new { @id = "FormCO", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Indicador", "")
+        @Html.HiddenFor(model => model.Cod_Iniciativa, null)
+        @Html.HiddenFor(model => model.RFP, null)
+        <article class="sector-100">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-100">
+            <label>Descripcion:</label>
+            @Html.TextAreaFor(model => model.Des_Iniciativa)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-25">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-acl-descargar" href="/Iniciativa/DescargarFile">Descargar</a>
+        </article>
+
+        <article class="sector-100">
+            <label>Responsable Servicio:</label>
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <article class="sector-100">
+            <label>Consultor Lider:</label>
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Fecha Inicio Servicio:</label>
+            <input type="text" id="RFP" name="RFP">
+        </article>
+        <article class="sector-50">
+            <label>Fecha Fin Servicio:</label>
+            <input type="text" id="RFP" name="RFP">
+        </article>
+     
+        <div class="clear">
+        </div>
+        <article class="sector-100">
+            <div class="alert alert-danger" role="alert" id="Message-Error">
+                <strong></strong>
+            </div>
+        </article>
+        <article class="lista-botones">
+            <button type="submit" class="btn btn-info" id="btn-co-guardar">Cerrar Oportunidad</button>
+        </article>
+
+    }
+</div>
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")
+

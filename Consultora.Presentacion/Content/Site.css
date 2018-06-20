@@ -105,9 +105,12 @@ section .contenido h4{
 /*Grilla de Resultados*/
 section .contenido .grid-resultados{
     margin: 0 auto;
-    overflow:hidden;
+    /*overflow:hidden;*/
     padding:20px 0px;
     width:100%;
+    max-height:400px !important;
+    overflow-y:scroll !important;
+    overflow:auto !important;
 }
 
 section .contenido .grid-resultados h5{
@@ -294,9 +297,13 @@ section .contenido .search .resultado #MensajeResultado{
     font-style: italic;
 }
 
-section .contenido .search .sector-50, section .contenido .search .sector-100{
+section .contenido .search .sector-25, section .contenido .search .sector-50, section .contenido .search .sector-100{
 	float: left;
 	padding: 5px 10px;
+}
+
+section .contenido .search .sector-25{
+	width: 25%;
 }
 
 section .contenido .search .sector-50{
@@ -307,6 +314,7 @@ section .contenido .search .sector-100{
 	width: 100%;
 }
 
+section .contenido .search .sector-25 input, section .contenido .search .sector-25 textarea, 
 section .contenido .search .sector-50 input, section .contenido .search .sector-50 textarea, 
 section .contenido .search .sector-100 input, section .contenido .search .sector-100 textarea{
     border: 1px #000 solid;
@@ -315,6 +323,8 @@ section .contenido .search .sector-100 input, section .contenido .search .sector
     margin-top:0px;
 }
 
+section .contenido .search .sector-25 input,
+section .contenido .search .sector-25 textarea,
 section .contenido .search .sector-50 input,
 section .contenido .search .sector-50 textarea{
     width:96%;
@@ -325,6 +335,7 @@ section .contenido .search .sector-100 textarea{
     width:98%;
 }
 
+section .contenido .search .sector-25 label,
 section .contenido .search .sector-50 label,
 section .contenido .search .sector-100 label{
     display:block;
@@ -332,6 +343,7 @@ section .contenido .search .sector-100 label{
     margin-bottom:0px;
 }
 
+section .contenido .search .sector-25 select,
 section .contenido .search .sector-50 select,
 section .contenido .search .sector-100 select{
     border: 1px #000 solid;
@@ -340,6 +352,7 @@ section .contenido .search .sector-100 select{
 
 }
 
+section .contenido .search .sector-25 select,
 section .contenido .search .sector-50 select{
     width:96%;
 }
@@ -444,6 +457,9 @@ ul, li{
     padding:5px;
 }
 .modal-body .grid-resultados{
+    max-height:300px !important;
+    overflow-y:scroll !important;
+    overflow:auto !important;
     width: 70% !important;
 }
 
@@ -515,7 +531,6 @@ ul, li{
     border-radius: 5px;
     color: #fff;
     margin-left: 30px;
-   /*float: left;*/ 
     font-size:15px;
     padding:5px 10px;
 
@@ -632,12 +647,30 @@ ul, li{
 	width: 100%;
 }
 
-
 .pagination-container{
     background: #FFF;
+    margin-top:0px !important;
+    overflow:hidden;
+    text-align: center;
     width:100%;
 }
 
-.pagination-container .page a{
+.pagination-container .page a,
+.pagination-container .next a,
+.pagination-container .last a {
     color:#428bca;
 }
+
+.pagination-container .pagination{
+    margin:0px !important;
+}
+.pagination-container li.active a{
+    color:#fff;
+}
+
+
+.Descargar{
+    margin-top:20px;
+    text-align:left;
+}
+

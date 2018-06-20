@@ -50,6 +50,7 @@
     <Compile Include="ComplejidadActividadRepositorio.cs" />
     <Compile Include="ComplejidadRequerimientoRepositorio.cs" />
     <Compile Include="ConsultorRepositorio.cs" />
+    <Compile Include="IniciativaCompetenciaRepositorio.cs" />
     <Compile Include="IniciativaCompetenciaTecnicaRepositorio.cs" />
     <Compile Include="IniciativaFaseRepositorio.cs" />
     <Compile Include="IniciativaRepositorio.cs" />

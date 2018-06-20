@@ -47,6 +47,7 @@
     <Compile Include="ComplejidadActividadDominio.cs" />
     <Compile Include="ComplejidadRequerimientoDominio.cs" />
     <Compile Include="ConsultorDominio.cs" />
+    <Compile Include="IniciativaCompetenciaDominio.cs" />
     <Compile Include="IniciativaCompetenciaTecnicaDominio.cs" />
     <Compile Include="IniciativaDominio.cs" />
     <Compile Include="IniciativaFaseDominio.cs" />

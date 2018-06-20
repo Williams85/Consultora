@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace Consultora.Entidad
 {
-    public class IniciativaCompetenciaEntidad
+    public partial class IniciativaCompetenciaEntidad
     {
-        public int Cod_Iniciativa_Competencia { get; set; }
-        public IniciativaEntidad Iniciativa { get; set; }
-        public CompetenciaEntidad Competencia { get; set; }
-        public NivelCompetenciaEntidad NivelCompetencia { get; set; }
-        public NegocioEntidad Negocio { get; set; }
-        public decimal Porcentaje_Participacion { get; set; }
-        public decimal Horas_Participacion { get; set; }
-
+        public double Horas_Participacion_Antes { get; set; }
     }
 }

@@ -28,6 +28,11 @@ rutas.GenerarTiempoFases = "/Iniciativa/GenerarTiempoFases";
 rutas.ListarTiempoFases = "/Iniciativa/ListarTiempoFases";
 
 
+//Popup Estimacion de Consultores de Proyecto
+rutas.ListarCompetenciasxIniciativa = "/Iniciativa/ListarCompetenciasxIniciativa";
+rutas.GrabarCompetencia = "/Iniciativa/GrabarCompetencia";
+rutas.EliminarCompetencia = "/Iniciativa/EliminarCompetencia";
+rutas.ModificarCompetencia = "/Iniciativa/ModificarCompetencia";
 
 
 //Evaluacion Rentabilidad
@@ -36,6 +41,10 @@ rutas.CalcularCostoServicio = "/Iniciativa/CalcularCostoServicio";
 rutas.CalcularCostoEquipoCliente = "/Iniciativa/CalcularCostoEquipoCliente";
 rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
 rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
+
+rutas.BuscarIniciativa = "/Iniciativa/BuscarIniciativa";
+
+
 
 //rutas.CalcularCostoEquipo = "/EvaluacionRentabilidad/CalcularCostoEquipo";
 //rutas.CalcularCostoServicio = "/EvaluacionRentabilidad/CalcularCostoServicio";

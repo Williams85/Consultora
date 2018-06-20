@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    $("#btn-nuevo-descargar").hide();
     $("#Resultado").hide();
     $("#Message-Error").hide();
     $("#IdViewTotalGananciaBruta").hide();
@@ -30,6 +31,24 @@
         };
 
         RegistrarEvaluacionRentabilidad(parametros);
+    });
+
+    $("a.Descargar").on("click", function () {
+        var Url = $(this).prop('href') + "/" + $("#Cod_Iniciativa").val();
+        $.fileDownload(Url);
+        return false;
+    });
+
+    $("#btn-buscar-iniciativa").on("click", function () {
+        var parametros = {
+            "Nom_Iniciativa": $("#Nom_Iniciativa").val(),
+            "Cod_Oportunidad": $("#Cod_Oportunidad").val(),
+            "Negocio": { "Cod_Negocio": $("#Cod_Negocio").val() },
+            "Servicio": { "Cod_Servicio": $("#Cod_Servicio").val() },
+            "Cliente": { "Cod_Cliente": $("#Cod_Cliente").val() },
+            "Estado_Iniciativa": $("#Estado_Iniciativa").val(),
+        };
+        BuscarOportunidad(parametros)
     });
 
     $("#btn-nuevo-siguiente").on("click", function (e) {
@@ -131,17 +150,6 @@
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
 
-        var parametros = {
-            "Requerimiento": {
-                "Iniciativa": {
-                    "Cod_Iniciativa": $("#Cod_Iniciativa").val(),
-                }
-            }
-        }
-        if (ValidarActividades(parametros) == false) {
-            return false;
-        }
-
         //Validar Formulario
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
@@ -158,12 +166,19 @@
             MostrarMensajeError(mensaje);
             return false;
         }
-        $("#Indicador").val("1");
-        $("#FormETP").submit();
+
+        var parametros = {
+            "Requerimiento": {
+                "Iniciativa": {
+                    "Cod_Iniciativa": $("#Cod_Iniciativa").val(),
+                }
+            }
+        }
+        ValidarActividades(parametros, "#Indicador", "#FormETP")
         return false;
     });
 
-    $("#btn-ecp-siguiente").on("click", function () {
+    $("#btn-ecp-siguiente").on("click", function (e) {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
         //Validar Formulario
@@ -182,8 +197,42 @@
             MostrarMensajeError(mensaje);
             return false;
         }
+        var parametros = {
+            "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
+        };
+        ValidarConsultores(parametros, "#Indicador", "#FormECP");
+
+        //$("#Indicador").val("1");
+        //$("#FormECP").submit();
+        return false;
+    });
+
+    $("#btn-er-siguiente").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+        //var parametros = {
+        //    "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
+        //};
+        //ValidarConsultores(parametros, "#Indicador", "#FormECP");
+
         $("#Indicador").val("1");
-        $("#FormECP").submit();
+        $("#FormER").submit();
         return false;
     });
 
@@ -204,6 +253,18 @@
         $("#ModalEstimarTiempoProyecto").modal("show");
 
 
+    });
+
+    $("#btn-ecp-adicional").on("click", function () {
+        //Listar Competencias
+        var parametros = {
+            "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
+        }
+
+        $("#ResultadosTiempoxFases").empty();
+        ListarCompetenciasxIniciativa(parametros);
+        $("#btn-ecp-grabar").hide();
+        $("#ModalConsultoresProyecto").modal("show");
     });
 
     $("#btn-etp-agregar-req").on("click", function () {
@@ -267,11 +328,50 @@
     });
 
 
+    ////Estimacion de Consultores del Proyecyo
+
+    $("#btn-competencia-agregar").on("click", function () {
+        var parametros = {
+            "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), },
+            "Competencia": { "Cod_Competencia": $("#Cod_Competencia").val(), },
+            "NivelCompetencia": { "Cod_Nivel_Competencia": $("#Cod_Nivel_Competencia").val(), },
+            "Negocio": { "Cod_Negocio": $("#Negocio_Cod_Negocio").val(), },
+            "Horas_Participacion": $("#Horas_Participacion").val(),
+        }
+
+
+        GrabarCompetencia(parametros);
+
+        //Limpiar
+        //$("#Nom_Requerimiento").val("");
+        //$("#ComplejidadRequerimiento_Cod_Complejidad_Requerimiento").eq(0).prop('selected', true);
+        //$("#BlockActivyFilter").hide();
+        //$("#BlockActivyAdd").hide();
+        //$("#BusquedaActividades").empty();
+        //$("#ResultadosRequerimientoActividades").empty();
+    });
+
+    $("#btn-ver-tiempos-proyecto").on("click", function () {
+
+        var parametros = {
+            "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
+        };
+        ListarTiempoFases(parametros);
+
+    });
+
+    $("#btn-ecp-grabar").on("click", function () {
+        if ($("#IndiCompetencia").val() == "1") {
+            PopInformativo("Se guardaron los cambios")
+        } else {
+            PopInformativo("El Total de Horas de Participación ingresadas no coincide con el Total de Horas Estimadas...")
+        }
+    });
+
     ////Evaluacion de Reantabilidad
     $("#btn-er-adicional").on("click", function () {
         $("#ModalEvaluarRentabilidad").modal("show");
     });
-
 
     $("#FormNuevaIniciativa").submit(function (e) {
         $("#Message-Error strong").empty();
@@ -280,7 +380,6 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
@@ -495,8 +594,56 @@
         GrabarEvaluacionRentabilidad(e, info);
     });
 
+    $("#FormCO").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var RFP = $("#file").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarCierreOportunidad(e, info);
+    });
+
 
 });
+
+function BuscarOportunidad(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.BuscarIniciativa;
+    info.parametros = parametros;
+
+    ajaxPartialView(info, function (data) {
+        if (data != null && data != "") {
+            $("#ResultadoOportunidades").html(data);
+        } else {
+            $("#ResultadoOportunidades").empty();
+        }
+    });
+}
 
 function GrabarOportunidad(e, info) {
     e.preventDefault();
@@ -504,11 +651,17 @@ function GrabarOportunidad(e, info) {
     ajaxForm(info, function (data) {
         if (data != null) {
             PopInformativo(data.Message);
-            $("#Cod_Iniciativa").val(data.Valor);
-            if (data.Estado == true && $("#Indicador").val() == "1") {
-                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
-                location.href = "/Iniciativa/AsignarResposnableServicio/" + Cod_Iniciativa
+            if (data.Estado == true) {
+                $("#btn-nuevo-descargar").show();
+                var datos = data.Valor.split("|");;
+                $("#Cod_Iniciativa").val(datos[0]);
+                $("#File").val(datos[1]);
+                if ($("#Indicador").val() == "1") {
+                    var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                    location.href = "/Iniciativa/AsignarResposnableServicio/" + Cod_Iniciativa
+                }
             }
+
         } else {
             console.log("error")
         }
@@ -601,11 +754,17 @@ function GrabarEvaluacionRentabilidad(e, info) {
     ajaxForm(info, function (data) {
         if (data != null) {
             PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                location.href = "/Iniciativa/CerrarOportunidad/" + Cod_Iniciativa
+            }
         } else {
             console.log("error")
         }
     });
 }
+
+//Estimacion de Tiempo del Proyecto
 
 function ListarRequerimientoxIniciativa(parametros) {
     //Consultar Controlador
@@ -620,13 +779,6 @@ function ListarRequerimientoxIniciativa(parametros) {
             //$("#TablaResultadosRequerimientos  tbody").paginathing({
             //    perPage: 5,
             //    insertAfter: '.table',
-
-            //});
-            //$("#TablaResultadosRequerimientos").dataTable({
-            //    "pageLength": 5,
-            //    "ordering": false,
-            //    "info": false,
-            //    "searching": false
             //});
             $(".btn-eliminar-requerimiento").on("click", function () {
                 var parametros = {
@@ -701,12 +853,11 @@ function BuscarActividades(parametros) {
     ajaxPartialView(info, function (data) {
         if (data != null && data != "") {
             $("#BusquedaActividades").html(data);
-            //$("#TablaResultadosActividades").dataTable({
-            //    "pageLength": 10,
-            //    "ordering": false,
-            //    "info": false,
-            //    "searching": false
+            //$("#TablaResultadosActividades  tbody").paginathing({
+            //    perPage: 5,
+            //    insertAfter: '.table',
             //});
+
             $(".ckbact").on("click", function () {
                 $("#Cod_Actividad").val($(this).attr("data-id"));
                 $("#ComplejidadActividad_Cod_Complejidad_Actividad").eq(0).prop('selected', true);
@@ -806,6 +957,7 @@ function RequerimientoActividadExisteActividad(parametros) {
                 $("#PanelReqAct").hide();
                 $("#PanelResultados").show();
                 $("#btn-etp-continuar-reqact").hide();
+                $("#btn-etp-regresar-reqact").show();
                 $("#BusquedaActividades").empty();
                 $("#ResultadosRequerimientoActividades").empty();
                 $("#BlockActivyFilter").hide();
@@ -819,7 +971,7 @@ function RequerimientoActividadExisteActividad(parametros) {
     });
 }
 
-function ValidarActividades(parametros) {
+function ValidarActividades(parametros, Indicador, FormETP) {
     var estado = false;
     //Consultar Controlador
     var info = new Object();
@@ -828,14 +980,14 @@ function ValidarActividades(parametros) {
     info.parametros = parametros;
     ajax(info, function (data) {
         if (data != null) {
-            estado = data.Estado;
-            PopInformativo(data.Message);
-        } else {
-            estado = false;
+            if (data.Estado == false) {
+                PopInformativo(data.Message);
+            } else {
+                $(Indicador).val("1");
+                $(FormETP).submit();
+            }
         }
     });
-
-    return estado;
 }
 
 function BuscarRequerimientoxIniciativa(parametros) {
@@ -887,6 +1039,150 @@ function ListarTiempoFases(parametros) {
     });
 }
 
+//Estimacion Consultores del Proyecto
+
+
+function ListarCompetenciasxIniciativa(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.ListarCompetenciasxIniciativa;
+    info.parametros = parametros;
+
+    ajaxPartialView(info, function (data) {
+        if (data != null && $.trim(data) != "") {
+            $("#ResultadoCompetencias").html(data);
+            $(".btn-cancelar-competencia").hide();
+            $(".btn-guardar-competencia").hide();
+            $("#btn-ecp-grabar").show();
+            $(".btn-eliminar-competencia").on("click", function () {
+                var parametros = {
+                    "Cod_Iniciativa_Competencia": $(this).attr("data-id"),
+                    "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
+                }
+                EliminarCompetencia(parametros);
+            });
+
+            $(".btn-editar-competencia").on("click", function () {
+                $(this).parents("td").prev().find("input").prop("readonly", false).css({ "border": "1px solid #000" });
+                var contenido = $(this).parents("td").prev().find("span").html();
+                console.log(contenido);
+                $(".btn-eliminar-competencia").hide();
+                $(".btn-editar-competencia").hide();
+                $(".btn-cancelar-competencia").show();
+                $(".btn-guardar-competencia").show();
+            });
+
+            $(".btn-cancelar-competencia").on("click", function () {
+                $(this).parents("td").prev().find("input").prop("readonly", true).css({ "border": "none" });
+                var span = $(this).parents("td").prev().find("span").html();
+                $(this).parents("td").prev().find("input").val(span);
+                $(".btn-eliminar-competencia").show();
+                $(".btn-editar-competencia").show();
+                $(".btn-cancelar-competencia").hide();
+                $(".btn-guardar-competencia").hide();
+            });
+
+            $(".btn-guardar-competencia").on("click", function () {
+                var input = $(this).parents("td").prev().find("input");
+                var span = $(this).parents("td").prev().find("span").html();
+                var parametros = {
+                    "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val() },
+                    "Cod_Iniciativa_Competencia": $(this).attr("data-id"),
+                    "Horas_Participacion": input.val(),
+                    "Horas_Participacion_Antes": span,
+                }
+                ModificarCompetencia(parametros);
+                $(this).parents("td").prev().find("input").prop("readonly", true).css({ "border": "none" });
+                $(this).parents("td").prev().find("span").empty();
+                $(this).parents("td").prev().find("span").html(input.val());
+                $(".btn-eliminar-competencia").show();
+                $(".btn-editar-competencia").show();
+                $(".btn-cancelar-competencia").hide();
+                $(".btn-guardar-competencia").hide();
+            });
+
+            $(".btn-cerrar").on("click", function () {
+                if ($("#IndiCompetencia").val() == 0) {
+                    $(".btn-eliminar-competencia").trigger("click");
+                }
+            });
+
+        } else {
+            $("#ResultadoCompetencias").empty();
+        }
+    });
+}
+
+function ValidarConsultores(parametros, Indicador, FormECP) {
+    var estado = false;
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.ListarCompetenciasxIniciativa;
+    info.parametros = parametros;
+    ajaxPartialView(info, function (data) {
+        if (data != null && $.trim(data) != "") {
+            $(Indicador).val("1");
+            $(FormECP).submit();
+        } else {
+            PopInformativo("No puede continuar, sin consultores agregados...");
+        }
+    });
+}
+
+function GrabarCompetencia(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.GrabarCompetencia;
+    info.parametros = parametros;
+    ajax(info, function (data) {
+        if (data != null) {
+            if (data.Estado == true)
+                ListarCompetenciasxIniciativa(parametros);
+            PopInformativo(data.Message);
+        } else {
+            PopInformativo("Ocurrio un error al guardar la competencia...");
+        }
+    });
+}
+
+function EliminarCompetencia(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.EliminarCompetencia;
+    info.parametros = parametros;
+    ajax(info, function (data) {
+        if (data != null) {
+            if (data.Estado == true)
+                ListarCompetenciasxIniciativa(parametros);
+            //$("#btn-ecp-continuar").hide();
+            //PopInformativo(data.Message);
+        } else {
+            PopInformativo("Ocurrio un error al eliminar la competencia...");
+        }
+    });
+}
+
+function ModificarCompetencia(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.ModificarCompetencia;
+    info.parametros = parametros;
+    ajax(info, function (data) {
+        if (data != null) {
+            PopInformativo(data.Message);
+        } else {
+            PopInformativo("Ocurrio un error al modificar la competencia...");
+        }
+    });
+}
+
+
+//Evaluar  Rentabilidad
 
 function CalcularCostoEquipo(parametros) {
 
@@ -1082,9 +1378,22 @@ function RegistrarEvaluacionRentabilidad(parametros) {
         if (data == true) {
             PopInformativo("Se registro la evaluacion de rentabilidad...")
             $("#idGuardar").prop("disabled", true);
-            $("#btn-er-siguiente").prop("disabled", true);
+            //$("#btn-er-siguiente").prop("disabled", true);
         } else {
             PopInformativo("No se registro la evaluacion de rentabilidad...")
+        }
+    });
+}
+
+//Cerrar Oportunidad 
+function GrabarCierreOportunidad(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            PopInformativo(data.Message);
+        } else {
+            console.log("error")
         }
     });
 }

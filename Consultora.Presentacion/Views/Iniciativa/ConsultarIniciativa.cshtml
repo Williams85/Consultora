@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "ConsultarIniciativa";
+}
+
+<h4>Consultar Oportunidad</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarOportunidad", "Iniciativa", FormMethod.Post, new { @id = "FormNuevaIniciativa", @enctype = "multipart/form-data" }))
+    {
+        <article class="sector-50">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBox("Cod_Oportunidad", "")
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Estado:</label>
+            @Html.DropDownList("Estado_Iniciativa", new SelectList(new List<SelectListItem> { 
+           new SelectListItem { Text = "Todos", Value = "0" },
+           new SelectListItem { Text = "Nueva Oportunidad", Value = "1" },
+           new SelectListItem { Text = "Asignación Responsable de Servicio", Value = "2" },
+           new SelectListItem { Text = "Revisar RFP", Value = "3" },
+           new SelectListItem { Text = "Asignación Consultor Lider", Value = "4" },
+           new SelectListItem { Text = "Estimación Tiempo de Proyecto", Value = "5" },
+           new SelectListItem { Text = "Estimación Consultores de Proyecto", Value = "6" },
+           new SelectListItem { Text = "Evaluación Rentabilidad", Value = "7" },
+           new SelectListItem { Text = "Cierre de la Oportunidad", Value = "10" }
+       }, "Value", "Text"), null, null)
+        </article>
+
+        <article class="lista-botones">
+            <button type="button" class="btn btn-success" id="btn-buscar-iniciativa">Buscar</button>
+        </article>
+    }
+</div>
+<div class="grid-resultados" id="ResultadoOportunidades">
+
+</div>
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")
+
