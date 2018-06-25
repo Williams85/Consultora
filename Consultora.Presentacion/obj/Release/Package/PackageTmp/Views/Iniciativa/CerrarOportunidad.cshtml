@@ -1,0 +1,102 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "CerrarOportunidad";
+}
+
+<h4>Gestionar Inicio de Servicio</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarGestionarInicioServicio", "Iniciativa", FormMethod.Post, new { @id = "FormGIS", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Indicador", "")
+        @Html.Hidden("IndiUrl", "")
+        @Html.HiddenFor(model => model.Cod_Iniciativa, null)
+        @Html.HiddenFor(model => model.RFP, null)
+        @Html.HiddenFor(model => model.Propuesta_Tecnica, null)
+        @Html.HiddenFor(model => model.Correo_Propuesta_Tecnica, null)
+        @Html.HiddenFor(model => model.Aceptacion_Propuesta_Tecnica, null)
+
+        <article class="sector-100">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null, new { @readonly = "true" })
+        </article>
+        <article class="sector-100">
+            <label>Descripcion:</label>
+            @Html.TextAreaFor(model => model.Des_Iniciativa, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, new { @disabled = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, new { @disabled = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, new { @disabled = "true" })
+        </article>
+        <article class="sector-25">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-rfp-descargar" href="/Iniciativa/DescargarRFP">Descargar</a>
+        </article>
+        <article class="sector-25">
+            <label>Propuesta Técnica:</label>
+            <input type="file" id="PT" name="PT">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-pt-descargar" href="/Iniciativa/DescargarPT">Descargar</a>
+        </article>
+        <article class="sector-25">
+            <label>Correo Prop. Téc.:</label>
+            <input type="file" id="CPT" name="CPT">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-cpt-descargar" href="/Iniciativa/DescargarCPT">Descargar</a>
+        </article>
+        <article class="sector-25">
+            <label>Aceptacion Prop. Téc.:</label>
+            <input type="file" id="APT" name="APT">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-cpt-descargar" href="/Iniciativa/DescargarAPT">Descargar</a>
+        </article>
+        <article class="sector-50">
+            <label>Cod. Servicio:</label>
+            @Html.TextBoxFor(model => model.Cod_Servicio_Generado, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Inicio Servicio:</label>
+            @Html.TextBoxFor(model => model.FechaInicioServicio, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Fin Servicio:</label>
+            @Html.TextBoxFor(model => model.FechaFinServicio, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-100">
+            <label>Responsable Servicio:</label>
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, new { @disabled = "true" })
+        </article>
+        <article class="sector-100">
+            <label>Consultor Lider:</label>
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, new { @disabled = "true" })
+        </article>
+        <div class="clear">
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")

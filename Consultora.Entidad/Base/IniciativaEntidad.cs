@@ -16,6 +16,9 @@ namespace Consultora.Entidad
         public ServicioEntidad  Servicio { get; set; }
         public ClienteEntidad   Cliente{ get; set; }
         public string RFP { get; set; }
+        public string Propuesta_Tecnica { get; set; }
+        public string Correo_Propuesta_Tecnica { get; set; }
+        public string Aceptacion_Propuesta_Tecnica { get; set; }
         public UsuarioEntidad ResponsableServicio { get; set; }
         public UsuarioEntidad ConsultorLider { get; set; }
         public byte Estado_Iniciativa { get; set; }
@@ -27,7 +30,11 @@ namespace Consultora.Entidad
         public decimal GananciaBruta { get; set; }
         public decimal MedidadServicio { get; set; }
         public string TamañoServicio { get; set; }
-
+        public string Cod_Servicio_Generado { get; set; }
+        public DateTime Fecha_Inicio_Servicio { get; set; }
+        public DateTime Fecha_Fin_Servicio { get; set; }
+        public string Motivo_Cancelacion { get; set; }
+        public string Comentarios { get; set; }
 
     }
 }

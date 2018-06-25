@@ -92,6 +92,11 @@ function BuscarRRHH(parametros) {
         if (data != null && data != "") {
             $("#Resultados").html(data);
 
+            //Detalle del Consultor
+            $(".view-consultor").on("click", function () {
+                var parametros = { "Codigo": $(this).attr("data-cod-consultor") };
+                BuscarConsultorxCodigo(parametros);
+            });
 
             //Guardar Cambios
             $("#guardar-datos").on("click", function () {
@@ -171,6 +176,11 @@ function SearchRRHH(parametros) {
         if (data != null && data != "") {
             $("#Resultados").html(data);
 
+            //Detalle del Consultor
+            $(".view-consultor").on("click", function () {
+                var parametros = { "Codigo": $(this).attr("data-cod-consultor") };
+                BuscarConsultorxCodigo(parametros);
+            });
 
             //Guardar Cambios
             $("#guardar-datos").on("click", function () {
@@ -318,6 +328,25 @@ function BuscarConsultor(parametros) {
         }
     });
 }
+
+function BuscarConsultorxCodigo(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.BuscarConsultorxCodigo;
+    info.parametros = parametros;
+
+    ajaxPartialView(info, function (data) {
+        if (data != null && $.trim(data) != "") {
+            $("#Modal-ViewConsultor").html(data);
+            $("#ViewConsultor").modal("show");
+        } else {
+            $("#Modal-ViewConsultor").html("");
+        }
+    });
+}
+
+
 
 function AgregarConsultor(parametros) {
     //Consultar Controlador

@@ -1,0 +1,238 @@
+AllinBus
+------------
+Servidor Web
+---------------------
+---------------------
+IP: 161.132.99.36
+Usuario: webMaster01
+Clave: w1l1M4st3r
+
+Servidor Base Datos
+---------------------
+---------------------
+Servidor: 161.132.99.34
+Usuario: jelaf1
+Clave: j3l4fc
+
+TuBoleto
+--------
+
+
+Servidor Web España
+----------------------------
+----------------------------
+IP: 212.83.136.245
+Usuario: william
+Clave: j3l4f*w
+
+SQL de TuBoleto
+Servidor: 212.83.136.245\SQL2012
+Usuario: sa
+Clave: k@rl0s123
+
+
+Servidor Web Latinoamerica
+-----------------------------------
+-----------------------------------
+IP :	200.60.112.166
+Usuario :	Administrador
+Clave :	1PPCOYOyVa7P2Rf
+
+Transporte Via
+---------------
+
+Servidor Web
+------------
+------------
+Servidor: 200.48.200.2
+MWeb01
+w3b1a*
+
+Servidor: 200.48.200.5
+mweb01
+W1L14a*
+
+
+Servidor Base Datos
+-------------------
+-------------------
+Servidor: 200.48.200.2
+Usuario: MWeb01
+Clave: w3b1a*
+
+Servidor: 192.168.1.99
+Usuario: mweb01
+Clave: W1L14a*
+
+Transporte Chiclayo
+-------------------
+
+Servidor Web
+------------
+------------
+Servidor: 190.41.5.196
+Usuario: administrador
+Clave: transp*1903751421
+
+
+Movil Air
+---------
+
+Servidor Web
+------------
+------------
+Servidor 181.177.226.75 
+Usuario:HCARLOS
+Pass: System*17
+
+Servidor Base Datos
+-------------------
+-------------------
+Servidor 192.168.15.200
+Usuario:Externo1
+Pass: Extern0.*17
+
+Flores
+--------------
+
+Servidor Web
+-------------
+-------------
+Servidor: 181.177.243.132 
+Usuario: webmaster1
+Clave: t1d4y.* 
+
+
+Transporte Cumbe
+-----------------
+
+Servidor Web (TeamViewer)
+-------------------------
+-------------------------
+Id: 927174674
+Clave: 19037514
+
+Servidor de Base Datos
+-------------------------
+-------------------------
+IP Server: 190.117.93.56
+Usuario: soporte
+Clave: 123
+
+Julio Cesar
+------------
+
+Servidor Web
+-----------------------------
+-----------------------------
+Servidor: 167.250.207.155
+Usuario: webmaster
+Clave: wm.154mlj
+
+Url:sales.transportesjuliocesar.pe
+RUTA DIR:D:\Comercial\Sales
+
+Servidor de Base Datos
+-----------------------------
+-----------------------------
+Serv. APP: 167.250.207.154
+Usuario: WEBMASTER
+Clave: 154.m4st3.
+
+MSTSC: 192.168.0.19
+Usuario: WEBMASTER
+Clave: 154.m4st3.
+
+Servidor SQL: DBSVR-JC01\ERP
+Usuario: sa
+Clave: jc3s@R18
+
+
+BusStar
+------------
+
+Servidor Web
+-----------------------------
+-----------------------------
+
+Servidor de Base Datos
+-----------------------------
+-----------------------------
+
+Servidor: 192.168.0.162
+Usuario: WEBMASTER
+Clave: 154.m4st3.
+
+Servidor SQL: DBSVR-JETG7\COM
+Usuario: sa
+Clave: j3tg7*nt
+
+
+Url:      https://p3nwvpweb108.shr.prod.phx3.secureserver.net:8443/smb/
+Usuario:  carlos1985
+Password: Carlos1985@
+
+
+Servidor web JELAF
+ip 181.177.237.134
+usr: websvrIIS
+pwd: w3bm4st.
+
+
+--------------------------------
+
+servidor basedatos
+
+MSTSC 192.168.0.160
+
+Servidor=DBSVR-JELAFINTD\ERPR2
+Database=BDPASAJEGP
+Usuario=sa
+pwd= 1nt3gr@*
+
+BDPASAJEGP
+G:\cloudBD-mdf\WPG\Comercial\VTA\MDF
+E:\cloudBD-ldf\WPG\Comercial\VTA\LDF
+
+BDCTRLCTACTE_NEW
+BDPROMO_GP
+BDALERTA_GP
+
+
+USUARIOS 
+JELAF4
+j3f.fou4
+
+JELAF1
+j3f.f1
+
+JELAF2
+j3f.fou3
+
+
+Web Services de DNI
+http://integradores.jelaf.pe/wsruc/wsconsulta.asmx
+
+
+191.98.184.189
+JELAF7
+j3t.7
+
+
+
+976717700
+
+Diana Castro
+
+Nueva
+
+
+Integracion 400 dolares
+Anuales 200 dolares
+Estado Cuenta 1.5 dolares
+0.15 Dolares por Transaccion
+T Debito  2.99% + IGV
+T Credito 3.99% + IGV
+
+
+ARea de PostVenta

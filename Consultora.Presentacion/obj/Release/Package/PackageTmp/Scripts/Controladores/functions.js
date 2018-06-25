@@ -6,8 +6,53 @@ rutas.BuscarServiciosEmpresarial = "/ServicioEmpresarial/BuscarServiciosEmpresar
 rutas.ListarRequerimientos = "/ServicioEmpresarial/ListarRequerimientos";
 rutas.AsignarRRHH = "/ServicioEmpresarial/AsignarRRHH";
 rutas.BuscarConsultor = "/ServicioEmpresarial/BuscarConsultor";
+rutas.BuscarConsultorxCodigo = "/ServicioEmpresarial/BuscarConsultorxCodigo";
 rutas.AgregarConsultor = "/ServicioEmpresarial/AgregarConsultor";
 rutas.EliminarConsultor = "/ServicioEmpresarial/EliminarConsultor";
+
+//Popup Estimacion de Tiempos de Proyecto
+rutas.ListarRequerimientoxIniciativa = "/Iniciativa/ListarRequerimientoxIniciativa";
+rutas.GrabarRequerimiento = "/Iniciativa/GrabarRequerimiento";
+rutas.EliminarRequerimiento = "/Iniciativa/EliminarRequerimiento";
+
+rutas.BuscarActividades = "/Iniciativa/BuscarActividades";
+rutas.ListarRequerimientoActividadxRequerimiento = "/Iniciativa/ListarRequerimientoActividadxRequerimiento";
+rutas.GrabarRequerimientoActividad = "/Iniciativa/GrabarRequerimientoActividad";
+rutas.EliminarRequerimientoActividad = "/Iniciativa/EliminarRequerimientoActividad";
+rutas.RequerimientoActividadExisteActividad = "/Iniciativa/RequerimientoActividadExisteActividad";
+
+rutas.EliminarRequerimientoActividad = "/Iniciativa/EliminarRequerimientoActividad";
+rutas.BuscarRequerimientoxIniciativa = "/Iniciativa/BuscarRequerimientoxIniciativa";
+
+rutas.GenerarTiempoFases = "/Iniciativa/GenerarTiempoFases";
+rutas.ListarTiempoFases = "/Iniciativa/ListarTiempoFases";
+
+
+//Popup Estimacion de Consultores de Proyecto
+rutas.ListarCompetenciasxIniciativa = "/Iniciativa/ListarCompetenciasxIniciativa";
+rutas.GrabarCompetencia = "/Iniciativa/GrabarCompetencia";
+rutas.EliminarCompetencia = "/Iniciativa/EliminarCompetencia";
+rutas.ModificarCompetencia = "/Iniciativa/ModificarCompetencia";
+
+
+//Evaluacion Rentabilidad
+rutas.CalcularCostoEquipo = "/Iniciativa/CalcularCostoEquipo";
+rutas.CalcularCostoServicio = "/Iniciativa/CalcularCostoServicio";
+rutas.CalcularCostoEquipoCliente = "/Iniciativa/CalcularCostoEquipoCliente";
+rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
+rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
+
+rutas.BuscarIniciativa = "/Iniciativa/BuscarIniciativa";
+
+
+
+//rutas.CalcularCostoEquipo = "/EvaluacionRentabilidad/CalcularCostoEquipo";
+//rutas.CalcularCostoServicio = "/EvaluacionRentabilidad/CalcularCostoServicio";
+//rutas.CalcularCostoEquipoCliente = "/EvaluacionRentabilidad/CalcularCostoEquipoCliente";
+//rutas.CalcularTamañoServicio = "/EvaluacionRentabilidad/CalcularTamañoServicio";
+//rutas.RegistrarEvaluacionRentabilidad = "/EvaluacionRentabilidad/RegistrarEvaluacionRentabilidad";
+
+
 //$.datepicker.regional['es'] = {
 //    closeText: 'Cerrar',
 //    prevText: '<Ant',
@@ -57,10 +102,9 @@ function MostrarMensajeOK(mensaje) {
 }
 
 function PopInformativo(texto) {
-    $("#MessagePopup").find("#modalmsg-texto").empty();
-    $("#MessagePopup").find("#modalmsg-texto").append(texto);
-    $("#MessagePopup").modal();
-
+    $("#IdMensaje").find("p").empty();
+    $("#IdMensaje").find("p").append(texto);
+    $("#IdMensaje").modal();
 }
 
 function isValidEmail(mail) {
@@ -91,6 +135,10 @@ var Constantes = {
         Parrafo: "^[0-9A-ZÑa-zñÁÉÍÓÚáéíóú&.,#/' ]+$",
     },
     Message: {
+        FaltaNombreProyecto: "Ingresar el nombre de la oportunidad...",
+        FaltaDescripcionProyecto: "Ingresar la descripcion de la oportunidad...",
+        FaltaRFP: "Ingresar el archivo RFP de la oportunidad...",
+
         //Mensaje Mantenimiento Canales
         FaltaNombreCanal: "Ingresar el nombre del canal.",
         FaltaRucCanal: "Ingresar el R.U.C. del canal.",

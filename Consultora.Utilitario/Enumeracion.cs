@@ -17,7 +17,11 @@ namespace Consultora.Utilitario
             EstimarTiempoProyecto = 5,//Estado Estimar Tiempo Proyecto
             EstimarConsultores = 6,//Estado Estimar Consultores
             EvaluacionRentabilidad = 7,//Estado Asignar Consultor Lider
-            CerrarOportunidad = 10,//Estado Cerrar Oportunidad
+            DesarrollarPropuestaTecnica = 8,//Estado Desarrollar Propuesta Tecnica
+            RevisarPropuestaTecnica = 9,//Estado Revisar Propuesta Tecnica
+            EsperarRespuestaCliente = 10,//Estado Esperar Respuesta de Cliente
+            CerrarOportunidad = 11,//Estado Gestionar Inicio de Servicio
+            CancelarOportunidad = 0,//Estado Cancelar Oportunidad
         }
         public enum PerfilUsuario
         {

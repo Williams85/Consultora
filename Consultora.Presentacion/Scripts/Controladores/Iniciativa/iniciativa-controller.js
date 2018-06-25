@@ -226,15 +226,192 @@
             MostrarMensajeError(mensaje);
             return false;
         }
-        //var parametros = {
-        //    "Iniciativa": { "Cod_Iniciativa": $("#Cod_Iniciativa").val(), }
-        //};
-        //ValidarConsultores(parametros, "#Indicador", "#FormECP");
-
-        $("#Indicador").val("1");
-        $("#FormER").submit();
+        var parametros = {
+            "Cod_Iniciativa": $("#Cod_Iniciativa").val(),
+        }
+        ValidarRentabilidad(parametros, "#Indicador", "#FormER")
         return false;
     });
+
+    $("#btn-dpt-siguiente").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#FormPT").submit();
+        return false;
+    });
+
+    $("#btn-rpt-conforme").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#IndiUrl").val("1");
+        $("#FormRPT").submit();
+        return false;
+    });
+
+    $("#btn-rpt-no-conforme").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#IndiUrl").val("2");
+        $("#FormRPT").submit();
+        return false;
+    });
+
+    $("#btn-ept-siguiente").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#FormEPT").submit();
+        return false;
+    });
+
+    $("#btn-erc-aprobado").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#IndiUrl").val("1");
+        $("#FormERC").submit();
+        return false;
+    });
+
+    $("#btn-erc-observado").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#IndiUrl").val("2");
+        $("#FormERC").submit();
+        return false;
+    });
+
+    $("#btn-gis-siguiente").on("click", function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+        $("#Indicador").val("1");
+        $("#FormGIS").submit();
+        return false;
+    });
+
 
     ///Ventanas Popup
     $("#btn-etp-adicional").on("click", function () {
@@ -594,6 +771,162 @@
         GrabarEvaluacionRentabilidad(e, info);
     });
 
+    $("#FormPT").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarDesarrollarPropuestaTecnica(e, info);
+    });
+
+    $("#FormRPT").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarRevisarPropuestaTecnica(e, info);
+    });
+
+    $("#FormEPT").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarEnviarPropuestaTecnica(e, info);
+    });
+
+    $("#FormERC").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarRespuestaCliente(e, info);
+    });
+
+    $("#FormGIS").submit(function (e) {
+        $("#Message-Error strong").empty();
+        $("#Message-Error").hide();
+        //Validar Formulario
+        var mensaje = "";
+        var NombreProyecto = $("#Nom_Iniciativa").val();
+        var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        if (NombreProyecto == null || NombreProyecto == "") {
+            mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
+        }
+        if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
+            mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (mensaje != null && $.trim(mensaje) != "") {
+            MostrarMensajeError(mensaje);
+            return false;
+        }
+
+
+        //Consultar Controlador
+        var info = new Object();
+        info.metodo = this.method;
+        info.serviceURL = this.action;
+        info.parametros = new FormData(this);
+        if ($("#Indicador").val() == "") {
+            $("#Indicador").val("0");
+        }
+
+        GrabarGestionarInicioServicio(e, info);
+    });
+
+
     $("#FormCO").submit(function (e) {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
@@ -650,15 +983,16 @@ function GrabarOportunidad(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true) {
-                $("#btn-nuevo-descargar").show();
                 var datos = data.Valor.split("|");;
                 $("#Cod_Iniciativa").val(datos[0]);
                 $("#File").val(datos[1]);
                 if ($("#Indicador").val() == "1") {
                     var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                     location.href = "/Iniciativa/AsignarResposnableServicio/" + Cod_Iniciativa
+                } else {
+                    PopInformativo(data.Message);
                 }
             }
 
@@ -673,10 +1007,12 @@ function GrabarResponsableServicio(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/RevisarRFP/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -689,10 +1025,12 @@ function GrabarRevisionRFP(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/AsignarConsultorLider/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -705,10 +1043,12 @@ function GrabarConsultorLider(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EstimarTiemposProyecto/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -721,10 +1061,12 @@ function GrabarEstimacionTiempoProyectos(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EstimarConsultoresProyecto/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -737,10 +1079,12 @@ function GrabarEstimacionConsultores(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EvaluarRentabilidad/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -753,10 +1097,110 @@ function GrabarEvaluacionRentabilidad(e, info) {
     //Consultar Controlador
     ajaxForm(info, function (data) {
         if (data != null) {
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
-                location.href = "/Iniciativa/CerrarOportunidad/" + Cod_Iniciativa
+                location.href = "/Iniciativa/DesarrollarPropuestaTecnica/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
+            }
+        } else {
+            console.log("error")
+        }
+    });
+}
+
+function GrabarDesarrollarPropuestaTecnica(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            //PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                location.href = "/Iniciativa/RevisarPropuestaTecnica/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
+            }
+        } else {
+            console.log("error")
+        }
+    });
+}
+
+function GrabarRevisarPropuestaTecnica(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            //PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                var indiUrl = $("#IndiUrl").val();
+                if (indiUrl == "2")
+                    location.href = "/Iniciativa/DesarrollarPropuestaTecnica/" + Cod_Iniciativa;
+                else if (indiUrl == "1")
+                    location.href = "/Iniciativa/RespuestaCliente/" + Cod_Iniciativa;
+            } else {
+                PopInformativo(data.Message);
+            }
+        } else {
+            console.log("error")
+        }
+    });
+}
+
+function GrabarEnviarPropuestaTecnica(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            //PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                location.href = "/Iniciativa/RespuestaCliente/" + Cod_Iniciativa
+            } else {
+                PopInformativo(data.Message);
+            }
+        } else {
+            console.log("error")
+        }
+    });
+}
+
+function GrabarRespuestaCliente(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            //PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                var indiUrl = $("#IndiUrl").val();
+                if (indiUrl == "2")
+                    location.href = "/Iniciativa/DesarrollarPropuestaTecnica/" + Cod_Iniciativa;
+                else if (indiUrl == "1")
+                    location.href = "/Iniciativa/GestionarInicioServicio/" + Cod_Iniciativa;
+            } else {
+                PopInformativo(data.Message);
+            }
+        } else {
+            console.log("error")
+        }
+    });
+}
+
+function GrabarGestionarInicioServicio(e, info) {
+    e.preventDefault();
+    //Consultar Controlador
+    ajaxForm(info, function (data) {
+        if (data != null) {
+            //PopInformativo(data.Message);
+            if (data.Estado == true && $("#Indicador").val() == "1") {
+                var Cod_Iniciativa = $("#Cod_Iniciativa").val();
+                location.href = "/Iniciativa/CerrarOportunidad/" + Cod_Iniciativa;
+            } else {
+                PopInformativo(data.Message);
             }
         } else {
             console.log("error")
@@ -1174,6 +1618,10 @@ function ModificarCompetencia(parametros) {
     info.parametros = parametros;
     ajax(info, function (data) {
         if (data != null) {
+            var data = data.Valor.split("|");
+            $("#HorasParticipacion").val(data[0]);
+            $("#HorasRestantes").val(data[1]);
+
             PopInformativo(data.Message);
         } else {
             PopInformativo("Ocurrio un error al modificar la competencia...");
@@ -1384,6 +1832,27 @@ function RegistrarEvaluacionRentabilidad(parametros) {
         }
     });
 }
+
+function ValidarRentabilidad(parametros, Indicador, FormER) {
+    var estado = false;
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.ValidarRentabilidad;
+    info.parametros = parametros;
+    ajax(info, function (data) {
+        if (data != null) {
+            if (data.Estado == false) {
+                PopInformativo(data.Message);
+            } else {
+                $(Indicador).val("1");
+                $(FormER).submit();
+            }
+        }
+    });
+}
+
+//Desarrollar Propuesta Tecnica
 
 //Cerrar Oportunidad 
 function GrabarCierreOportunidad(e, info) {

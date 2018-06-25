@@ -19,13 +19,17 @@
             <label>Descripcion:</label>
             @Html.TextAreaFor(model => model.Des_Iniciativa)
         </article>
+        <article class="sector-100">
+            <label>Estado Oportunidad:</label>
+            @Html.TextBoxFor(model => model.EstadoIniciativa, null, new { @disabled = "true" })
+        </article>          
         <article class="sector-50">
             <label>Cod. Oportunidad:</label>
-            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @disabled = "true" })
         </article>
         <article class="sector-50">
             <label>Fecha Registro:</label>
-            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @disabled = "true" })
         </article>
         <article class="sector-50">
             <label>Unidad Negocio:</label>
@@ -44,7 +48,7 @@
             <input type="file" id="RFP" name="RFP">
         </article>
         <article class="sector-25">
-            <a class="btn btn-info Descargar" id="btn-rfp-descargar" href="/Iniciativa/DescargarFile">Descargar</a>
+            <a class="btn btn-info Descargar" id="btn-rfp-descargar" href="/Iniciativa/DescargarRFP">Descargar</a>
         </article>
         
         <article class="sector-100">

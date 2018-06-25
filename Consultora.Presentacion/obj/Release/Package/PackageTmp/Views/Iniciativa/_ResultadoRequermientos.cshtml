@@ -1,0 +1,41 @@
+﻿@model List<Consultora.Entidad.RequerimientoEntidad>
+    @{
+        ViewBag.Title = "_ResultadoRequermientos";
+    }
+
+
+@if (Model != null && Model.Count > 0)
+{
+    <table id="TablaResultadosRequerimientos">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre Requerimiento</th>
+                <th class="center">Complejidad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entidad in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <input type="radio" name="requerimiento" data-id="@entidad.Cod_Requerimiento" class="ckbreq" />
+                    </td>
+                    <td>
+                        @entidad.Nom_Requerimiento
+                    </td>
+                    <td class="center">
+                        @entidad.ComplejidadRequerimiento.Nom_Complejidad_Requerimiento
+                    </td>
+                    <td class="center">
+                        <button type="button" data-id="@entidad.Cod_Requerimiento" class="btn btn-danger btn-eliminar-requerimiento">Eliminar</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+

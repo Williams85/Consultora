@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Evaluación de Rentabilidad</h4>
+<input type="hidden" id="Cod_Iniciativa" name="Cod_Iniciativa" value="@ViewBag.Cod_Iniciativa" />
+<span id="MensajeCarga"></span>
+<div class="etiqueta-boton">
+    <label>Iniciar proceso de evaluacion de rentabilidad aqui:</label><button id="idEvaluarRentabilidad" name="idEvaluarRentabilidad">Evaluar</button>
+
+</div>
+<div id="Resultado" class="search">
+
+
+    <div id="IdViewCostoTotalEquipo" class="etiqueta">
+
+    </div>
+    <div id="IdViewCostoTotalServicio" class="etiqueta">
+
+    </div>
+    <div id="IdViewCostoTotalCliente" class="etiqueta">
+
+    </div>
+    <div id="IdViewTotalGananciaBruta" class="etiqueta">
+        <label>Calculando rentabilidad neta del servicio</label><input type="text" id="IdGananciaBruta" name="IdGananciaBruta" value="" disabled>
+    </div>
+    <div id="IdViewMedidaServicio" class="etiqueta">
+
+    </div>
+    <div id="IdViewPorcentajeRentabilidad" class="etiqueta">
+        <input type="hidden" id="IdHPorcentajeRentabilidad" name="IdHPorcentajeRentabilidad" value="">
+        <label>Calculando % de rentabilidad esperada</label><input type="text" id="IdPorcentajeRentabilidad" name="IdPorcentajeRentabilidad" value="" disabled>
+    </div>
+    <div id="IdViewEvaluandoRentabilidad" class="etiqueta">
+        <input type="hidden" id="IdRentable" name="IdRentable" />
+        <label>Evaluando cumplimiento de rentabilidad</label><input type="text" id="IdEvalRentabilidad" name="IdEvalRentabilidad" value="" disabled>
+        <div class="clear"></div>
+        <div class="resultado">
+            <span>Recomendación</span>
+            <p id="MensajeResultado">
+
+            </p>
+        </div>
+        <div class="lista-botones">
+            <button id="idSalir" name="idSalir" disabled>Salir</button>
+            <button id="idGuardar" name="idGuardar">Guardar</button>
+            <button id="idDescargar" name="idDescargar" disabled>Descargar</button>
+        </div>
+    </div>
+
+</div>
+
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/evaluacion-rentabilidad")

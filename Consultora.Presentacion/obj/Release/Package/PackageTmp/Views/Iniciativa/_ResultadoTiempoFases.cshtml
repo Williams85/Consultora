@@ -1,0 +1,41 @@
+﻿@model List<Consultora.Entidad.IniciativaFaseEntidad>
+    @{
+        ViewBag.Title = "_ResultadoTiempoFases";
+    }
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <h5>Resultados por Fases</h5>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fase</th>
+                    <th class="center">Horas Estimadas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entidad in Model)
+                {
+                    <tr>
+                        <td>
+                            @entidad.Fase.Nom_Fase
+                        </td>
+                        <td class="center">
+                            @entidad.Horas
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <strong>
+                            Total Horas
+                        </strong>
+                    </td>
+                    <td class="center">
+                        @ViewBag.TotalHoras
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+

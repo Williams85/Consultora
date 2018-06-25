@@ -1,0 +1,165 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "EstimarTiemposProyecto";
+}
+
+<h4>Estimar Tiempos Proyecto</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarEstimacionTiempoProyectos", "Iniciativa", FormMethod.Post, new { @id = "FormETP", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Indicador", "")
+        @Html.HiddenFor(model => model.Cod_Iniciativa, null)
+        @Html.HiddenFor(model => model.RFP, null)
+         <article class="sector-100">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-100">
+            <label>Descripcion:</label>
+            @Html.TextAreaFor(model => model.Des_Iniciativa)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-25">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-etp-descargar" href="/Iniciativa/DescargarRFP">Descargar</a>
+        </article>
+        
+        <article class="sector-100">
+            <label>Responsable Servicio:</label>
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <article class="sector-100">
+            <label>Consultor Lider:</label>
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <div class="clear">
+        </div>
+        <article class="sector-100">
+            <div class="alert alert-danger" role="alert" id="Message-Error">
+                <strong></strong>
+            </div>
+        </article>        
+        <article class="lista-botones">
+            <button type="submit" class="btn btn-info" id="btn-etp-guardar">Guardar</button>
+            <button type="button" class="btn btn-info" id="btn-etp-adicional" >Estimación de Actividades</button>
+            <button type="button" class="btn btn-info" id="btn-etp-siguiente" >Siguiente</button>
+
+        </article>
+        <article class="sector-100">
+            <img src="~/images/pd-estimar-tiempos-proyectos.png" width="100%" />
+        </article>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEstimarTiempoProyecto" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calcular Tiempo de Ejecución</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="Cod_Requerimiento" />
+                <input type="hidden" id="Cod_Actividad" />
+                <div id="PanelReqAct">
+                    <div class="form-popup">
+                        <span class="titulo">Información de Requerimientos</span>
+                        <article class="sector-50">
+                            <label>Requerimiento:</label>
+                            @Html.TextBox("Nom_Requerimiento", null)
+                        </article>
+                        <article class="sector-50">
+                            <label>Nivel Complejidad:</label>
+                            @Html.DropDownList("ComplejidadRequerimiento_Cod_Complejidad_Requerimiento", new SelectList(ViewBag.ListaComplejidadRequerimiento, "Cod_Complejidad_Requerimiento", "Nom_Complejidad_Requerimiento"), null, null)
+                        </article>
+                        <article class="lista-botones">
+                            <button type="submit" class="btn btn-success" id="btn-etp-agregar-req">Agregar</button>
+                        </article>
+                    </div>
+                    <div class="grid-resultados" id="ResultadosRequerimientos">
+
+                    </div>
+                    <div class="form-popup" id="BlockActivyFilter">
+                        <span class="titulo">Actividades de Requerimiento</span>
+                        <article class="sector-50">
+                            <label>Actividad:</label>
+                            @Html.TextBox("Nom_Actividad", null)
+                        </article>
+                        <article class="sector-50">
+                            <br />
+                            <button type="button" class="btn btn-success" id="btn-etp-buscar-act">Buscar</button>
+                        </article>
+                    </div>
+                    <div class="grid-resultados" id="BusquedaActividades">
+
+                    </div>
+                    <div class="form-popup" id="BlockActivyAdd">
+                        <span class="titulo">Agregar Actividad</span>
+                        <article class="sector-50">
+                            <label>Complejidad:</label>
+                            @Html.DropDownList("ComplejidadActividad_Cod_Complejidad_Actividad", new SelectList(ViewBag.ListaComplejidadActividad, "Cod_Complejidad_Actividad", "Nom_Complejidad_Actividad"), null, null)
+                        </article>
+                        <article class="sector-50">
+                            <label>Cantidad:</label>
+                            @Html.TextBox("Cantidad", null)
+                        </article>
+                        <div class="clear">
+                        </div>
+                        <article class="lista-botones text-center">
+                            <button type="submit" class="btn btn-success" id="btn-etp-agregar-act">Agregar</button>
+                        </article>
+                    </div>
+                    <div class="grid-resultados" id="ResultadosRequerimientoActividades">
+                    </div>
+                    <div class="lista-botones text-center">
+                        <button type="button" class="btn btn-success" id="btn-etp-continuar-reqact">Continuar</button>
+                    </div>
+                </div>
+                <div id="PanelResultados">                    
+                    <div class="grid-resultados" id="ResultadosTiempoConstruccion">
+                    </div>
+                    <div class="grid-resultados" id="ResultadosTiempoxFases">
+                    </div>
+                    <div class="lista-botones text-center">
+                        <button type="button" class="btn btn-success" id="btn-etp-regresar-reqact">Regresar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")
+
+
+
+

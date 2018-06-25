@@ -188,10 +188,14 @@
     <Content Include="images\logo.png" />
     <Content Include="images\pd-asignar-consultor-lider.png" />
     <Content Include="images\pd-asignar-responsable-servicio.png" />
+    <Content Include="images\pd-desarrollar-propuesta-tecnica.png" />
+    <Content Include="images\pd-esperando-respuesta-cliente.png" />
     <Content Include="images\pd-estimar-consultores-proyectos.png" />
     <Content Include="images\pd-estimar-tiempos-proyectos.png" />
     <Content Include="images\pd-evaluar-rentabilidad.png" />
+    <Content Include="images\pd-gestionar-inicio-servicio.png" />
     <Content Include="images\pd-nueva-oportunidad.png" />
+    <Content Include="images\pd-revisar-propuesta-tecnica.png" />
     <Content Include="images\pd-revisar-rfp.png" />
     <Content Include="img\breadcrumb.png" />
     <Content Include="img\gallery\imgbox1.jpg" />
@@ -380,10 +384,18 @@
     <Content Include="Views\Iniciativa\_ResultadoIniciativa.cshtml" />
     <Content Include="Views\Iniciativa\ConsultarIniciativa.cshtml" />
     <Content Include="Views\Iniciativa\CerrarOportunidad.cshtml" />
+    <Content Include="Views\Iniciativa\DesarrollarPropuestaTecnica.cshtml" />
+    <Content Include="Views\Iniciativa\RevisarPropuestaTecnica.cshtml" />
+    <Content Include="Views\Iniciativa\EnviarPropuestaTecnica.cshtml" />
+    <Content Include="Views\Iniciativa\RespuestaCliente.cshtml" />
+    <Content Include="Views\Iniciativa\GestionarInicioServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="APT\" />
+    <Folder Include="CPT\" />
     <Folder Include="Models\" />
+    <Folder Include="PT\" />
     <Folder Include="RFP\" />
     <Folder Include="Views\Servicio\" />
   </ItemGroup>

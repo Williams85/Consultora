@@ -41,6 +41,7 @@ rutas.CalcularCostoServicio = "/Iniciativa/CalcularCostoServicio";
 rutas.CalcularCostoEquipoCliente = "/Iniciativa/CalcularCostoEquipoCliente";
 rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
 rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
+rutas.ValidarRentabilidad = "/Iniciativa/ValidarRentabilidad";
 
 rutas.BuscarIniciativa = "/Iniciativa/BuscarIniciativa";
 

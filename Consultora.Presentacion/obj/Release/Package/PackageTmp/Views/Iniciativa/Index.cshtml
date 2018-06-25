@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Creación de Oportunidad</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarOportunidad", "Iniciativa", FormMethod.Post, new { @id = "FormNuevaIniciativa", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Indicador", "")
+        @Html.Hidden("Cod_Iniciativa", "0")
+
+        <article class="sector-100">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-100">
+            <label>Descripcion:</label>
+            @Html.TextArea("Des_Iniciativa", "")
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            <input type="text" id="FechaRegistro" name="FechaRegistro" value="@ViewBag.FechaRegistro" readonly>
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+       
+        <article class="sector-50"></article>
+        <div class="clear">
+
+        </div>
+        <article class="sector-100">
+            <div class="alert alert-danger" role="alert" id="Message-Error">
+                <strong></strong>
+            </div>
+        </article>
+
+
+        <article class="lista-botones">
+            <button type="button" class="btn btn-info" id="btn-nuevo-siguiente">Siguiente</button>
+
+        </article>
+    }
+</div>
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")

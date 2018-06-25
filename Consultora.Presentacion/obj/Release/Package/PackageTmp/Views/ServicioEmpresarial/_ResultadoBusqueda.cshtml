@@ -20,7 +20,12 @@
                 @foreach (var entidad in Model)
                 {
                     <tr>
-                        <td>@entidad.Consultor.NombreCompleto</td>
+                        <td>
+                        
+                            <span class="view-consultor" data-cod-consultor="@entidad.Consultor.Cod_Consultor">
+                                @entidad.Consultor.NombreCompleto
+                            </span>
+                        </td>
                         <td>
                             @entidad.Consultor.Competencia.Nom_Competencia
                         </td>

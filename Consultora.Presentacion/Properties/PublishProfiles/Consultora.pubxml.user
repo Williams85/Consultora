@@ -19,19 +19,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2017 03:38:32</publishTime>
     </File>
     <File Include="bin/Consultora.Dominio.dll">
-      <publishTime>05/21/2018 12:22:32</publishTime>
+      <publishTime>06/24/2018 18:32:29</publishTime>
     </File>
     <File Include="bin/Consultora.Entidad.dll">
-      <publishTime>05/21/2018 12:22:31</publishTime>
+      <publishTime>06/24/2018 18:32:29</publishTime>
     </File>
     <File Include="bin/Consultora.Presentacion.dll">
-      <publishTime>05/21/2018 12:22:38</publishTime>
+      <publishTime>06/24/2018 18:32:33</publishTime>
     </File>
     <File Include="bin/Consultora.Repositorio.dll">
-      <publishTime>05/21/2018 12:22:32</publishTime>
+      <publishTime>06/24/2018 18:32:29</publishTime>
     </File>
     <File Include="bin/Consultora.Utilitario.dll">
-      <publishTime>05/21/2018 12:22:31</publishTime>
+      <publishTime>06/24/2018 18:32:29</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>01/28/2015 04:04:36</publishTime>
@@ -187,7 +187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2017 04:19:44</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>05/20/2018 01:30:53</publishTime>
+      <publishTime>06/19/2018 14:34:55</publishTime>
     </File>
     <File Include="Content/uniform.css">
       <publishTime>11/16/2017 04:19:44</publishTime>
@@ -248,6 +248,27 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="images/logo.png">
       <publishTime>05/18/2018 16:04:19</publishTime>
+    </File>
+    <File Include="images/pd-asignar-consultor-lider.png">
+      <publishTime>06/03/2018 15:47:53</publishTime>
+    </File>
+    <File Include="images/pd-asignar-responsable-servicio.png">
+      <publishTime>06/03/2018 15:47:53</publishTime>
+    </File>
+    <File Include="images/pd-estimar-consultores-proyectos.png">
+      <publishTime>06/04/2018 17:49:46</publishTime>
+    </File>
+    <File Include="images/pd-estimar-tiempos-proyectos.png">
+      <publishTime>06/04/2018 17:49:46</publishTime>
+    </File>
+    <File Include="images/pd-evaluar-rentabilidad.png">
+      <publishTime>06/04/2018 17:49:46</publishTime>
+    </File>
+    <File Include="images/pd-nueva-oportunidad.png">
+      <publishTime>06/03/2018 15:47:53</publishTime>
+    </File>
+    <File Include="images/pd-revisar-rfp.png">
+      <publishTime>06/03/2018 15:47:53</publishTime>
     </File>
     <File Include="img/breadcrumb.png">
       <publishTime>11/16/2017 05:57:01</publishTime>
@@ -451,13 +472,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2017 03:34:48</publishTime>
     </File>
     <File Include="Scripts/Controladores/ajax-mvc.js">
-      <publishTime>11/22/2017 13:44:06</publishTime>
+      <publishTime>06/11/2018 11:08:59</publishTime>
     </File>
     <File Include="Scripts/Controladores/AsignacionAutomatica/asignacion-automatica-controller.js">
-      <publishTime>05/20/2018 23:18:26</publishTime>
+      <publishTime>05/28/2018 10:11:57</publishTime>
+    </File>
+    <File Include="Scripts/Controladores/EvaluacionRentabilidad/evaluacion-rentabilidad-controller.js">
+      <publishTime>05/28/2018 15:10:50</publishTime>
     </File>
     <File Include="Scripts/Controladores/functions.js">
-      <publishTime>05/20/2018 23:15:52</publishTime>
+      <publishTime>06/19/2018 13:07:36</publishTime>
+    </File>
+    <File Include="Scripts/Controladores/Iniciativa/iniciativa-controller.js">
+      <publishTime>06/24/2018 17:56:54</publishTime>
     </File>
     <File Include="Scripts/excanvas.min.js">
       <publishTime>11/16/2017 04:18:56</publishTime>
@@ -485,6 +512,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/jquery.easy-pie-chart.js">
       <publishTime>11/16/2017 04:18:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery.fileDownload.js">
+      <publishTime>06/14/2018 11:28:42</publishTime>
     </File>
     <File Include="Scripts/jquery.flot.crosshair.js">
       <publishTime>11/16/2017 04:18:57</publishTime>
@@ -585,6 +615,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/moment.min.js">
       <publishTime>11/16/2017 03:46:41</publishTime>
     </File>
+    <File Include="Scripts/paginathing.min.js">
+      <publishTime>06/12/2018 00:11:22</publishTime>
+    </File>
     <File Include="Scripts/respond.js">
       <publishTime>11/16/2017 03:36:40</publishTime>
     </File>
@@ -594,11 +627,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/select2.min.js">
       <publishTime>11/16/2017 04:19:02</publishTime>
     </File>
+    <File Include="Scripts/shBrushJScript.js">
+      <publishTime>06/14/2018 13:45:50</publishTime>
+    </File>
+    <File Include="Scripts/shBrushXml.js">
+      <publishTime>06/14/2018 13:45:50</publishTime>
+    </File>
+    <File Include="Scripts/shCore.js">
+      <publishTime>06/14/2018 13:45:50</publishTime>
+    </File>
     <File Include="Scripts/wysihtml5-0.3.0.js">
       <publishTime>11/16/2017 04:19:02</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>12/17/2017 11:10:12</publishTime>
+      <publishTime>06/14/2018 13:45:50</publishTime>
+    </File>
+    <File Include="Views/EvaluacionRentabilidad/Index.cshtml">
+      <publishTime>05/28/2018 00:17:34</publishTime>
+    </File>
+    <File Include="Views/EvaluacionRentabilidad/_ViewCostoTotalCliente.cshtml">
+      <publishTime>05/28/2018 13:19:52</publishTime>
+    </File>
+    <File Include="Views/EvaluacionRentabilidad/_ViewCostoTotalEquipo.cshtml">
+      <publishTime>05/28/2018 13:19:52</publishTime>
+    </File>
+    <File Include="Views/EvaluacionRentabilidad/_ViewCostoTotalServicio.cshtml">
+      <publishTime>05/28/2018 13:19:44</publishTime>
+    </File>
+    <File Include="Views/EvaluacionRentabilidad/_ViewTamañoServicio.cshtml">
+      <publishTime>05/28/2018 09:27:57</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>11/16/2017 03:33:25</publishTime>
@@ -609,17 +666,101 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/Index.cshtml">
       <publishTime>11/23/2017 19:37:24</publishTime>
     </File>
+    <File Include="Views/Iniciativa/AsignarConsultorLider.cshtml">
+      <publishTime>06/24/2018 17:38:57</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/AsignarResposnableServicio.cshtml">
+      <publishTime>06/24/2018 17:38:34</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/CerrarOportunidad.cshtml">
+      <publishTime>06/24/2018 18:03:24</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/ConsultarIniciativa.cshtml">
+      <publishTime>06/24/2018 15:46:01</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/DesarrollarPropuestaTecnica.cshtml">
+      <publishTime>06/24/2018 17:48:57</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/EnviarPropuestaTecnica.cshtml">
+      <publishTime>06/24/2018 18:15:38</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/EstimarConsultoresProyecto.cshtml">
+      <publishTime>06/24/2018 17:39:15</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/EstimarTiemposProyecto.cshtml">
+      <publishTime>06/24/2018 17:39:03</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/EvaluarRentabilidad.cshtml">
+      <publishTime>06/24/2018 17:39:13</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/GestionarInicioServicio.cshtml">
+      <publishTime>06/24/2018 17:58:00</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/Index.cshtml">
+      <publishTime>06/19/2018 20:37:06</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/RespuestaCliente.cshtml">
+      <publishTime>06/24/2018 18:16:23</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/RevisarPropuestaTecnica.cshtml">
+      <publishTime>06/24/2018 17:43:00</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/RevisarRFP.cshtml">
+      <publishTime>06/24/2018 17:38:50</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoActividades.cshtml">
+      <publishTime>06/14/2018 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoCompetencias.cshtml">
+      <publishTime>06/18/2018 23:28:02</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoCompetenciasTecnicas.cshtml">
+      <publishTime>06/17/2018 18:48:08</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoCompetenciasTecnicasIniciativaCompetencia.cshtml">
+      <publishTime>06/17/2018 21:46:39</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoIniciativa.cshtml">
+      <publishTime>06/24/2018 18:12:21</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoRequermientoActividades.cshtml">
+      <publishTime>06/13/2018 09:50:46</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoRequermientos.cshtml">
+      <publishTime>06/18/2018 12:42:38</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadosTiempoConstruccion.cshtml">
+      <publishTime>06/13/2018 09:53:31</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ResultadoTiempoFases.cshtml">
+      <publishTime>06/19/2018 08:08:43</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ViewCostoTotalCliente.cshtml">
+      <publishTime>06/07/2018 04:09:26</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ViewCostoTotalEquipo.cshtml">
+      <publishTime>06/07/2018 04:09:26</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ViewCostoTotalServicio.cshtml">
+      <publishTime>06/07/2018 04:09:26</publishTime>
+    </File>
+    <File Include="Views/Iniciativa/_ViewTamañoServicio.cshtml">
+      <publishTime>06/07/2018 04:09:28</publishTime>
+    </File>
     <File Include="Views/ServicioEmpresarial/AsignacionRRHH.cshtml">
-      <publishTime>05/20/2018 22:46:18</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/ServicioEmpresarial/Index.cshtml">
-      <publishTime>05/18/2018 17:56:06</publishTime>
+      <publishTime>06/13/2018 09:12:41</publishTime>
     </File>
     <File Include="Views/ServicioEmpresarial/_ResultadoBusqueda.cshtml">
-      <publishTime>05/20/2018 23:32:15</publishTime>
+      <publishTime>05/28/2018 09:34:22</publishTime>
     </File>
     <File Include="Views/ServicioEmpresarial/_ResultadoBusquedaServEmpresarial.cshtml">
-      <publishTime>05/18/2018 21:20:12</publishTime>
+      <publishTime>06/13/2018 09:13:39</publishTime>
+    </File>
+    <File Include="Views/ServicioEmpresarial/_ResultadoDetalleConsultorModal.cshtml">
+      <publishTime>05/28/2018 10:09:14</publishTime>
     </File>
     <File Include="Views/ServicioEmpresarial/_ResultadoFiltroConsultoresModal.cshtml">
       <publishTime>05/20/2018 20:17:19</publishTime>
@@ -631,7 +772,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2017 03:33:25</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/20/2018 00:49:16</publishTime>
+      <publishTime>06/19/2018 14:10:28</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>11/16/2017 03:33:25</publishTime>

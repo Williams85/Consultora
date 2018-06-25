@@ -1,5 +1,6 @@
 ﻿using Consultora.Entidad;
 using Consultora.Repositorio;
+using Consultora.Utilitario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,17 @@ namespace Consultora.Dominio
         {
             return oIniciativaRepositorio.CalcularTamañoServicio(Codigo);
         }
+        public Response<bool> ValidaRentabilidad(string Codigo)
+        {
+            Response<bool> oResponse = new Response<bool>() { Valor = true };
+            if (oIniciativaRepositorio.EvaluaRentabilidad(Codigo)==false)
+            {
+                oResponse.Valor = false;
+                oResponse.Mensaje = "No se evaluo la rentabilidad";
+            }
+            return oResponse;
+        }
+
         #endregion
 
         #region "Metodos Transaccionales"
@@ -49,18 +61,7 @@ namespace Consultora.Dominio
 
         public bool Grabar(IniciativaEntidad entidad, ref int Cod_Iniciativa)
         {
-            bool estado = false;
-            if (entidad.Cod_Iniciativa > 0)
-            {
-                estado = oIniciativaRepositorio.Modificar(entidad);
-                Cod_Iniciativa = entidad.Cod_Iniciativa;
-            }
-            else
-            {
-                estado = oIniciativaRepositorio.Grabar(entidad, ref Cod_Iniciativa);
-            }
-
-            return estado;
+            return oIniciativaRepositorio.Grabar(entidad, ref Cod_Iniciativa);
         }
 
         public bool AsignarResponsableServicio(IniciativaEntidad entidad)
@@ -117,10 +118,21 @@ namespace Consultora.Dominio
             return estado;
         }
 
+        public bool ActualizarEstado(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.Modificar(entidad))
+                if (oIniciativaRepositorio.ModificarEstado(entidad))
+                    estado = true;
+            return estado;
+        }
+
+
+
         public bool CerrarOportunidad(IniciativaEntidad entidad)
         {
             bool estado = false;
-            if (oIniciativaRepositorio.AsignarConsultorLider(entidad))
+            if (oIniciativaRepositorio.Modificar(entidad))
                 if (oIniciativaRepositorio.ModificarEstado(entidad))
                     if (oIniciativaRepositorio.CerrarOportunidad(entidad))
                         estado = true;

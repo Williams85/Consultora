@@ -1,0 +1,68 @@
+﻿@model List<Consultora.Entidad.IniciativaCompetenciaEntidad>
+    @{
+        ViewBag.Title = "_ResultadoCompetencias";
+    }
+               
+    @if (Model != null && Model.Count > 0)
+    {
+        
+        <div class="row">
+            <div class="col-md-6">
+                <span>Total Horas:</span> 
+                @ViewBag.HorasParticipacion 
+            </div>
+            <div class="col-md-6">
+                <span>Total Horas Restantes:</span>
+                @ViewBag.RestantesHorasProyecto
+            </div>
+            <input type="hidden" id="IndiCompetencia" value="@ViewBag.IndiCompetencia" />
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo Consultor</th>
+                    <th class="center">Seniority</th>
+                    <th class="center">Horas Participación</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entidad in Model)
+                {
+                    <tr>
+                        <td class="center">
+                            @entidad.Competencia.Nom_Competencia
+                        </td>
+                        <td class="center">
+                            @entidad.NivelCompetencia.Nom_Nivel_Competencia
+                        </td>
+                        <td class="center">
+                            <input type="text" style="border:none;text-align:center;width:30%;" value="@entidad.Horas_Participacion" readonly />
+                            <span style="display:none;">@entidad.Horas_Participacion</span>
+                        </td>
+                        <td class="center">
+                            <button type="button" data-id="@entidad.Cod_Iniciativa_Competencia" class="btn btn-danger  btn-xs btn-eliminar-competencia">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" data-id="@entidad.Cod_Iniciativa_Competencia" class="btn btn-info  btn-xs btn-editar-competencia">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button type="button" data-id="@entidad.Cod_Iniciativa_Competencia" class="btn btn-danger  btn-xs btn-cancelar-competencia">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" data-id="@entidad.Cod_Iniciativa_Competencia" class="btn btn-primary  btn-xs btn-guardar-competencia">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
+
+
+
+

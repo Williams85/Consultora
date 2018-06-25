@@ -1,0 +1,147 @@
+﻿@model Consultora.Entidad.IniciativaEntidad
+@{
+    ViewBag.Title = "EvaluarRentabilidad";
+}
+
+<h4>Evaluar Rentabilidad</h4>
+<div class="search">
+    <span class="titulo">Información de Oportunidad</span>
+
+    @using (Html.BeginForm("GrabarEvaluacionRentabilidad", "Iniciativa", FormMethod.Post, new { @id = "FormER", @enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Indicador", "")
+        @Html.HiddenFor(model => model.Cod_Iniciativa, null)
+        @Html.HiddenFor(model => model.RFP, null)
+        <article class="sector-100">
+            <label>Nombre:</label>
+            @Html.TextBox("Nom_Iniciativa", null)
+        </article>
+        <article class="sector-100">
+            <label>Descripcion:</label>
+            @Html.TextAreaFor(model => model.Des_Iniciativa)
+        </article>
+        <article class="sector-50">
+            <label>Cod. Oportunidad:</label>
+            @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Registro:</label>
+            @Html.TextBoxFor(model => model.FechaRegistro, null, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Unidad Negocio:</label>
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+        </article>
+        <article class="sector-25">
+            <label>RFP:</label>
+            <input type="file" id="RFP" name="RFP">
+        </article>
+        <article class="sector-25">
+            <a class="btn btn-info Descargar" id="btn-er-descargar" href="/Iniciativa/DescargarRFP">Descargar</a>
+        </article>        
+        <article class="sector-100">
+            <label>Responsable Servicio:</label>
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <article class="sector-100">
+            <label>Consultor Lider:</label>
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, null)
+        </article>
+        <div class="clear">
+        </div>
+        <article class="sector-100">
+            <div class="alert alert-danger" role="alert" id="Message-Error">
+                <strong></strong>
+            </div>
+        </article>        
+        <article class="lista-botones">
+            <button type="submit" class="btn btn-info" id="btn-er-guardar">Guardar</button>
+            <button type="button" class="btn btn-info" id="btn-er-adicional" >Evaluar Rentabilidad</button>
+            <button type="button" class="btn btn-info" id="btn-er-siguiente" >Siguiente</button>
+            
+        </article>
+        <article class="sector-100">
+            <img src="~/images/pd-evaluar-rentabilidad.png" width="100%" />
+        </article>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEvaluarRentabilidad" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Evaluacion de Rentabilidad</h4>
+            </div>
+            <div class="modal-body">
+
+                <span id="MensajeCarga"></span>
+                <div class="etiqueta-boton">
+                    <label>Iniciar proceso de evaluacion de rentabilidad aqui:</label><button id="idEvaluarRentabilidad" name="idEvaluarRentabilidad">Evaluar</button>
+
+                </div>
+                <div id="Resultado" class="search">
+
+
+                    <div id="IdViewCostoTotalEquipo" class="etiqueta">
+
+                    </div>
+                    <div id="IdViewCostoTotalServicio" class="etiqueta">
+
+                    </div>
+                    <div id="IdViewCostoTotalCliente" class="etiqueta">
+
+                    </div>
+                    <div id="IdViewTotalGananciaBruta" class="etiqueta">
+                        <label>Calculando rentabilidad neta del servicio</label><input type="text" id="IdGananciaBruta" name="IdGananciaBruta" value="" disabled>
+                    </div>
+                    <div id="IdViewMedidaServicio" class="etiqueta">
+
+                    </div>
+                    <div id="IdViewPorcentajeRentabilidad" class="etiqueta">
+                        <input type="hidden" id="IdHPorcentajeRentabilidad" name="IdHPorcentajeRentabilidad" value="">
+                        <label>Calculando % de rentabilidad esperada</label><input type="text" id="IdPorcentajeRentabilidad" name="IdPorcentajeRentabilidad" value="" disabled>
+                    </div>
+                    <div id="IdViewEvaluandoRentabilidad" class="etiqueta">
+                        <input type="hidden" id="IdRentable" name="IdRentable" />
+                        <label>Evaluando cumplimiento de rentabilidad</label><input type="text" id="IdEvalRentabilidad" name="IdEvalRentabilidad" value="" disabled>
+                        <div class="clear"></div>
+                        <div class="resultado">
+                            <span>Recomendación</span>
+                            <p id="MensajeResultado">
+
+                            </p>
+                        </div>
+                        <div class="lista-botones">
+                            <button id="idSalir" name="idSalir" disabled>Salir</button>
+                            <button id="idGuardar" name="idGuardar">Guardar</button>
+                            <button id="idDescargar" name="idDescargar" disabled>Descargar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/oportunidad")
+
+
+
+

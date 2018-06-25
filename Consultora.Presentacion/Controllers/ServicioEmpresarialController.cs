@@ -16,7 +16,10 @@ namespace Consultora.Presentacion.Controllers
             ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
             ClienteDominio oClienteDominio = new ClienteDominio();
             ServicioDominio oServicioDominio = new ServicioDominio();
-
+            SessionManager.Usuario = new UsuarioEntidad
+            {
+                Nom_Usuario = "Williams Morales Caballero"
+            };
             var ListaServiciosEmpresarial = oServicioEmpresarialDominio.listarActivos();
             var ListaClientes = oClienteDominio.listarActivos();
             var ListaServicios = oServicioDominio.listarActivos();

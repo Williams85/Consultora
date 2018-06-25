@@ -13,7 +13,7 @@ function Error(err, status) {
     console.log(status);
 }
 
-function ajax(info, successFunc, errorFunc) {
+function ajax(info, successFunc) {
     $.ajax({
         type: info.metodo,
         url: info.serviceURL,
@@ -60,15 +60,6 @@ function ajaxPartialView(info) {
         success: successFunc,
         error: Error
     });
-    //.success(function (result) {
-    //    if (result != null) {
-    //        $(info.objcontenedor).html(result);
-    //    }
-    //})
-    //.error(function (xhr, status, data) {
-    //    console.log(data);
-    //    console.log(status);
-    //})
 }
 
 function ajaxPartialView(info, successFunc) {
@@ -81,9 +72,18 @@ function ajaxPartialView(info, successFunc) {
         success: successFunc,
         error: Error
     })
-    //.success(successFunc)
-    //.error(function (xhr, status, data) {
-    //    console.log(data);
-    //    console.log(status);
-    //})
 }
+
+function ajaxForm(info, successFunc) {
+    $.ajax({
+        url: info.serviceURL,
+        type: info.metodo,
+        data: info.parametros,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: successFunc,
+        error: Error
+    })
+}
+

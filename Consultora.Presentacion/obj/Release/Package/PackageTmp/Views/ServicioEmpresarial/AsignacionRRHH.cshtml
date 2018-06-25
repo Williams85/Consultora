@@ -17,11 +17,7 @@
             @Html.Hidden("Cod_Servicio_Empresarial", Model.Cod_Servicio_Empresarial)
             @Html.TextBoxFor(model => model.Nom_Servicio_Empresarial, new { @readonly = "true" })
         </article>
-        <article class="sector-50">
-            <label>Cliente:</label>
-            @Html.TextBoxFor(model => model.Cliente.Razon_Social, new { @readonly = "true" })
-        </article>
-        <article class="sector-50">
+         <article class="sector-100">
             <label>Responsable:</label>
             @if (Model.Empleado.Nom_Empleado != null && Model.Empleado.Nom_Empleado != "")
             {
@@ -31,7 +27,24 @@
             {
                 @Html.TextBox("Responsable", SessionManager.Usuario.Nom_Usuario, new { @readonly = "true" })
             }
+        </article>       
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.TextBoxFor(model => model.Cliente.Razon_Social, new { @readonly = "true" })
         </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.TextBoxFor(model => model.Servicio.Nom_Servicio, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Inicio:</label>
+            @Html.TextBoxFor(model => model.FechaInicio, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Fin:</label>
+            @Html.TextBoxFor(model => model.FechaFin, new { @readonly = "true" })
+        </article>
+
 
         <div class="clear">
 
@@ -139,6 +152,25 @@
             </div>
             <div class="modal-body" id="modalmsg">
                 <div class="container-fluid" id="Modal-ListaRequerimientos">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ViewConsultor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalle de Consultor</h4>
+            </div>
+            <div class="modal-body" id="modalmsg">
+                <div class="container-fluid" id="Modal-ViewConsultor">
 
                 </div>
             </div>

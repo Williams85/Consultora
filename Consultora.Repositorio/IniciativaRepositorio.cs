@@ -53,8 +53,15 @@ namespace Consultora.Repositorio
                             Cod_Usuario = Reader.GetIntValue(reader, "Consultor_Lider"),
                         };
                         oIniciativaEntidad.RFP = Reader.GetStringValue(reader, "RFP");
+                        oIniciativaEntidad.Propuesta_Tecnica = Reader.GetStringValue(reader, "Propuesta_Tecnica");
+                        oIniciativaEntidad.Correo_Propuesta_Tecnica = Reader.GetStringValue(reader, "Correo_Propuesta_Tecnica");
+                        oIniciativaEntidad.Aceptacion_Propuesta_Tecnica = Reader.GetStringValue(reader, "Aceptacion_Propuesta_Tecnica");
                         oIniciativaEntidad.Fecha_Registro = Reader.GetDateTimeValue(reader, "Fecha_Registro");
+                        oIniciativaEntidad.Fecha_Inicio_Servicio = Reader.GetDateTimeValue(reader, "Fecha_Inicio_Servicio");
+                        oIniciativaEntidad.Fecha_Fin_Servicio = Reader.GetDateTimeValue(reader, "Fecha_Fin_Servicio");
                         oIniciativaEntidad.Estado_Iniciativa = Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
+                        oIniciativaEntidad.Cod_Servicio_Generado = Reader.GetStringValue(reader, "Cod_Servicio_Generado");
+
                     }
                 }
                 return oIniciativaEntidad;
@@ -68,7 +75,6 @@ namespace Consultora.Repositorio
                 Conexion.cerrarConexion(cn);
             }
         }
-
         public List<IniciativaEntidad> filtrar(IniciativaEntidad entidad)
         {
             SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
@@ -204,6 +210,61 @@ namespace Consultora.Repositorio
                 Conexion.cerrarConexion(cn);
             }
         }
+
+        public bool EvaluaRentabilidad(string Codigo)
+        {
+            SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
+            try
+            {
+                Conexion.abrirConexion(cn);
+                SqlCommand cmd = new SqlCommand("usp_Iniciativa_EvaluoRentabilidad", cn);
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa", SqlDbType.Int)).Value = Int32.Parse(Codigo);
+                cmd.CommandType = CommandType.StoredProcedure;
+                bool estado = false;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                        estado = true;
+                }
+                return estado;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.cerrarConexion(cn);
+            }
+        }
+
+        public bool ValidaRentabilidad(string Codigo)
+        {
+            SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
+            try
+            {
+                Conexion.abrirConexion(cn);
+                SqlCommand cmd = new SqlCommand("usp_Iniciativa_ValidaRentabilidad", cn);
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa", SqlDbType.Int)).Value = Int32.Parse(Codigo);
+                cmd.CommandType = CommandType.StoredProcedure;
+                bool estado = false;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                        estado = true;
+                }
+                return estado;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.cerrarConexion(cn);
+            }
+        }
+
         #endregion
 
         #region "Metodos Transaccionales"
@@ -304,6 +365,13 @@ namespace Consultora.Repositorio
                 cmd.Parameters.Add(new SqlParameter("@Cod_Servicio", SqlDbType.Int)).Value = entidad.Servicio.Cod_Servicio;
                 cmd.Parameters.Add(new SqlParameter("@Cod_Cliente", SqlDbType.Int)).Value = entidad.Cliente.Cod_Cliente;
                 cmd.Parameters.Add(new SqlParameter("@RFP", SqlDbType.VarChar, 500)).Value = entidad.RFP;
+                cmd.Parameters.Add(new SqlParameter("@Responsable_Servicio", SqlDbType.Int)).Value = entidad.ResponsableServicio.Cod_Usuario;
+                cmd.Parameters.Add(new SqlParameter("@Consultor_Lider", SqlDbType.Int)).Value = entidad.ConsultorLider.Cod_Usuario;
+                cmd.Parameters.Add(new SqlParameter("@Propuesta_Tecnica", SqlDbType.VarChar, 150)).Value = entidad.Propuesta_Tecnica;
+                cmd.Parameters.Add(new SqlParameter("@Correo_Propuesta_Tecnica", SqlDbType.VarChar, 150)).Value = entidad.Correo_Propuesta_Tecnica;
+                cmd.Parameters.Add(new SqlParameter("@Aceptacion_Propuesta_Tecnica", SqlDbType.VarChar, 150)).Value = entidad.Aceptacion_Propuesta_Tecnica;
+                cmd.Parameters.Add(new SqlParameter("@Fecha_Inicio_Servicio", SqlDbType.SmallDateTime)).Value = entidad.Fecha_Inicio_Servicio;
+                cmd.Parameters.Add(new SqlParameter("@Fecha_Fin_Servicio", SqlDbType.SmallDateTime)).Value = entidad.Fecha_Fin_Servicio;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Transaction = trans;
                 if (cmd.ExecuteNonQuery() < 1) { estado = false; }
