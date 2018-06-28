@@ -105,6 +105,19 @@ namespace Consultora.Presentacion.Controllers
         {
             ConsultorDominio oConsultorDominio = new ConsultorDominio();
             SessionManager.ListaConsultoresFiltrar = oConsultorDominio.filtrar(entidad);
+
+            if (SessionManager.ListaConsultoresAsignados != null && SessionManager.ListaConsultoresAsignados.Count > 0)
+            {
+
+                for (int i = 0; i <= SessionManager.ListaConsultoresFiltrar.Count - 1; i++)
+                {
+                    if (SessionManager.ListaConsultoresAsignados.Exists(x => x.Consultor.Cod_Consultor == SessionManager.ListaConsultoresFiltrar[i].Cod_Consultor))
+                    {
+                        SessionManager.ListaConsultoresFiltrar.RemoveAt(i);
+                        i = i - 1;
+                    }
+                }
+            }
             return PartialView("_ResultadoFiltroConsultoresModal", SessionManager.ListaConsultoresFiltrar);
         }
 

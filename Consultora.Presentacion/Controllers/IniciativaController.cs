@@ -19,6 +19,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.Title = Message.TituloPaginaCO;
             NegocioDominio oNegocioDominio = new NegocioDominio();
             ServicioDominio oServicioDominio = new ServicioDominio();
             ClienteDominio oClienteDominio = new ClienteDominio();
@@ -105,6 +106,7 @@ namespace Consultora.Presentacion.Controllers
         #region "Consultar Oportunidad"
         public ActionResult ConsultarIniciativa()
         {
+            ViewBag.Title = Message.TituloPaginaCNO;
             NegocioDominio oNegocioDominio = new NegocioDominio();
             ServicioDominio oServicioDominio = new ServicioDominio();
             ClienteDominio oClienteDominio = new ClienteDominio();
@@ -130,6 +132,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult AsignarResposnableServicio(int id)
         {
+            ViewBag.Title = Message.TituloPaginaARS;
             if (id != null && id > 0)
             {
 
@@ -234,6 +237,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult RevisarRFP(int id)
         {
+            ViewBag.Title = Message.TituloPaginaRFC;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -334,6 +338,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult AsignarConsultorLider(int id)
         {
+            ViewBag.Title = Message.TituloPaginaACL;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -449,6 +454,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult EstimarTiemposProyecto(int id)
         {
+            ViewBag.Title = Message.TituloPaginaEPE;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -712,6 +718,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult EstimarConsultoresProyecto(int id)
         {
+            ViewBag.Title = Message.TituloPaginaRRC;
             if (id != null && id > 0)
             {
                 SessionManager.ListaIniciativaCompetencia = null;
@@ -962,6 +969,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult EvaluarRentabilidad(int id)
         {
+            ViewBag.Title = Message.TituloPaginaER;
             if (id != null && id > 0)
             {
                 //id = 1;
@@ -1141,6 +1149,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult DesarrollarPropuestaTecnica(int id)
         {
+            ViewBag.Title = Message.TituloPaginaDPT;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -1306,6 +1315,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult RevisarPropuestaTecnica(int id)
         {
+            ViewBag.Title = Message.TituloPaginaRPT;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -1455,6 +1465,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult RespuestaCliente(int id)
         {
+            ViewBag.Title = Message.TituloPaginaERC;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -1605,6 +1616,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpGet]
         public ActionResult GestionarInicioServicio(int id)
         {
+            ViewBag.Title = Message.TituloPaginaGIS;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -1769,11 +1781,12 @@ namespace Consultora.Presentacion.Controllers
         }
         #endregion
 
-        #region "Iniciativa Ganada"
+        #region "Oportunidad Ganada"
 
         [HttpGet]
         public ActionResult CerrarOportunidad(int id)
         {
+            ViewBag.Title = Message.TituloPaginaOG;
             if (id != null && id > 0)
             {
                 NegocioDominio oNegocioDominio = new NegocioDominio();
@@ -1846,14 +1859,6 @@ namespace Consultora.Presentacion.Controllers
         }
 
         #endregion
-
-
-
-
-
-
-
-
 
     }
 }

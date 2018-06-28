@@ -18,7 +18,7 @@ namespace Consultora.Entidad
         public ClienteEntidad Cliente { get; set; }
         public EmpleadoEntidad Empleado { get; set; }
         public bool Estado { get; set; }
-
+        public string Cod_Servicio_Generado { get; set; }
         public string Responsable { get { return this.Empleado.Nom_Empleado + "" + this.Empleado.AP_Empleado + "" + this.Empleado.AM_Empleado; } }
 
     }

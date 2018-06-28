@@ -57,6 +57,7 @@
 $("#btn-buscar").on("click", function () {
     var parametros = {
         "Servicio": { "Cod_Servicio": $("#Cod_Servicio").val() },
+        "Cod_Servicio_Generado": $("#Cod_Servicio_Generado").val(),
         "Cliente": { "Cod_Cliente": $("#Cod_Cliente").val() },
         "Nom_Servicio_Empresarial": $("#Nom_Servicio_Empresarial").val(),
     };

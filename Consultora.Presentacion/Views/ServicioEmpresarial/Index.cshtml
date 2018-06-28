@@ -13,10 +13,14 @@
             @Html.TextBox("Nom_Servicio_Empresarial")
         </article>
         <article class="sector-50">
+            <label>Cod. Servicio</label>
+            @Html.TextBox("Cod_Servicio_Generado")
+        </article>        
+        <article class="sector-50">
             <label>Tipo Servicio</label>
             @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaServicios, "Cod_Servicio", "Nom_Servicio"), "Todos", null)
         </article>
-        <article class="sector-100">
+        <article class="sector-50">
             <label>Cliente</label>
             @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaClientes, "Cod_Cliente", "Razon_Social"), "Todos", null)
         </article>

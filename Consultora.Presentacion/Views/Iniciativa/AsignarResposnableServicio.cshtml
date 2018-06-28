@@ -9,10 +9,10 @@
 
     @using (Html.BeginForm("GrabarResponsableServicio", "Iniciativa", FormMethod.Post, new { @id = "FormARS", @enctype = "multipart/form-data" }))
     {
-                @Html.Hidden("Indicador", "")
+        @Html.Hidden("Indicador", "")
         @Html.HiddenFor(model => model.Cod_Iniciativa, null)
         @Html.HiddenFor(model => model.RFP, null)
-         <article class="sector-100">
+        <article class="sector-100">
             <label>Nombre:</label>
             @Html.TextBox("Nom_Iniciativa", null)
         </article>
@@ -23,7 +23,7 @@
         <article class="sector-100">
             <label>Estado Oportunidad:</label>
             @Html.TextBoxFor(model => model.EstadoIniciativa, null, new { @disabled = "true" })
-        </article>        
+        </article>
         <article class="sector-50">
             <label>Cod. Oportunidad:</label>
             @Html.TextBoxFor(model => model.Cod_Oportunidad, null, new { @disabled = "true" })
@@ -51,7 +51,7 @@
         <article class="sector-25">
             <a class="btn btn-info btn-sm Descargar" id="btn-ars-descargar" href="/Iniciativa/DescargarRFP">Descargar</a>
         </article>
-        
+
         <article class="sector-100">
             <label>Responsable Servicio:</label>
             @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
@@ -67,7 +67,8 @@
 
         <article class="lista-botones">
             <button type="submit" class="btn btn-info" id="btn-ars-guardar">Guardar</button>
-            <button type="button" class="btn btn-info" id="btn-ars-siguiente" >Siguiente</button>
+            <button type="button" class="btn btn-info" id="btn-ars-siguiente">Siguiente</button>
+            <button type="button" class="btn btn-info" id="btn-ars-cancelar">Cancelar</button>
         </article>
         <article class="sector-100">
             <img src="~/images/pd-asignar-responsable-servicio.png" width="100%" />

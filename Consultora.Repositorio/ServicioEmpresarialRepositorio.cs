@@ -98,6 +98,7 @@ namespace Consultora.Repositorio
                 Conexion.abrirConexion(cn);
                 SqlCommand cmd = new SqlCommand("usp_Servicio_Empresarial_Filtrar", cn);
                 cmd.Parameters.Add(new SqlParameter("@Cod_Servicio", SqlDbType.Int)).Value = entidad.Servicio.Cod_Servicio;
+                cmd.Parameters.Add(new SqlParameter("@Cod_Servicio_Generado", SqlDbType.VarChar, 10)).Value = (entidad.Cod_Servicio_Generado != null ? entidad.Cod_Servicio_Generado : "");
                 cmd.Parameters.Add(new SqlParameter("@Cod_Cliente", SqlDbType.Int)).Value = entidad.Cliente.Cod_Cliente;
                 cmd.Parameters.Add(new SqlParameter("@Nom_Servicio_Empresarial", SqlDbType.VarChar, 100)).Value = (entidad.Nom_Servicio_Empresarial != null ? entidad.Nom_Servicio_Empresarial : "");
                 cmd.CommandType = CommandType.StoredProcedure;

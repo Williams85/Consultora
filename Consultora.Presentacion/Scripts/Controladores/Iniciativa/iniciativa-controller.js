@@ -1618,9 +1618,9 @@ function ModificarCompetencia(parametros) {
     info.parametros = parametros;
     ajax(info, function (data) {
         if (data != null) {
-            var data = data.Valor.split("|");
-            $("#HorasParticipacion").val(data[0]);
-            $("#HorasRestantes").val(data[1]);
+            var datos = data.Valor.split("|");
+            $("#HorasParticipacion").val(datos[0]);
+            $("#HorasRestantes").val(datos[1]);
 
             PopInformativo(data.Message);
         } else {

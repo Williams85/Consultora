@@ -463,6 +463,10 @@ ul, li{
     width: 70% !important;
 }
 
+.modal-body .grid-resultados-90{
+    width: 90% !important;
+}
+
 .modal-header h4{
     margin-bottom:0 !important;
 }
