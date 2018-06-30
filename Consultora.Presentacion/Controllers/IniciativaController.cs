@@ -1823,6 +1823,56 @@ namespace Consultora.Presentacion.Controllers
 
         #endregion
 
+        #region "Oportunidad Cancelada"
+
+        [HttpGet]
+        public ActionResult CancelarOportunidad(int id)
+        {
+            ViewBag.Title = Message.TituloPaginaOG;
+            if (id != null && id > 0)
+            {
+                NegocioDominio oNegocioDominio = new NegocioDominio();
+                ServicioDominio oServicioDominio = new ServicioDominio();
+                ClienteDominio oClienteDominio = new ClienteDominio();
+                UsuarioDominio oUsuarioDominio = new UsuarioDominio();
+                var iniciativa = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+                ViewBag.ListaNegocio = oNegocioDominio.listarActivos();
+                ViewBag.ListaTipoServicio = oServicioDominio.listarActivos();
+                ViewBag.ListaCliente = oClienteDominio.listarActivos();
+                ViewBag.ListaResponsableServicio = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ResponsableServicio,
+                    }
+                });
+                ViewBag.ListaConsultorLider = oUsuarioDominio.ListarxPerfil(new UsuarioEntidad
+                {
+                    Perfil = new PerfilEntidad
+                    {
+                        Cod_Perfil = (int)Enumeracion.PerfilUsuario.ConsultorLider,
+                    }
+                });
+                return View(iniciativa);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Iniciativa");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult GrabarCancelarOportunidad(IniciativaEntidad entidad)
+        {
+            entidad.Estado_Iniciativa = (byte)Enumeracion.EstadoFlujo.CancelarOportunidad;
+            var response = oIniciativaDominio.CancelarOportunidad(entidad);
+            return Json(response);
+        }
+
+
+        #endregion
+
         #region "Genericos"
         [HttpGet, FileDownload]
         public FilePathResult DescargarRFP(int id)

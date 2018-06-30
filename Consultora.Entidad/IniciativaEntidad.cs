@@ -18,6 +18,9 @@ namespace Consultora.Entidad
                 string estado = "";
                 switch (this.Estado_Iniciativa)
                 {
+                    case 0:
+                        estado = "Oportunidad Cancelada";
+                        break;
                     case 1:
                         estado = "Asignación Responsable de Servicio";
                         break;

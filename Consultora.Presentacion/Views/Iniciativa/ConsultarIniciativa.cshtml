@@ -31,7 +31,8 @@
         <article class="sector-50">
             <label>Estado:</label>
             @Html.DropDownList("Estado_Iniciativa", new SelectList(new List<SelectListItem> { 
-           new SelectListItem { Text = "Todos", Value = "0" },
+           new SelectListItem { Text = "Todos", Value = "-1" },
+           new SelectListItem { Text = "Oportunidad Cancelada", Value = "0" },           
            new SelectListItem { Text = "Asignación Responsable de Servicio", Value = "1" },
            new SelectListItem { Text = "Revisar RFP", Value = "2" },
            new SelectListItem { Text = "Asignación Consultor Lider", Value = "3" },
@@ -43,8 +44,7 @@
            new SelectListItem { Text = "Esperando Respuesta Cliente", Value = "9" },
            new SelectListItem { Text = "Gestionar Inicio Servicio", Value = "10" },
            new SelectListItem { Text = "Oportunidad Ganada", Value = "11" }
-           
-       }, "Value", "Text"), null, null)
+            }, "Value", "Text"), null, null)
         </article>
 
         <article class="lista-botones">

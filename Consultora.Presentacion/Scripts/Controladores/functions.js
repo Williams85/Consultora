@@ -43,7 +43,11 @@ rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
 rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
 rutas.ValidarRentabilidad = "/Iniciativa/ValidarRentabilidad";
 
+//Consultar Oportunidad
 rutas.BuscarIniciativa = "/Iniciativa/BuscarIniciativa";
+
+//Oportunidad Cancelada
+rutas.GrabarCancelarOportunidad = "/Iniciativa/GrabarCancelarOportunidad";
 
 
 

@@ -23,7 +23,7 @@
                 {
                     <tr>
                         <td>
-                            
+
                             @if (entidad.Estado_Iniciativa == 1)
                             {
                                 @Html.ActionLink("Ver", "AsignarResposnableServicio", "Iniciativa", new { id = entidad.Cod_Iniciativa }, new { @class = "btn btn-success btn-small" })
@@ -78,6 +78,10 @@
                                 @Html.ActionLink("Ver", "CerrarOportunidad", "Iniciativa", new { id = entidad.Cod_Iniciativa }, new { @class = "btn btn-success btn-small" })
 
                             }
+                            else if (entidad.Estado_Iniciativa == 0)
+                            {
+                                @Html.ActionLink("Ver", "CancelarOportunidad", "Iniciativa", new { id = entidad.Cod_Iniciativa }, new { @class = "btn btn-success btn-small" })
+                            }
                         </td>
                         <td>
                             @entidad.Nom_Iniciativa
@@ -95,7 +99,7 @@
                             @entidad.Servicio.Nom_Servicio
                         </td>
                         <td>
-                            @if(entidad.Estado_Iniciativa == 1)
+                            @if (entidad.Estado_Iniciativa == 1)
                             {
                                 <span> Asignación Responsable de Servicio </span>
 
@@ -148,6 +152,11 @@
                             else if (entidad.Estado_Iniciativa == 11)
                             {
                                 <span> Oportunidad Ganada </span>
+
+                            }
+                            else if (entidad.Estado_Iniciativa == 0)
+                            {
+                                <span> Oportunidad Cancelada </span>
 
                             }
 

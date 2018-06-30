@@ -61,6 +61,8 @@ namespace Consultora.Repositorio
                         oIniciativaEntidad.Fecha_Fin_Servicio = Reader.GetDateTimeValue(reader, "Fecha_Fin_Servicio");
                         oIniciativaEntidad.Estado_Iniciativa = Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
                         oIniciativaEntidad.Cod_Servicio_Generado = Reader.GetStringValue(reader, "Cod_Servicio_Generado");
+                        oIniciativaEntidad.Motivo_Cancelacion = Reader.GetStringValue(reader, "Motivo_Cancelacion");
+                        oIniciativaEntidad.Comentarios = Reader.GetStringValue(reader, "Comentarios");
 
                     }
                 }
@@ -514,6 +516,39 @@ namespace Consultora.Repositorio
                 trans = cn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand("usp_Iniciativa_CerrarOportunidad", cn);
                 cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa", SqlDbType.Int)).Value = entidad.Cod_Iniciativa;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Transaction = trans;
+                if (cmd.ExecuteNonQuery() < 1) { estado = false; }
+                if (estado)
+                    trans.Commit();
+                else
+                    trans.Rollback();
+
+                return estado;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.cerrarConexion(cn);
+            }
+        }
+
+        public bool CancelarOportunidad(IniciativaEntidad entidad)
+        {
+            SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
+            SqlTransaction trans = null;
+            try
+            {
+                bool estado = true;
+                Conexion.abrirConexion(cn);
+                trans = cn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("usp_Iniciativa_CancelarOportunidad", cn);
+                cmd.Parameters.Add(new SqlParameter("@Cod_Iniciativa", SqlDbType.Int)).Value = entidad.Cod_Iniciativa;
+                cmd.Parameters.Add(new SqlParameter("@Motivo_Cancelacion", SqlDbType.VarChar, 150)).Value = entidad.Motivo_Cancelacion;
+                cmd.Parameters.Add(new SqlParameter("@Comentarios", SqlDbType.VarChar, 1000)).Value = entidad.Comentarios;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Transaction = trans;
                 if (cmd.ExecuteNonQuery() < 1) { estado = false; }

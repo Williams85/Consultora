@@ -42,7 +42,7 @@ namespace Consultora.Dominio
         public Response<bool> ValidaRentabilidad(string Codigo)
         {
             Response<bool> oResponse = new Response<bool>() { Valor = true };
-            if (oIniciativaRepositorio.EvaluaRentabilidad(Codigo)==false)
+            if (oIniciativaRepositorio.EvaluaRentabilidad(Codigo) == false)
             {
                 oResponse.Valor = false;
                 oResponse.Mensaje = "No se evaluo la rentabilidad";
@@ -136,6 +136,15 @@ namespace Consultora.Dominio
                 if (oIniciativaRepositorio.ModificarEstado(entidad))
                     if (oIniciativaRepositorio.CerrarOportunidad(entidad))
                         estado = true;
+            return estado;
+        }
+
+        public bool CancelarOportunidad(IniciativaEntidad entidad)
+        {
+            bool estado = false;
+            if (oIniciativaRepositorio.ModificarEstado(entidad))
+                if (oIniciativaRepositorio.CancelarOportunidad(entidad))
+                    estado = true;
             return estado;
         }
 

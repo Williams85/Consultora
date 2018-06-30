@@ -68,13 +68,68 @@
         <article class="lista-botones">
             <button type="submit" class="btn btn-info" id="btn-ars-guardar">Guardar</button>
             <button type="button" class="btn btn-info" id="btn-ars-siguiente">Siguiente</button>
-            <button type="button" class="btn btn-info" id="btn-ars-cancelar">Cancelar</button>
+            <button type="button" class="btn btn-info" id="btn-ars-cancelar" data-toggle="modal" data-target="#ModalCancelarOportunidad">Cancelar</button>
         </article>
         <article class="sector-100">
             <img src="~/images/pd-asignar-responsable-servicio.png" width="100%" />
         </article>
     }
 </div>
+
+<div id="ModalCancelarOportunidad" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Esta seguro que desea cancelar esta oportunida?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SiCancelarOportunidad">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="PopupCancelarOportunidad" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cancelar Oportunidad!</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-popup">
+                    <span class="titulo">Información de Cancelación</span>
+                    <article class="sector-50">
+                        <label>Motivo:</label>
+                        @Html.DropDownList("Motivo_Cancelacion", new SelectList(new List<SelectListItem> {
+                       new SelectListItem { Text = "Riesgo de Rentabilidad", Value = "1" },
+                       new SelectListItem { Text = "Cliente no acepta propuesta", Value = "2" },
+                       new SelectListItem { Text = "Otros", Value = "3" }
+                        }, "Value", "Text"), null, null)
+                    </article>
+                    <article class="sector-50">
+                        <label>Comentario:</label>
+                        @Html.TextArea("Comentarios", "")
+                    </article>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="OKCancelarOportunidad">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @Scripts.Render("~/bundles/script-layaout")
 @Scripts.Render("~/bundles/oportunidad")
 

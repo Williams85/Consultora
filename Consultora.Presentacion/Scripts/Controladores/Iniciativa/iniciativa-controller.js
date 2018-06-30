@@ -39,6 +39,24 @@
         return false;
     });
 
+    $("#SiCancelarOportunidad").on("click", function () {
+        $("#ModalCancelarOportunidad").modal("hide");
+        $("#PopupCancelarOportunidad").modal("show");
+
+    });
+
+    $("#OKCancelarOportunidad").on("click", function () {
+        var parametros = {
+            "Cod_Iniciativa": $("#Cod_Iniciativa").val(),
+            "Motivo_Cancelacion": $("#Motivo_Cancelacion :selected").text(),
+            "Comentarios": $("#Comentarios").val()
+        }
+        GrabarCancelarOportunidad(parametros);
+
+    });
+
+
+
     $("#btn-buscar-iniciativa").on("click", function () {
         var parametros = {
             "Nom_Iniciativa": $("#Nom_Iniciativa").val(),
@@ -1863,6 +1881,27 @@ function GrabarCierreOportunidad(e, info) {
             PopInformativo(data.Message);
         } else {
             console.log("error")
+        }
+    });
+}
+
+
+//Cancelar Oportunidad 
+function GrabarCancelarOportunidad(parametros) {
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.GrabarCancelarOportunidad;
+    info.parametros = parametros;
+
+    ajax(info, function (data) {
+        if (data == true) {
+            $("#PopupCancelarOportunidad").modal("hide");
+            PopInformativo("Se cancelo la oportunidad...")
+            location.href = "/Iniciativa/CancelarOportunidad/" + parametros.Cod_Iniciativa;
+        } else {
+            $("#PopupCancelarOportunidad").modal("hide");
+            PopInformativo("No se cancelo la oportunidad...")
         }
     });
 }

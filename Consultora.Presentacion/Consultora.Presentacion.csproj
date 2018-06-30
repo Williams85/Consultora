@@ -388,6 +388,7 @@
     <Content Include="Views\Iniciativa\RevisarPropuestaTecnica.cshtml" />
     <Content Include="Views\Iniciativa\RespuestaCliente.cshtml" />
     <Content Include="Views\Iniciativa\GestionarInicioServicio.cshtml" />
+    <Content Include="Views\Iniciativa\CancelarOportunidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

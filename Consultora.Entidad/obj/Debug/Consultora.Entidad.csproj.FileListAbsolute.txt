@@ -12,4 +12,3 @@ D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\bin
 D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\bin\Debug\Consultora.Entidad.pdb
 D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.dll
 D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.pdb
-D:\Datos\Proyectos\Personal\Consultora\Fuentes\Consultora\Consultora.Entidad\obj\Debug\Consultora.Entidad.csprojResolveAssemblyReference.cache
