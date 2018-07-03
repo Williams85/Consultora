@@ -14,6 +14,7 @@ namespace Consultora.Entidad
         public NivelCompetenciaEntidad NivelCompetencia { get; set; }
 
         public bool? Disponible { get; set; }
+        public bool? Asignado { get; set; }
         public bool Estado { get; set; }
     }
 }

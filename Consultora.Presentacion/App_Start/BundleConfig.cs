@@ -67,6 +67,12 @@ namespace Consultora.Presentacion
             //Oportunidad
             bundles.Add(new ScriptBundle("~/bundles/oportunidad").Include(
                                   "~/Scripts/Controladores/Iniciativa/iniciativa-controller.js"));
+
+            //Aprobacion de Asignacion Automatica
+            bundles.Add(new ScriptBundle("~/bundles/aprobacion-asignacion-automatica").Include(
+                                  "~/Scripts/Controladores/AprobacionAsignacionAutomatica/aprobacion-asignacion-automatica-controller.js"));
+
+
         }
     }
 }

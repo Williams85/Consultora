@@ -113,7 +113,9 @@ function BuscarRRHH(parametros) {
 
             $("#GuardarCambios").on("click", function () {
                 $("#IdGuardarCambios").modal("hide");
-                var parametros = {};
+                var parametros = {
+                    "Cod_Servicio_Empresarial": $("#Cod_Servicio_Empresarial").val(),
+                };
                 AsignarRRHH(parametros);
                 return false;
             });
@@ -140,6 +142,7 @@ function BuscarRRHH(parametros) {
                     $("#IdMensaje").modal("show");
                 } else {
                     $("#FiltrarConsultor").modal("show");
+                    $("#Modal-ListaConsultores").empty();
                 }
                 return false;
             })
@@ -311,6 +314,7 @@ function BuscarConsultor(parametros) {
     info.parametros = parametros;
 
     ajaxPartialView(info, function (data) {
+        $("#Modal-ListaConsultores").empty();
         if (data != null && $.trim(data) != "") {
             $("#Modal-ListaConsultores").html(data);
             $(".btn-selector-consultor").on("click", function () {

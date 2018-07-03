@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "AprobacionAsignacionAutomatica";
+}
+<h4>Modulo de Aprobacion de Asignación Automatica</h4>
+<input type="hidden" value="1" id="Indicador" />
+
+<fieldset>
+    <legend>Bandeja de Aprobación de Asignaciones en Servicios:</legend>
+    <div class="grid-resultados" id="Resultados">
+
+    </div>
+</fieldset>
+<div class="lista-botones">
+    <button id="buscar-asignaciones-automaticas" class="btn btn-success">Refrescar Listado</button>
+</div>
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/aprobacion-asignacion-automatica")

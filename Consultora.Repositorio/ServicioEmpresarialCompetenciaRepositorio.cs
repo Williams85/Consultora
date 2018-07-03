@@ -30,16 +30,6 @@ namespace Consultora.Repositorio
                     {
                         ServicioEmpresarialCompetenciaEntidad oServicioEmpresarialCompetenciaEntidad = new ServicioEmpresarialCompetenciaEntidad();
                         oServicioEmpresarialCompetenciaEntidad.Cod_Servicio_Empresarial_Competencias = Reader.GetIntValue(reader, "Cod_Servicio_Empresarial_Competencias");
-                        //oServicioEmpresarialCompetenciaEntidad.Competencia = new CompetenciaEntidad
-                        //{
-                        //    Cod_Competencia = Reader.GetIntValue(reader, "Cod_Competencia"),
-                        //    Nom_Competencia = Reader.GetStringValue(reader, "Nom_Competencia"),
-                        //};
-                        //oServicioEmpresarialCompetenciaEntidad.NivelCompetencia = new NivelCompetenciaEntidad
-                        //{
-                        //    Cod_Nivel_Competencia = Reader.GetIntValue(reader, "Cod_Nivel_Competencia"),
-                        //    Nom_Nivel_Competencia = Reader.GetStringValue(reader, "Nom_Nivel_Competencia"),
-                        //};
                         oServicioEmpresarialCompetenciaEntidad.Consultor = new ConsultorEntidad
                         {
                             Cod_Consultor = Reader.GetIntValue(reader, "Cod_Consultor"),
@@ -60,6 +50,7 @@ namespace Consultora.Repositorio
                                 Nom_Nivel_Competencia = Reader.GetStringValue(reader, "Nom_Nivel_Competencia"),
                             },
                             Disponible = Reader.GetBooleanValue(reader, "Disponible"),
+                            Asignado = Reader.GetBooleanValue(reader, "Asignado"),
                         };
                         ListaServicioEmpresarialCompetencia.Add(oServicioEmpresarialCompetenciaEntidad);
                     }
@@ -162,6 +153,58 @@ namespace Consultora.Repositorio
                         //    Nom_Nivel_Competencia = Reader.GetStringValue(reader, "Nom_Nivel_Competencia"),
                         //};
 
+                        ListaServicioEmpresarialCompetencia.Add(oServicioEmpresarialCompetenciaEntidad);
+                    }
+                }
+                return ListaServicioEmpresarialCompetencia;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                Conexion.cerrarConexion(cn);
+            }
+        }
+
+        public List<ServicioEmpresarialCompetenciaEntidad> BuscarConsultoresAsignados(string Codigo)
+        {
+            SqlConnection cn = new SqlConnection(Conexion.CnConsultora);
+            try
+            {
+                Conexion.abrirConexion(cn);
+                SqlCommand cmd = new SqlCommand("usp_Servicio_Empresarial_Competencias_BuscarConsultoresAsignados", cn);
+                cmd.Parameters.Add(new SqlParameter("@Cod_Servicio_Empresarial", SqlDbType.Int)).Value = Int32.Parse(Codigo);
+                cmd.CommandType = CommandType.StoredProcedure;
+                List<ServicioEmpresarialCompetenciaEntidad> ListaServicioEmpresarialCompetencia = new List<ServicioEmpresarialCompetenciaEntidad>();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ServicioEmpresarialCompetenciaEntidad oServicioEmpresarialCompetenciaEntidad = new ServicioEmpresarialCompetenciaEntidad();
+                        //oServicioEmpresarialCompetenciaEntidad.Cod_Servicio_Empresarial_Competencias = Reader.GetIntValue(reader, "Cod_Servicio_Empresarial_Competencias");
+                        oServicioEmpresarialCompetenciaEntidad.Consultor = new ConsultorEntidad
+                        {
+                            //Cod_Consultor = Reader.GetIntValue(reader, "Cod_Consultor"),
+                            Empleado = new EmpleadoEntidad
+                            {
+                                Nom_Empleado = Reader.GetStringValue(reader, "Nom_Empleado"),
+                                AP_Empleado = Reader.GetStringValue(reader, "AP_Empleado"),
+                                AM_Empleado = Reader.GetStringValue(reader, "AM_Empleado"),
+                            },
+                            Competencia = new CompetenciaEntidad
+                            {
+                                //Cod_Competencia = Reader.GetIntValue(reader, "Cod_Competencia"),
+                                Nom_Competencia = Reader.GetStringValue(reader, "Nom_Competencia"),
+                            },
+                            NivelCompetencia = new NivelCompetenciaEntidad
+                            {
+                                //Cod_Nivel_Competencia = Reader.GetIntValue(reader, "Cod_Nivel_Competencia"),
+                                Nom_Nivel_Competencia = Reader.GetStringValue(reader, "Nom_Nivel_Competencia"),
+                            },
+                            Disponible = Reader.GetBooleanValue(reader, "Disponible"),
+                        };
                         ListaServicioEmpresarialCompetencia.Add(oServicioEmpresarialCompetenciaEntidad);
                     }
                 }

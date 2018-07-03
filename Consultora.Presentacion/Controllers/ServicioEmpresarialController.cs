@@ -18,7 +18,15 @@ namespace Consultora.Presentacion.Controllers
             ServicioDominio oServicioDominio = new ServicioDominio();
             SessionManager.Usuario = new UsuarioEntidad
             {
-                Nom_Usuario = "Williams Morales Caballero"
+                Cod_Usuario = 1,
+                Empleado = new EmpleadoEntidad
+                {
+                    Cod_Empleado = 1,
+                    Nom_Empleado = "Williams",
+                    AP_Empleado = "Morales",
+                    AM_Empleado = "Caballero"
+                },
+                Nom_Usuario = "Williams Morales Caballero",
             };
             var ListaServiciosEmpresarial = oServicioEmpresarialDominio.listarActivos();
             var ListaClientes = oClienteDominio.listarActivos();
@@ -93,10 +101,14 @@ namespace Consultora.Presentacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult AsignarRRHH()
+        public ActionResult AsignarRRHH(ServicioEmpresarialEntidad entidad)
         {
             ServicioEmpresarialCompetenciaDominio oServicioEmpresarialCompetenciaDominio = new ServicioEmpresarialCompetenciaDominio();
-            var respuesta = oServicioEmpresarialCompetenciaDominio.AsignarRRHH(SessionManager.ListaConsultoresAsignados.Where(x => x.Consultor.Cod_Consultor != 0).ToList());
+            entidad.Empleado = new EmpleadoEntidad
+            {
+                Cod_Empleado = SessionManager.Usuario.Empleado.Cod_Empleado,
+            };
+            var respuesta = oServicioEmpresarialCompetenciaDominio.GrabarAsignacionAutomatica(SessionManager.ListaConsultoresAsignados.Where(x => x.Consultor.Cod_Consultor != 0).ToList(),entidad);
             return Json(respuesta);
         }
 
@@ -164,6 +176,60 @@ namespace Consultora.Presentacion.Controllers
             }
             return Json(estado);
         }
+
+        #region "Aprobacion de Asignacion Automatica"
+        [HttpGet]
+        public ActionResult AprobacionAsignacionAutomatica()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BuscarAsignacionesAutomatica()
+        {
+            ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            var Lista = oServicioEmpresarialDominio.BuscarAsignaciones();
+
+            return PartialView("_ResultadoAsignacionesAutomaticas", Lista);
+        }
+
+        [HttpPost]
+        public ActionResult AprobacionAsignacionConsultores(ServicioEmpresarialEntidad entidad)
+        {
+            if (entidad == null) return RedirectToAction("AprobacionAsignacionAutomatica", "ServicioEmpresarial");
+            ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            ServicioEmpresarialCompetenciaDominio oServicioEmpresarialCompetenciaDominio = new ServicioEmpresarialCompetenciaDominio();
+            var oServiciosEmpresarial = oServicioEmpresarialDominio.FiltrarxCodigo(entidad.Cod_Servicio_Empresarial.ToString());
+            return View(oServiciosEmpresarial);
+        }
+
+
+        [HttpPost]
+        public ActionResult BuscarConsultoresAsignados(string Codigo)
+        {
+            ServicioEmpresarialCompetenciaDominio oServicioEmpresarialCompetenciaDominio = new ServicioEmpresarialCompetenciaDominio();
+            var Lista = oServicioEmpresarialCompetenciaDominio.BuscarConsultoresAsignados(Codigo);
+
+            return PartialView("_ResultadoConsultoresAsignados", Lista);
+        }
+
+        [HttpPost]
+        public ActionResult GrabarAprobacionAsignacionConsultores(string Codigo)
+        {
+            ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            var respuesta = oServicioEmpresarialDominio.GrabarAprobacionAsignacionConsultores(Codigo);
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public ActionResult GrabarRechazoAsignacionConsultores(ServicioEmpresarialEntidad entidad)
+        {
+            ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            var respuesta = oServicioEmpresarialDominio.GrabarRechazoAsignacionConsultores(entidad.Cod_Servicio_Empresarial.ToString());
+            return Json(respuesta);
+        }
+
+        #endregion
 
 
     }

@@ -26,15 +26,25 @@ namespace Consultora.Dominio
         {
             return oServicioEmpresarialCompetenciaRepositorio.BuscarRRHHAsignados(Codigo);
         }
+        public List<ServicioEmpresarialCompetenciaEntidad> BuscarConsultoresAsignados(string Codigo)
+        {
+            return oServicioEmpresarialCompetenciaRepositorio.BuscarConsultoresAsignados(Codigo);
+        }
 
         #endregion
 
         #region "Metodos Transaccionales"
 
-        public bool AsignarRRHH(List<ServicioEmpresarialCompetenciaEntidad> lista)
+        public bool GrabarAsignacionAutomatica(List<ServicioEmpresarialCompetenciaEntidad> lista, ServicioEmpresarialEntidad entidad)
         {
-            return oServicioEmpresarialCompetenciaRepositorio.AsignarRRHH(lista);
+            bool estado = false;
+            ServicioEmpresarialRepositorio oServicioEmpresarialRepositorio = new ServicioEmpresarialRepositorio();
+            if (oServicioEmpresarialRepositorio.AsignacionAutomatica(entidad))
+                estado = oServicioEmpresarialCompetenciaRepositorio.AsignarRRHH(lista);
+            return estado;
         }
+
+
 
 
 

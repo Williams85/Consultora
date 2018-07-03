@@ -1,0 +1,121 @@
+﻿@model Consultora.Entidad.ServicioEmpresarialEntidad
+@{
+    ViewBag.Title = "AprobacionAsignacionConsultores";
+}
+<h4>Modulo de Aprobacion de Asignación de Consultores</h4>
+<div class="search">
+    <span class="titulo">Seleccionar Servicio de la Empresa</span>
+
+    @using (Html.BeginForm("AsignacionRRHH", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    {
+        <article class="sector-100">
+            <label>Servicio:</label>
+            @Html.Hidden("Cod_Servicio_Empresarial", Model.Cod_Servicio_Empresarial)
+            <input type="hidden" value="2" id="Indicador" />
+            @Html.TextBoxFor(model => model.Nom_Servicio_Empresarial, new { @readonly = "true" })
+        </article>
+        <article class="sector-100">
+            <label>Responsable:</label>
+            @Html.TextBoxFor(model => model.Responsable, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Cliente:</label>
+            @Html.TextBoxFor(model => model.Cliente.Razon_Social, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Tipo Servicio:</label>
+            @Html.TextBoxFor(model => model.Servicio.Nom_Servicio, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Inicio:</label>
+            @Html.TextBoxFor(model => model.FechaInicio, new { @readonly = "true" })
+        </article>
+        <article class="sector-50">
+            <label>Fecha Fin:</label>
+            @Html.TextBoxFor(model => model.FechaFin, new { @readonly = "true" })
+        </article>
+
+
+        <div class="clear">
+
+        </div>
+        <article class="lista-botones">
+            <button type="button" class="btn btn-info" id="btn-aprobar-asignacion">Aprobar Asignación</button>
+            <button type="button" class="btn btn-info" id="btn-rechazar-asignacion">Rechazar Asignación</button>
+        </article>
+
+    }
+</div>
+
+<div class="grid-resultados" id="Resultados">
+
+</div>
+<div class="lista-botones">
+    @Html.ActionLink("Salir", "AprobacionAsignacionAutomatica", "ServicioEmpresarial", null, new { @class = "btn btn-success btn-lg" })
+</div>
+
+<div id="IdAprobarAsignacion" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¿Está seguro de aprobar la asignación?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="AprobarAsignacion">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="IdRechazarAsignacion" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>¿Está seguro de rechazar la asignación?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="RechazarAsignacion">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalRechazarAsignacion" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Rechazo de Asignacion de Consultores!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-popup">
+                    <span class="titulo">Información de Rechazo Asignación</span>
+                    <article class="sector-50">
+                        <label>Motivo:</label>
+                        @Html.DropDownList("Motivo_Rechazo", new SelectList(new List<SelectListItem> {
+                       new SelectListItem { Text = "Motivo 1", Value = "1" },
+                       new SelectListItem { Text = "Motivo 2", Value = "2" },
+                       new SelectListItem { Text = "Motivo 3", Value = "3" }
+                        }, "Value", "Text"), null, null)
+                    </article>
+                    <article class="sector-50">
+                        <label>Comentario:</label>
+                        @Html.TextArea("Comentario_Rechazo", "")
+                    </article>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="OKRechazarAsignacion">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/script-layaout")
+@Scripts.Render("~/bundles/aprobacion-asignacion-automatica")

@@ -1,0 +1,38 @@
+﻿@model List<Consultora.Entidad.ServicioEmpresarialCompetenciaEntidad>
+    @{
+        ViewBag.Title = "_ResultadoConsultoresAsignados";
+    }
+
+               @if (Model != null && Model.Count > 0)
+               {
+                   <h5>Información de Consultores</h5>
+
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Nombres</th>
+                               <th>Cargo</th>
+                               <th>Senority</th>
+                               <th class="center">Disponibilidad</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           @foreach (var entidad in Model)
+                           {
+                               <tr>
+                                   <td>
+                                        @entidad.Consultor.NombreCompleto
+                                   </td>
+                                   <td>
+                                       @entidad.Consultor.Competencia.Nom_Competencia
+                                   </td>
+                                   <td>
+                                       @entidad.Consultor.NivelCompetencia.Nom_Nivel_Competencia</td>
+                                   <td class="center"> <input type="checkbox" checked readonly /> </td>
+                               </tr>
+                           }
+
+                       </tbody>
+                   </table>
+               }
+

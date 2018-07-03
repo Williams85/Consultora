@@ -1,0 +1,46 @@
+﻿@model List<Consultora.Entidad.ServicioEmpresarialEntidad>
+    @{
+        ViewBag.Title = "_ResultadoAsignacionesAutomaticas";
+    }
+
+               @if (Model != null && Model.Count > 0)
+               {
+                   <h5>Listado de Servicios</h5>
+                   <table>
+                       <thead>
+                           <tr>
+                               <th></th>
+                               <th>Nombre</th>
+                               <th>Cliente</th>
+                               <th>Tipo</th>
+                               <th>Responsable</th>
+                               <th>Fecha Asignación</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           @foreach (var entidad in Model)
+                           {
+                               <tr class="odd gradeX">
+                                   <td>
+                                       @using (Html.BeginForm("AprobacionAsignacionConsultores", "ServicioEmpresarial", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+                                       {
+                                           <input type="hidden" id="Cod_Servicio_Empresarial" name="Cod_Servicio_Empresarial" value="@entidad.Cod_Servicio_Empresarial" />
+                                           <button type="submit" class="btn btn-success btn-small">Ver</button>
+                                       }
+                                   </td>
+                                   <td>@entidad.Nom_Servicio_Empresarial</td>
+                                   <td>
+                                       @entidad.Cliente.Razon_Social
+                                   </td>
+                                   <td>
+                                       @entidad.Servicio.Nom_Servicio
+                                   </td>
+                                   <td> @entidad.Responsable</td>
+                                   <td align="center">@entidad.Fecha_Asignacion.ToString("dd/MM/yyyy")</td>
+                               </tr>
+                           }
+
+                       </tbody>
+                   </table>
+               }
+

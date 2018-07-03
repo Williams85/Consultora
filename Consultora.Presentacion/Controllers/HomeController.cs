@@ -19,8 +19,15 @@ namespace Consultora.Presentacion.Controllers
 
             SessionManager.Usuario = new UsuarioEntidad
             {
-                Cod_Usuario=1,
-                Nom_Usuario="Carlos Gonzales",
+                Cod_Usuario = 1,
+                Empleado = new EmpleadoEntidad
+                {
+                    Cod_Empleado = 1,
+                    Nom_Empleado = "Williams",
+                    AP_Empleado = "Morales",
+                    AM_Empleado = "Caballero"
+                },
+                Nom_Usuario = "Williams Morales Caballero",
             };
             return RedirectToAction("Index", "ServicioEmpresarial");
         }
