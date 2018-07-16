@@ -20,7 +20,7 @@ namespace Consultora.Repositorio
             try
             {
                 Conexion.abrirConexion(cn);
-                SqlCommand cmd = new SqlCommand("usp_Tb_Servicio_Empresarial_Competencias_BuscarRRHH", cn);
+                SqlCommand cmd = new SqlCommand("usp_Servicio_Empresarial_Competencias_BuscarRRHH", cn);
                 cmd.Parameters.Add(new SqlParameter("@Cod_Servicio_Empresarial", SqlDbType.Int)).Value = Int32.Parse(Codigo);
                 cmd.CommandType = CommandType.StoredProcedure;
                 List<ServicioEmpresarialCompetenciaEntidad> ListaServicioEmpresarialCompetencia = new List<ServicioEmpresarialCompetenciaEntidad>();
@@ -130,6 +130,7 @@ namespace Consultora.Repositorio
                                 Nom_Empleado = Reader.GetStringValue(reader, "Nom_Empleado"),
                                 AP_Empleado = Reader.GetStringValue(reader, "AP_Empleado"),
                                 AM_Empleado = Reader.GetStringValue(reader, "AM_Empleado"),
+                                Ema_Empleado = Reader.GetStringValue(reader, "Ema_Empleado"),
                             },
                             Competencia = new CompetenciaEntidad
                             {

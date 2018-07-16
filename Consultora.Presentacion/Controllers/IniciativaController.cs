@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Consultora.Utilitario;
 using System.IO;
+using System.Text;
 namespace Consultora.Presentacion.Controllers
 {
     public class IniciativaController : Controller
@@ -80,7 +81,7 @@ namespace Consultora.Presentacion.Controllers
                 if (oIniciativaDominio.Grabar(entidad, ref Cod_Iniciativa))
                 {
                     oResponseWeb.Estado = true;
-                    oResponseWeb.Message = "Los cambios fueron guardados";
+                    oResponseWeb.Message = "Se notificó al Gerente de Operaciones para que continúe con el flujo de la oportunidad...";
                     var entity = oIniciativaDominio.ObtenerxCodigo(Cod_Iniciativa.ToString());
                     oResponseWeb.Valor = Cod_Iniciativa.ToString() + "|" + entidad.RFP;
                     RFP.SaveAs(pathRFP);
@@ -90,6 +91,8 @@ namespace Consultora.Presentacion.Controllers
                     oResponseWeb.Estado = false;
                     oResponseWeb.Message = "Los cambios no fueron guardados";
                 }
+                var objeto = oIniciativaDominio.ObtenerxCodigo(Cod_Iniciativa.ToString());
+                SendEmail.NotificacionCreacionOportunidad(AppSettings.valueString("EmailGerenteOperaciones"), objeto);
                 #endregion
                 return Json(oResponseWeb);
             }
@@ -218,14 +221,15 @@ namespace Consultora.Presentacion.Controllers
             if (oIniciativaDominio.AsignarResponsableServicio(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Los cambios fueron guardados";
+                oResponseWeb.Message = "Se notificó al Responsable de servicio para que continúe con el flujo de la oportunidad";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
                 oResponseWeb.Message = "Los cambios no fueron guardados";
             }
-
+            var objeto = oIniciativaDominio.ObtenerxCodigo(entidad.Cod_Iniciativa.ToString());
+            SendEmail.NotificacionAsignacionResponsableServicio(objeto);
             return Json(oResponseWeb);
             #endregion
         }
@@ -430,17 +434,18 @@ namespace Consultora.Presentacion.Controllers
                 }
             }
             #endregion
-            if (oIniciativaDominio.RevisarRFP(entidad))
+            if (oIniciativaDominio.AsignarConsultorLider(entidad))
             {
                 oResponseWeb.Estado = true;
-                oResponseWeb.Message = "Los cambios fueron guardados";
+                oResponseWeb.Message = "Se notificó al Consultor Líder para que continúe con el flujo de la oportunidad";
                 if (string.IsNullOrWhiteSpace(RFP.FileName) == false) { RFP.SaveAs(pathRFP); }
             }
             else
             {
                 oResponseWeb.Message = "Los cambios no fueron guardados";
             }
-
+            var objeto = oIniciativaDominio.ObtenerxCodigo(entidad.Cod_Iniciativa.ToString());
+            SendEmail.NotificacionAsignacionConsultorLider(objeto);
             return Json(oResponseWeb);
             #endregion
         }
@@ -561,7 +566,8 @@ namespace Consultora.Presentacion.Controllers
             {
                 oResponseWeb.Message = "Los cambios no fueron guardados";
             }
-
+            var objeto = oIniciativaDominio.ObtenerxCodigo(entidad.Cod_Iniciativa.ToString());
+            SendEmail.NotificacionEstimacionHoras(objeto);
             return Json(oResponseWeb);
             #endregion
         }
@@ -1088,6 +1094,18 @@ namespace Consultora.Presentacion.Controllers
             var response = oIniciativaDominio.ValidaRentabilidad(entidad.Cod_Iniciativa.ToString());
             oResponseWeb.Estado = response.Valor;
             oResponseWeb.Message = response.Mensaje;
+            return Json(oResponseWeb);
+
+        }
+
+        [HttpPost]
+        public ActionResult ValidarDescargaRentabilidad(IniciativaEntidad entidad)
+        {
+            ResponseWeb<string> oResponseWeb = new ResponseWeb<string>() { Estado = false, };
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            var response = oIniciativaDominio.ValidaRentabilidad(entidad.Cod_Iniciativa.ToString());
+            oResponseWeb.Estado = response.Valor;
+            oResponseWeb.Message = "Debe concluir el proceso de prospección para la descarga del informe de resultados";
             return Json(oResponseWeb);
 
         }
@@ -1865,7 +1883,7 @@ namespace Consultora.Presentacion.Controllers
         [HttpPost]
         public ActionResult GrabarCancelarOportunidad(IniciativaEntidad entidad)
         {
-            entidad.Estado_Iniciativa = (byte)Enumeracion.EstadoFlujo.CancelarOportunidad;
+            entidad.Estado_Iniciativa = (sbyte)Enumeracion.EstadoFlujo.CancelarOportunidad;
             var response = oIniciativaDominio.CancelarOportunidad(entidad);
             return Json(response);
         }
@@ -1906,6 +1924,23 @@ namespace Consultora.Presentacion.Controllers
             var entidad = oIniciativaDominio.ObtenerxCodigo(id.ToString());
             var extension = entidad.Aceptacion_Propuesta_Tecnica.Split('.');
             return File("~" + entidad.Aceptacion_Propuesta_Tecnica, "application/octet-stream", "AceptacionPropuestaTecnica." + extension[extension.Length - 1]);
+        }
+        [HttpGet, FileDownload]
+        public FilePathResult DescargarRentabilidad(int id)
+        {
+            IniciativaDominio oIniciativaDominio = new IniciativaDominio();
+            var entidad = oIniciativaDominio.ObtenerxCodigo(id.ToString());
+            using (StreamWriter sw = System.IO.File.CreateText(Server.MapPath("~/Rentabilidad/" + entidad.Nom_Iniciativa + ".txt")))
+            {
+                sw.WriteLine("Calculando costo de equipo de consultores: " + entidad.CostoTotalEquipo.ToString("###.#0"));
+                sw.WriteLine("Calculando costo total del servicio: " + entidad.CostoTotalServicio.ToString("###.#0"));
+                sw.WriteLine("Calculando precio estimado para el cliente: " + entidad.CostoTotalCliente.ToString("###.#0"));
+                sw.WriteLine("Calculando rentabilidad neta del servicio: " + entidad.GananciaBruta.ToString("###.#0"));
+                sw.WriteLine("Calculando el tamaño del servicio: " + entidad.TamañoServicio);
+                sw.WriteLine("Calculando % de rentabilidad esperada: " + entidad.MedidadServicio.ToString() + "% (Servicio " + entidad.TamañoServicio + ")");
+                sw.WriteLine("Evaluando cumplimiento de rentabilidad: Cumple con el " + entidad.MedidadServicio.ToString() + "%");
+            }
+            return File("~/Rentabilidad/" + entidad.Nom_Iniciativa + ".txt", "application/octet-stream", entidad.Nom_Iniciativa + ".txt");
         }
 
         #endregion

@@ -60,6 +60,7 @@ namespace Consultora.Repositorio
                     {
                         oServicioEmpresarialEntidad.Cod_Servicio_Empresarial = Reader.GetIntValue(reader, "Cod_Servicio_Empresarial");
                         oServicioEmpresarialEntidad.Nom_Servicio_Empresarial = Reader.GetStringValue(reader, "Nom_Servicio_Empresarial");
+                        oServicioEmpresarialEntidad.Descripcion_Servicio_Empresarial = Reader.GetStringValue(reader, "Descripcion_Servicio_Empresarial");
                         oServicioEmpresarialEntidad.Cliente = new ClienteEntidad
                         {
                             Razon_Social = Reader.GetStringValue(reader, "Razon_Social"),
@@ -73,6 +74,17 @@ namespace Consultora.Repositorio
                         oServicioEmpresarialEntidad.Servicio = new ServicioEntidad
                         {
                             Nom_Servicio = Reader.GetStringValue(reader, "Nom_Servicio"),
+                        };
+                        oServicioEmpresarialEntidad.Negocio = new NegocioEntidad
+                        {
+                            Nom_Negocio = Reader.GetStringValue(reader, "Nom_Negocio"),
+                        };
+                        oServicioEmpresarialEntidad.ResponsableServicio = new UsuarioEntidad
+                        {
+                            Empleado = new EmpleadoEntidad
+                            {
+                                Ema_Empleado = Reader.GetStringValue(reader, "Ema_Empleado")
+                            }
                         };
                         oServicioEmpresarialEntidad.Fecha_Inicio = Reader.GetDateTimeValue(reader, "Fecha_Inicio");
                         oServicioEmpresarialEntidad.Fecha_Fin = Reader.GetDateTimeValue(reader, "Fecha_Fin");

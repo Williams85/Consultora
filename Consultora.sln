@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultora.Presentacion", "Consultora.Presentacion\Consultora.Presentacion.csproj", "{5F926D83-4E39-4EE8-8C22-7A03A3A875E8}"
 EndProject
@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Capa Presentacion", "1. 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Capa Dominio", "2. Capa Dominio", "{74D43F4F-A40B-4E61-809C-21C292638C17}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Capa Infraestructura", "3. Capa Infraestructura", "{5AF585DF-CFD6-453E-809C-362CB6DE76CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Capa Infraestructura", "4. Capa Infraestructura", "{5AF585DF-CFD6-453E-809C-362CB6DE76CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Capa Transversal", "4. Capa Transversal", "{55DAF938-34C3-4614-A0F4-AEE265E06385}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Capa Transversal", "5. Capa Transversal", "{55DAF938-34C3-4614-A0F4-AEE265E06385}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultora.Dominio", "Consultora.Dominio\Consultora.Dominio.csproj", "{11AD3AAB-0C6D-4F67-A85D-681657E07CD9}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultora.Repositorio", "Consultora.Repositorio\Consultora.Repositorio.csproj", "{010F4F81-A139-41CD-9012-62FDE1D04A6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultora.Utilitario", "Consultora.Utilitario\Consultora.Utilitario.csproj", "{1686E7BA-1872-4CE8-8265-3F7922164649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Capa Entidad", "3. Capa Entidad", "{7E26188C-321C-4190-92B0-F4577CB132C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,8 +56,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5F926D83-4E39-4EE8-8C22-7A03A3A875E8} = {2571FBDF-7BF1-4240-9745-94647D829AA3}
 		{11AD3AAB-0C6D-4F67-A85D-681657E07CD9} = {74D43F4F-A40B-4E61-809C-21C292638C17}
-		{27CDC80B-F8A5-42E5-B8B4-BBD36CDCFFFD} = {74D43F4F-A40B-4E61-809C-21C292638C17}
 		{010F4F81-A139-41CD-9012-62FDE1D04A6C} = {5AF585DF-CFD6-453E-809C-362CB6DE76CC}
 		{1686E7BA-1872-4CE8-8265-3F7922164649} = {55DAF938-34C3-4614-A0F4-AEE265E06385}
+		{27CDC80B-F8A5-42E5-B8B4-BBD36CDCFFFD} = {7E26188C-321C-4190-92B0-F4577CB132C4}
 	EndGlobalSection
 EndGlobal

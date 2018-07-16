@@ -35,31 +35,48 @@ namespace Consultora.Repositorio
                         oIniciativaEntidad.Negocio = new NegocioEntidad
                         {
                             Cod_Negocio = Reader.GetIntValue(reader, "Cod_Negocio"),
+                            Nom_Negocio = Reader.GetStringValue(reader, "Nom_Negocio"),
                         };
                         oIniciativaEntidad.Servicio = new ServicioEntidad
                         {
                             Cod_Servicio = Reader.GetIntValue(reader, "Cod_Servicio"),
+                            Nom_Servicio = Reader.GetStringValue(reader, "Nom_Servicio"),
                         };
                         oIniciativaEntidad.Cliente = new ClienteEntidad
                         {
                             Cod_Cliente = Reader.GetIntValue(reader, "Cod_Cliente"),
+                            Razon_Social = Reader.GetStringValue(reader, "Razon_Social"),
                         };
                         oIniciativaEntidad.ResponsableServicio = new UsuarioEntidad
                         {
                             Cod_Usuario = Reader.GetIntValue(reader, "Responsable_Servicio"),
+                            Empleado = new EmpleadoEntidad
+                            {
+                                Ema_Empleado = Reader.GetStringValue(reader, "EmailResponsableServicio"),
+                            }
                         };
                         oIniciativaEntidad.ConsultorLider = new UsuarioEntidad
                         {
                             Cod_Usuario = Reader.GetIntValue(reader, "Consultor_Lider"),
+                            Empleado = new EmpleadoEntidad
+                            {
+                                Ema_Empleado = Reader.GetStringValue(reader, "EmailConsultorLider"),
+                            }
                         };
                         oIniciativaEntidad.RFP = Reader.GetStringValue(reader, "RFP");
                         oIniciativaEntidad.Propuesta_Tecnica = Reader.GetStringValue(reader, "Propuesta_Tecnica");
                         oIniciativaEntidad.Correo_Propuesta_Tecnica = Reader.GetStringValue(reader, "Correo_Propuesta_Tecnica");
                         oIniciativaEntidad.Aceptacion_Propuesta_Tecnica = Reader.GetStringValue(reader, "Aceptacion_Propuesta_Tecnica");
                         oIniciativaEntidad.Fecha_Registro = Reader.GetDateTimeValue(reader, "Fecha_Registro");
+                        oIniciativaEntidad.CostoTotalEquipo = (decimal) Reader.GetDoubleValue(reader, "Costo_Total_Equipo");
+                        oIniciativaEntidad.CostoTotalServicio = (decimal)Reader.GetDoubleValue(reader, "Costo_Total_Servicio");
+                        oIniciativaEntidad.CostoTotalCliente = (decimal)Reader.GetDoubleValue(reader, "Costo_Total_Cliente");
+                        oIniciativaEntidad.GananciaBruta = (decimal)Reader.GetDoubleValue(reader, "Ganancia_Bruta");
+                        oIniciativaEntidad.MedidadServicio = (decimal)Reader.GetDoubleValue(reader, "Medidad_Servicio");
+                        oIniciativaEntidad.TamañoServicio = Reader.GetStringValue(reader, "Tamaño_Servicio");
                         oIniciativaEntidad.Fecha_Inicio_Servicio = Reader.GetDateTimeValue(reader, "Fecha_Inicio_Servicio");
                         oIniciativaEntidad.Fecha_Fin_Servicio = Reader.GetDateTimeValue(reader, "Fecha_Fin_Servicio");
-                        oIniciativaEntidad.Estado_Iniciativa = Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
+                        oIniciativaEntidad.Estado_Iniciativa = (sbyte) Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
                         oIniciativaEntidad.Cod_Servicio_Generado = Reader.GetStringValue(reader, "Cod_Servicio_Generado");
                         oIniciativaEntidad.Motivo_Cancelacion = Reader.GetStringValue(reader, "Motivo_Cancelacion");
                         oIniciativaEntidad.Comentarios = Reader.GetStringValue(reader, "Comentarios");
@@ -89,7 +106,7 @@ namespace Consultora.Repositorio
                 cmd.Parameters.Add(new SqlParameter("@Cod_Negocio", SqlDbType.Int)).Value = entidad.Negocio.Cod_Negocio;
                 cmd.Parameters.Add(new SqlParameter("@Cod_Servicio", SqlDbType.Int)).Value = entidad.Servicio.Cod_Servicio;
                 cmd.Parameters.Add(new SqlParameter("@Cod_Cliente", SqlDbType.Int)).Value = entidad.Cliente.Cod_Cliente;
-                cmd.Parameters.Add(new SqlParameter("@Estado_Iniciativa", SqlDbType.TinyInt)).Value = entidad.Estado_Iniciativa;
+                cmd.Parameters.Add(new SqlParameter("@Estado_Iniciativa", SqlDbType.Int)).Value = (Int32)entidad.Estado_Iniciativa;
                 cmd.CommandType = CommandType.StoredProcedure;
                 List<IniciativaEntidad> ListaIniciativa = new List<IniciativaEntidad>();
                 using (var reader = cmd.ExecuteReader())
@@ -113,7 +130,7 @@ namespace Consultora.Repositorio
                         {
                             Razon_Social = Reader.GetStringValue(reader, "Razon_Social"),
                         };
-                        oIniciativaEntidad.Estado_Iniciativa = Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
+                        oIniciativaEntidad.Estado_Iniciativa = (sbyte)Reader.GetTinyIntValue(reader, "Estado_Iniciativa");
                         ListaIniciativa.Add(oIniciativaEntidad);
                     }
                 }
@@ -350,6 +367,7 @@ namespace Consultora.Repositorio
                 Conexion.cerrarConexion(cn);
             }
         }
+
         public bool Modificar(IniciativaEntidad entidad)
         {
             SqlConnection cn = new SqlConnection(Conexion.CnConsultora);

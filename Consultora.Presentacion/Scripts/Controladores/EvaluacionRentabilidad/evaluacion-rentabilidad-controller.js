@@ -175,12 +175,12 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 25%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 25%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     else if (medidaservicio == "Mediano") {
@@ -188,12 +188,12 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 30%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 30%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     else if (medidaservicio == "Grande") {
@@ -201,12 +201,12 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 35%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 35%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     $("#IdViewEvaluandoRentabilidad").show();

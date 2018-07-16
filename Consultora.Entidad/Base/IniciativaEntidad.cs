@@ -21,7 +21,7 @@ namespace Consultora.Entidad
         public string Aceptacion_Propuesta_Tecnica { get; set; }
         public UsuarioEntidad ResponsableServicio { get; set; }
         public UsuarioEntidad ConsultorLider { get; set; }
-        public byte Estado_Iniciativa { get; set; }
+        public sbyte Estado_Iniciativa { get; set; }
         public DateTime Fecha_Registro { get; set; }
         public bool Rentable { get; set; }
         public decimal CostoTotalEquipo { get; set; }

@@ -111,6 +111,7 @@ function BuscarRRHH(parametros) {
                 return false;
             });
 
+            DisposeEvent("#GuardarCambios");
             $("#GuardarCambios").on("click", function () {
                 $("#IdGuardarCambios").modal("hide");
                 var parametros = {
@@ -198,12 +199,13 @@ function SearchRRHH(parametros) {
                 return false;
             });
 
-            $("#GuardarCambios").on("click", function () {
-                $("#IdGuardarCambios").modal("hide");
-                var parametros = {};
-                AsignarRRHH(parametros);
-                return false;
-            });
+            //DisposeEvent("#GuardarCambios");
+            //$("#GuardarCambios").on("click", function () {
+            //    $("#IdGuardarCambios").modal("hide");
+            //    var parametros = {};
+            //    AsignarRRHH(parametros);
+            //    return false;
+            //});
 
             //Eliminar Consultor
             $(".btn-eliminar-consultor").on("click", function () {
@@ -297,7 +299,7 @@ function AsignarRRHH(parametros) {
     ajax(info, function (data) {
         $("#IdMensaje").find("p").html("");
         if (data == true) {
-            $("#IdMensaje").find("p").append("Se guardaron los cambios satisfatoriamente...");
+            $("#IdMensaje").find("p").append("Se notificó al gerente de operaciones para su aprobación...");
             $("#guardar-datos").prop("disabled", true);
         } else {
             $("#IdMensaje").find("p").append("No se guardaron los cambios...");

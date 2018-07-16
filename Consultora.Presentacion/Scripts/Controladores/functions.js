@@ -1,4 +1,6 @@
-﻿//Rutas
+﻿
+
+//Rutas
 var rutas = {};
 rutas.BuscarRRHH = "/ServicioEmpresarial/BuscarRRHH";
 rutas.SearchRRHH = "/ServicioEmpresarial/SearchRRHH";
@@ -42,6 +44,7 @@ rutas.CalcularCostoEquipoCliente = "/Iniciativa/CalcularCostoEquipoCliente";
 rutas.CalcularTamañoServicio = "/Iniciativa/CalcularTamañoServicio";
 rutas.RegistrarEvaluacionRentabilidad = "/Iniciativa/RegistrarEvaluacionRentabilidad";
 rutas.ValidarRentabilidad = "/Iniciativa/ValidarRentabilidad";
+rutas.ValidarDescargaRentabilidad = "/Iniciativa/ValidarDescargaRentabilidad";
 
 //Consultar Oportunidad
 rutas.BuscarIniciativa = "/Iniciativa/BuscarIniciativa";
@@ -121,6 +124,11 @@ var Constantes = {
     Message: {
         FaltaNombreProyecto: "Ingresar el nombre de la oportunidad...",
         FaltaDescripcionProyecto: "Ingresar la descripcion de la oportunidad...",
+        FaltaUnidadNegocio: "Ingresar la unidad de negocio de la oportunidad...",
+        FaltaTipoServicio: "Ingresar el tipo de servicio de la oportunidad...",
+        FaltaCliente: "Ingresar el cliente de la oportunidad...",
+        FaltaResponsableServicio: "Ingresar el responsable de servicio de la oportunidad...",
+        FaltaConsultorLider: "Ingresar el consultor lider de la oportunidad...",
         FaltaRFP: "Ingresar el archivo RFP de la oportunidad...",
 
         //Mensaje Mantenimiento Canales

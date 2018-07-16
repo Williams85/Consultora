@@ -39,11 +39,6 @@
         <div class="clear">
 
         </div>
-        <article class="lista-botones">
-            <button type="button" class="btn btn-info" id="btn-aprobar-asignacion">Aprobar Asignación</button>
-            <button type="button" class="btn btn-info" id="btn-rechazar-asignacion">Rechazar Asignación</button>
-        </article>
-
     }
 </div>
 
@@ -51,7 +46,9 @@
 
 </div>
 <div class="lista-botones">
-    @Html.ActionLink("Salir", "AprobacionAsignacionAutomatica", "ServicioEmpresarial", null, new { @class = "btn btn-success btn-lg" })
+    <button type="button" class="btn btn-info" id="btn-aprobar-asignacion">Aprobar Asignación</button>
+    <button type="button" class="btn btn-info" id="btn-rechazar-asignacion">Rechazar Asignación</button>
+    @Html.ActionLink("Salir", "AprobacionAsignacionAutomatica", "ServicioEmpresarial", null, new { @class = "btn btn-success" })
 </div>
 
 <div id="IdAprobarAsignacion" class="modal" tabindex="-1" role="dialog">
@@ -87,7 +84,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Rechazo de Asignacion de Consultores!</h4>
+                <h4 class="modal-title">Rechazo de Asignación de Consultores</h4>
             </div>
             <div class="modal-body">
                 <div class="form-popup">

@@ -39,15 +39,15 @@
         </article>
         <article class="sector-50">
             <label>Unidad Negocio:</label>
-            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Tipo Servicio:</label>
-            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Cliente:</label>
-            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), "Seleccionar", null)
         </article>
         <article class="sector-25">
             <label>RFP:</label>
@@ -81,11 +81,11 @@
 
         <article class="sector-100">
             <label>Responsable Servicio:</label>
-            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), "Seleccionar", null)
         </article>
         <article class="sector-100">
             <label>Consultor Lider:</label>
-            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), null, null)
+            @Html.DropDownListFor(model => model.ConsultorLider.Cod_Usuario, new SelectList(ViewBag.ListaConsultorLider, "Cod_Usuario", "NombreEmpleado"), "Seleccionar", null)
         </article>
         <div class="clear">
         </div>
@@ -115,7 +115,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Esta seguro que desea cancelar esta oportunida?</p>
+                <p>¿Esta seguro que desea cancelar esta oportunidad?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="SiCancelarOportunidad">Si</button>
@@ -130,7 +130,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Cancelar Oportunidad!</h4>
+                <h4 class="modal-title">Cancelar Oportunidad</h4>
             </div>
             <div class="modal-body">
                 <div class="form-popup">
@@ -160,4 +160,72 @@
 
 @Scripts.Render("~/bundles/script-layaout")
 @Scripts.Render("~/bundles/oportunidad")
+<script>
+    $(function () {
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '<Ant',
+            nextText: 'Sig>',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $("#FechaInicioServicio").datepicker();
+        $("#FechaFinServicio").datepicker();
 
+        /* Datapicker con inicio y fecha final*/
+        from = $("#FechaInicioServicio")
+        .datepicker({
+            defaultDate: new Date(),
+            minDate: new Date(),
+            changeMonth: true,
+            buttonImage: "images/calendario.jpg",
+            buttonImageOnly: true,
+            showOn: "button",
+            dateFormat: "dd/mm/yy",
+            changeYear: true,
+            yearRange: "1900:2023",
+            numberOfMonths: 1
+        })
+        .on("change", function () {
+            to.datepicker("option", "minDate", getDate(this));
+        });
+
+        to = $("#FechaFinServicio").datepicker({
+            defaultDate: new Date(),
+            changeMonth: true,
+            buttonImage: "images/calendario.jpg",
+            buttonImageOnly: true,
+            showOn: "button",
+            dateFormat: "dd/mm/yy",
+            minDate: new Date(),
+            numberOfMonths: 1
+        })
+        .on("change", function () {
+            from.datepicker("option", "maxDate", getDate(this));
+        });
+
+        var dateFormat = "dd/mm/yy";
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
+
+    });
+</script>

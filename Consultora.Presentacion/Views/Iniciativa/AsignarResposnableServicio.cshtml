@@ -34,15 +34,15 @@
         </article>
         <article class="sector-50">
             <label>Unidad Negocio:</label>
-            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+            @Html.DropDownListFor(model => model.Negocio.Cod_Negocio, new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Tipo Servicio:</label>
-            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+            @Html.DropDownListFor(model => model.Servicio.Cod_Servicio, new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Cliente:</label>
-            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+            @Html.DropDownListFor(model => model.Cliente.Cod_Cliente, new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), "Seleccionar", null)
         </article>
         <article class="sector-25">
             <label>RFP:</label>
@@ -54,7 +54,7 @@
 
         <article class="sector-100">
             <label>Responsable Servicio:</label>
-            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), null, null)
+            @Html.DropDownListFor(model => model.ResponsableServicio.Cod_Usuario, new SelectList(ViewBag.ListaResponsableServicio, "Cod_Usuario", "NombreEmpleado"), "Seleccionar", null)
         </article>
         <div class="clear">
 
@@ -86,7 +86,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Esta seguro que desea cancelar esta oportunida?</p>
+                <p>¿Esta seguro que desea cancelar esta oportunidad?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="SiCancelarOportunidad">Si</button>
@@ -101,7 +101,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Cancelar Oportunidad!</h4>
+                <h4 class="modal-title">Cancelar Oportunidad</h4>
             </div>
             <div class="modal-body">
 

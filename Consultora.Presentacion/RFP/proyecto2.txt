@@ -1,0 +1,50 @@
+SELECT * from tbl_trx_uconti; COMMIT;
+select * from tab_life_susalud;
+delete * from tab_life_susalud;
+select * from TBL_TRX_ERROR where NUM_ARCHIVO = 9525;
+select * from TBL_TRX_ARCHIVO where periodo = '201805' and nproduct  =106 order by 4 desc;
+SELECT * FROM TBL_TRX_formato WHERE TABLA = 'TBL_TRX_UCONTI';
+select * from batch_job where nbatch = 90 and scommand like '%20180531%';
+select 
+SELECT COUNT(DISTINCT NPRODUCT) 
+--INTO VSUSALUD 
+FROM LIFE_COVER WHERE NBRANCH_EST = 61 AND NPRODUCT = 106;
+Begin
+  INSBTC0090('T2018053134001061708', '2', 1, 106, 340, '20160801', 'TBL_TRX_POL340', 116, 'R');
+  Commit;
+End;
+
+---1763
+--116: codigo de usuario cmamani
+
+              
+   select npolicy, nproduct 
+  --into vNpolicy, vNproduct
+  from tbl_trx_archivo
+  where num_archivo = 9525;
+  
+   SELECT *
+  --into vNum_Procesos_90existentes
+  FROM batch_job 
+  WHERE nbatch = 90 AND NSTATUS IN (0,3)
+  AND to_number(SUBSTR(skey, 13, 4)) = 106 AND to_number(SUBSTR(skey, 10, 3)) = 340;
+  
+    SELECT count(*)
+  --into vNum_certificados_falta170
+  FROM life WHERE scertype=2 AND nbranch = 1 AND nproduct = 106 AND npolicy = 340 
+  AND nreceipt IS NULL AND ncertif >0 And Npremium > 0 And Dnulldate Is Null 
+  and TO_CHAR(dcompdate,'YYYY')>'2014' ;
+  
+  COMMIT;
+    SELECT * 
+  --into vNum_certificados_falta170
+  FROM life WHERE scertype=2 AND nbranch = 1 AND nproduct = 106 AND npolicy = 340 
+  AND nreceipt IS NULL AND ncertif >0 And Npremium > 0 And Dnulldate Is Null 
+  and TO_CHAR(dcompdate,'YYYY')>'2014' ;
+  
+  
+  
+  select round(sum(to_number(ncapital)),2),round(sum(ROUND(to_number(npremium),6)),2) 
+into var_TotCapital,var_TotPremium from life 
+where scertype='2' and nbranch=1 and nproduct=par_nproduct and npolicy=par_npolicy 
+and to_char(deffecdate,'yyyymmdd')=ParFecha and dnulldate is null; 

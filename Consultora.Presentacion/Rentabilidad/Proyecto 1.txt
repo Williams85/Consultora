@@ -1,0 +1,7 @@
+Calculando costo de equipo de consultores: 426.25
+Calculando costo total del servicio: 511.50
+Calculando precio estimado para el cliente: 2125.00
+Calculando rentabilidad neta del servicio: 1187.25
+Calculando el tamaño del servicio: Pequeño
+Calculando % de rentabilidad esperada: 25% (Servicio Pequeño)
+Evaluando cumplimiento de rentabilidad: Cumple con el 25%

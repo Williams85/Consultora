@@ -96,7 +96,7 @@ function GrabarAprobacionAsignacionConsultores(parametros) {
     ajax(info, function (data) {
         if (data != null && data == true) {
             $("#IdAprobarAsignacion").modal("hide");
-            PopInformativo("Se aprobó la asignación de consultores...");
+            PopInformativo("Se notificó al equipo del servicio...");
             $("#btn-aprobar-asignacion").prop("disabled", true);
             $("#btn-rechazar-asignacion").prop("disabled", true);
         } else {

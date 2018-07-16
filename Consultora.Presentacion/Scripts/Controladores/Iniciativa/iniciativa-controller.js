@@ -1,12 +1,15 @@
 ﻿$(document).ready(function () {
 
     $("#btn-nuevo-descargar").hide();
-    $("#Resultado").hide();
+    //$("#Resultado").hide();
     $("#Message-Error").hide();
     $("#IdViewTotalGananciaBruta").hide();
     $("#IdViewPorcentajeRentabilidad").hide();
     $("#IdViewEvaluandoRentabilidad").hide();
+    $(".etiqueta .resultado").hide();
+
     $("#MensajeCarga").hide();
+    $(".lista-botones #idDescargar").prop("disabled", false);
 
     $("#idEvaluarRentabilidad").on("click", function () {
         $("#MensajeCarga").show();
@@ -31,6 +34,14 @@
         };
 
         RegistrarEvaluacionRentabilidad(parametros);
+    });
+
+    $("#idDescargar").on("click", function () {
+        var parametros = {
+            "Cod_Iniciativa": $("#Cod_Iniciativa").val(),
+        };
+        ValidarDescargaRentabilidad(parametros, $(this));
+        return false;
     });
 
     $("a.Descargar").on("click", function () {
@@ -76,12 +87,23 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-
+        var UnidadNegocio = $("#Cod_Negocio").val();
+        var TipoServicio = $("#Cod_Servicio").val();
+        var Cliente = $("#Cod_Cliente").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
         }
 
         if (mensaje != null && $.trim(mensaje) != "") {
@@ -96,21 +118,38 @@
     $("#btn-ars-siguiente").on("click", function () {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
+
         //Validar Formulario
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
         }
+
         $("#Indicador").val("1");
         $("#FormARS").submit();
         return false;;
@@ -119,18 +158,33 @@
     $("#btn-rfp-siguiente").on("click", function () {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
+
         //Validar Formulario
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -143,10 +197,16 @@
     $("#btn-acl-siguiente").on("click", function () {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
+
         //Validar Formulario
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -154,11 +214,26 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
         }
+
         $("#Indicador").val("1");
         $("#FormACL").submit();
         return false;
@@ -172,6 +247,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -179,7 +259,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -203,6 +297,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -210,7 +309,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -232,6 +345,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -239,7 +357,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -258,6 +390,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -265,7 +402,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -283,6 +434,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -290,7 +446,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -309,6 +479,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -316,7 +491,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -335,6 +524,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -342,7 +536,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -360,6 +568,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -367,7 +580,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -386,6 +613,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -393,7 +625,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -412,6 +658,11 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
 
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
@@ -419,7 +670,21 @@
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
-
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
+        }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -575,12 +840,25 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Cod_Negocio").val();
+        var TipoServicio = $("#Cod_Servicio").val();
+        var Cliente = $("#Cod_Cliente").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
         }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
             return false;
@@ -605,12 +883,27 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -632,16 +925,32 @@
     $("#FormRFP").submit(function (e) {
         $("#Message-Error strong").empty();
         $("#Message-Error").hide();
+
         //Validar Formulario
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -668,12 +977,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -700,12 +1029,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -732,12 +1081,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -764,12 +1133,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
-        var RFP = $("#file").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -796,11 +1185,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -827,11 +1237,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -858,11 +1289,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -889,11 +1341,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -920,11 +1393,32 @@
         var mensaje = "";
         var NombreProyecto = $("#Nom_Iniciativa").val();
         var DescripcipnProyecto = $("#Des_Iniciativa").val();
+        var UnidadNegocio = $("#Negocio_Cod_Negocio").val();
+        var TipoServicio = $("#Servicio_Cod_Servicio").val();
+        var Cliente = $("#Cliente_Cod_Cliente").val();
+        var ResponsableServicio = $("#ResponsableServicio_Cod_Usuario").val();
+        var ConsultorLider = $("#ConsultorLider_Cod_Usuario").val();
+
         if (NombreProyecto == null || NombreProyecto == "") {
             mensaje += Constantes.Message.FaltaNombreProyecto + Constantes.SaltoHtml;
         }
         if (DescripcipnProyecto == null || DescripcipnProyecto == "") {
             mensaje += Constantes.Message.FaltaDescripcionProyecto + Constantes.SaltoHtml;
+        }
+        if (UnidadNegocio == null || UnidadNegocio == "") {
+            mensaje += Constantes.Message.FaltaUnidadNegocio + Constantes.SaltoHtml;
+        }
+        if (TipoServicio == null || TipoServicio == "") {
+            mensaje += Constantes.Message.FaltaTipoServicio + Constantes.SaltoHtml;
+        }
+        if (Cliente == null || Cliente == "") {
+            mensaje += Constantes.Message.FaltaCliente + Constantes.SaltoHtml;
+        }
+        if (ResponsableServicio == null || ResponsableServicio == "") {
+            mensaje += Constantes.Message.FaltaResponsableServicio + Constantes.SaltoHtml;
+        }
+        if (ConsultorLider == null || ConsultorLider == "") {
+            mensaje += Constantes.Message.FaltaConsultorLider + Constantes.SaltoHtml;
         }
         if (mensaje != null && $.trim(mensaje) != "") {
             MostrarMensajeError(mensaje);
@@ -1007,11 +1501,14 @@ function GrabarOportunidad(e, info) {
                 $("#Cod_Iniciativa").val(datos[0]);
                 $("#File").val(datos[1]);
                 if ($("#Indicador").val() == "1") {
+                    PopInformativo(data.Message);
                     var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                     location.href = "/Iniciativa/AsignarResposnableServicio/" + Cod_Iniciativa
                 } else {
                     PopInformativo(data.Message);
                 }
+            } else {
+                PopInformativo(data.Message);
             }
 
         } else {
@@ -1027,9 +1524,11 @@ function GrabarResponsableServicio(e, info) {
         if (data != null) {
             //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
+                PopInformativo(data.Message);
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/RevisarRFP/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1048,6 +1547,7 @@ function GrabarRevisionRFP(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/AsignarConsultorLider/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1063,9 +1563,11 @@ function GrabarConsultorLider(e, info) {
         if (data != null) {
             //PopInformativo(data.Message);
             if (data.Estado == true && $("#Indicador").val() == "1") {
+                PopInformativo(data.Message);
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EstimarTiemposProyecto/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1084,6 +1586,7 @@ function GrabarEstimacionTiempoProyectos(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EstimarConsultoresProyecto/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1102,6 +1605,7 @@ function GrabarEstimacionConsultores(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/EvaluarRentabilidad/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1120,6 +1624,7 @@ function GrabarEvaluacionRentabilidad(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/DesarrollarPropuestaTecnica/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1138,6 +1643,7 @@ function GrabarDesarrollarPropuestaTecnica(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/RevisarPropuestaTecnica/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1160,6 +1666,7 @@ function GrabarRevisarPropuestaTecnica(e, info) {
                 else if (indiUrl == "1")
                     location.href = "/Iniciativa/RespuestaCliente/" + Cod_Iniciativa;
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1178,6 +1685,7 @@ function GrabarEnviarPropuestaTecnica(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/RespuestaCliente/" + Cod_Iniciativa
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1200,6 +1708,7 @@ function GrabarRespuestaCliente(e, info) {
                 else if (indiUrl == "1")
                     location.href = "/Iniciativa/GestionarInicioServicio/" + Cod_Iniciativa;
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1218,6 +1727,7 @@ function GrabarGestionarInicioServicio(e, info) {
                 var Cod_Iniciativa = $("#Cod_Iniciativa").val();
                 location.href = "/Iniciativa/CerrarOportunidad/" + Cod_Iniciativa;
             } else {
+                $("#Indicador").val("0")
                 PopInformativo(data.Message);
             }
         } else {
@@ -1280,7 +1790,7 @@ function GrabarRequerimiento(parametros) {
         if (data != null) {
             if (data.Estado == true)
                 ListarRequerimientoxIniciativa(parametros);
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
             $("#btn-etp-continuar-reqact").hide();
         } else {
             PopInformativo("Ocurrio un error al guardar el requerimiento...");
@@ -1343,7 +1853,7 @@ function GrabarRequerimientoActividad(parametros) {
         if (data != null) {
             if (data.Estado == true)
                 ListarRequerimientoActividadxRequerimiento(parametros);
-            PopInformativo(data.Message);
+            //PopInformativo(data.Message);
         } else {
             PopInformativo("Ocurrio un error al guardar el requerimiento...");
         }
@@ -1793,12 +2303,12 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 25%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 25%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     else if (medidaservicio == "Mediano") {
@@ -1806,12 +2316,12 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 30%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 30%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     else if (medidaservicio == "Grande") {
@@ -1819,17 +2329,18 @@ function CalcularEvaluacionRentabilidad() {
         if (porcentaje >= porcentajerenta) {
             $("#IdEvalRentabilidad").val("Cumple con el 35%");
             $("#IdRentable").val("1");
-            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html("El servicio cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
         else {
             $("#IdEvalRentabilidad").val("No Cumple con el 35%");
             $("#IdRentable").val("0");
-            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gernte de Operaciones la continuidad de esta oportunidad.");
+            $("#MensajeResultado").html(" El servicio no cumple con la rentabilidad esperada. Coordinar con el Gerente de Operaciones la continuidad de esta oportunidad.");
         }
     }
     $("#IdViewEvaluandoRentabilidad").show();
     $("#MensajeCarga").html("")
     $("#MensajeCarga").hide();
+    $("#idGuardar").prop("disabled", false);
 }
 
 function RegistrarEvaluacionRentabilidad(parametros) {
@@ -1869,6 +2380,27 @@ function ValidarRentabilidad(parametros, Indicador, FormER) {
         }
     });
 }
+
+
+function ValidarDescargaRentabilidad(parametros, objeto) {
+    var estado = false;
+    //Consultar Controlador
+    var info = new Object();
+    info.metodo = "POST";
+    info.serviceURL = rutas.ValidarDescargaRentabilidad;
+    info.parametros = parametros;
+    ajax(info, function (data) {
+        if (data != null) {
+            if (data.Estado == false) {
+                PopInformativo(data.Message);
+            } else {
+                var Url = objeto.prop('href') + "/" + $("#Cod_Iniciativa").val();
+                $.fileDownload(Url);
+            }
+        }
+    });
+}
+
 
 //Desarrollar Propuesta Tecnica
 

@@ -25,15 +25,15 @@
         </article>
         <article class="sector-50">
             <label>Unidad Negocio:</label>
-            @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), null, null)
+            @Html.DropDownList("Cod_Negocio", new SelectList(ViewBag.ListaNegocio, "Cod_Negocio", "Nom_Negocio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Tipo Servicio:</label>
-            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), null, null)
+            @Html.DropDownList("Cod_Servicio", new SelectList(ViewBag.ListaTipoServicio, "Cod_Servicio", "Nom_Servicio"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>Cliente:</label>
-            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), null, null)
+            @Html.DropDownList("Cod_Cliente", new SelectList(ViewBag.ListaCliente, "Cod_Cliente", "Razon_Social"), "Seleccionar", null)
         </article>
         <article class="sector-50">
             <label>RFP:</label>

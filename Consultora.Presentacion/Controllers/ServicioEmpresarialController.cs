@@ -1,5 +1,6 @@
 ﻿using Consultora.Dominio;
 using Consultora.Entidad;
+using Consultora.Utilitario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,7 +109,10 @@ namespace Consultora.Presentacion.Controllers
             {
                 Cod_Empleado = SessionManager.Usuario.Empleado.Cod_Empleado,
             };
-            var respuesta = oServicioEmpresarialCompetenciaDominio.GrabarAsignacionAutomatica(SessionManager.ListaConsultoresAsignados.Where(x => x.Consultor.Cod_Consultor != 0).ToList(),entidad);
+            var respuesta = oServicioEmpresarialCompetenciaDominio.GrabarAsignacionAutomatica(SessionManager.ListaConsultoresAsignados.Where(x => x.Consultor.Cod_Consultor != 0).ToList(), entidad);
+            ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            var objeto = oServicioEmpresarialDominio.FiltrarxCodigo(entidad.Cod_Servicio_Empresarial.ToString());
+            SendEmail.NotificacionAsignacionConsultores(AppSettings.valueString("EmailGerenteOperaciones"), objeto);
             return Json(respuesta);
         }
 
@@ -217,7 +221,11 @@ namespace Consultora.Presentacion.Controllers
         public ActionResult GrabarAprobacionAsignacionConsultores(string Codigo)
         {
             ServicioEmpresarialDominio oServicioEmpresarialDominio = new ServicioEmpresarialDominio();
+            ServicioEmpresarialCompetenciaDominio oServicioEmpresarialCompetenciaDominio=new ServicioEmpresarialCompetenciaDominio();
             var respuesta = oServicioEmpresarialDominio.GrabarAprobacionAsignacionConsultores(Codigo);
+            var servicio = oServicioEmpresarialDominio.FiltrarxCodigo(Codigo);
+            var ListaAsignados = oServicioEmpresarialCompetenciaDominio.BuscarRRHHAsignados(Codigo);
+            SendEmail.NotificacionAprobacionAsignacion(servicio, ListaAsignados);
             return Json(respuesta);
         }
 
